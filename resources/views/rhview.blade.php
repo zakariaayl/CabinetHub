@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Laravel 12 + Tailwind CSS</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-200 flex items-top justify-center min-h-screen relative">
 
     <div class="container mx-auto p-4">
         <h2 class="text-2xl font-bold mb-4">Liste des Ressources</h2>
-<form action="" method="GET" class="mb-4 left-2">
-        @csrf
-        <button type="submit" class=" w-20 h-13 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-xl">
-            + Ajouter
-        </button>
-    </form>
+<a href="{{ route('ResourceController.create') }}"
+   class="inline-block w-20 h-13 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-xl text-center leading-[3rem]">
+    + Ajouter
+</a>
+
         <table class="table-auto w-full border-collapse border border-gray-300">
             <thead class="bg-gray-100">
                 <tr>
