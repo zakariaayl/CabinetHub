@@ -7,6 +7,6 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/RH/seeAllresources ', [ResourceController::class, 'showpage']);
+Route::get('/RH/seeAllresources ', [ResourceController::class,'index']);
 Route::resource('ResourceController', ResourceController::class);
 
