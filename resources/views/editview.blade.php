@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <title>Ajouter une Ressource</title>
+</head>
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="max-w-2xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Gestion d'Équipement</h1>
+            <p class="text-gray-600 font-bold">modifier {{ $resource->designation }}</p>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <form action="{{ route('ResourceController.update',['ResourceController'=>$resource->id ]) }}" method="POST" class="space-y-6">
+
+                @csrf
+  @method('PUT')
+                <!-- Type -->
+                <div>
+                    <label for="type" class="block text-sm font-medium text-gray-700 mb-2">
+                        Type <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text"
+                           name="type"
+                           id="type"
+                           required
+                           class="w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent border-black"
+                           placeholder="{{ $resource->type }}">
+                </div>
+
+                <!-- Designation -->
+                <div>
+                    <label for="designation" class="block text-sm font-medium text-gray-700 mb-2">
+                        Désignation <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text"
+                           name="designation"
+                           id="designation"
+                           required
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
+                           placeholder="{{ $resource->designation }}">
+                </div>
+
+                <!-- Row: Brand and Model -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="marque" class="block text-sm font-medium text-gray-700 mb-2">
+                            Marque
+                        </label>
+                        <input type="text"
+                               name="marque"
+                               id="marque"
+                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="{{ $resource->marque }}">
+                    </div>
+                    <div>
+                        <label for="modele" class="block text-sm font-medium text-gray-700 mb-2">
+                            Modèle
+                        </label>
+                        <input type="text"
+                               name="modele"
+                               id="modele"
+                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="{{ $resource->modele }}">
+                    </div>
+                </div>
+
+                <!-- Serial Number -->
+                <div>
+                    <label for="numero_serie" class="block text-sm font-medium text-gray-700 mb-2">
+                        Numéro de Série
+                    </label>
+                    <input type="text"
+                           name="numero_serie"
+                           id="numero_serie"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono"
+                           placeholder="{{ $resource->numero_serie }}">
+                </div>
+
+                <!-- Software Version -->
+                <div>
+                    <label for="version_logiciel" class="block text-sm font-medium text-gray-700 mb-2">
+                        Version Logiciel
+                    </label>
+                    <input type="text"
+                           name="version_logiciel"
+                           id="version_logiciel"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="{{ $resource->version_logiciel }}">
+                </div>
+
+                <!-- Row: Purchase Date and Status -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <div>
+                        <label for="etat" class="block text-sm font-medium text-gray-700 mb-2">
+                            État
+                        </label>
+                        <select name="etat"
+                                id="etat"
+                                class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionner</option>
+                            <option value="Neuf">Neuf</option>
+                            <option value="Bon">Bon</option>
+                            <option value="Usagé">Usagé</option>
+                            <option value="Hors Service">Hors Service</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div>
+                    <label for="localisation" class="block text-sm font-medium text-gray-700 mb-2">
+                        Localisation
+                    </label>
+                    <input type="text"
+                           name="localisation"
+                           id="localisation"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="{{ $resource->numero_serie }}{{ $resource->localisation }}">
+                </div>
+
+                <!-- Assigned User -->
+                <div>
+                    <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-700 mb-2">
+                        Utilisateur Affecté
+                    </label>
+                    <input type="text"
+                           name="utilisateur_affecte"
+                           id="utilisateur_affecte"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="{{ $resource->utilisateur_affecte }}">
+                </div>
+
+                <!-- Row: Warranty and Maintenance -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="date_fin_garantie" class="block text-sm font-medium text-gray-700 mb-2">
+                            Date Fin de Garantie
+                        </label>
+                        <input type="date"
+                               name="date_fin_garantie"
+                               id="date_fin_garantie"
+                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="prochaine_maintenance" class="block text-sm font-medium text-gray-700 mb-2">
+                            Prochaine Maintenance
+                        </label>
+                        <input type="date"
+                               name="prochaine_maintenance"
+                               id="prochaine_maintenance"
+                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+
+                <!-- Remarks -->
+                <div>
+                    <label for="remarque" class="block text-sm font-medium text-gray-700 mb-2">
+                        Remarques
+                    </label>
+                    <textarea name="remarque"
+                              id="remarque"
+                              rows="3"
+                              class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                              placeholder="{{ $resource->remarque }}"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-4">
+                    <button type="submit"
+                            class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium">
+                        Enregistrer les modifications
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
