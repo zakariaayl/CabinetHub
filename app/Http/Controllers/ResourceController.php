@@ -16,18 +16,9 @@ class ResourceController extends Controller
     }
     public function edit($id) {
         $resource=ressource::find($id);
-        return view('editview', ['resource'=> $resource]);
+        return view('viewresource', ['resource'=> $resource]);
     }
-    public function update(Request $request,$id) {
-        $resource=ressource::find( $id );
-        $resource->update($request->all());
-        return redirect()->route('ResourceController.index')->with('success',' modification a ete effectue');
-    }
-    public function destroy($id) {
-        $resource=ressource::find($id);
-        $resource->delete();
-      return redirect()->route('ResourceController.index')->with('success','supprimer avec succes');
-    }
+
     public function store(Request $request) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
