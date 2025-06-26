@@ -34,7 +34,7 @@
             @method('DELETE')
             <a href="#"><button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400">Supprimer</button></a>
             </form>
-            <a href="{{ url('/RH/collaborateurs') }}" class="ml-auto text-blue-600 hover:underline">← Retour</a>
+            <a href="{{ url('/RH/seeAllresources') }}" class="ml-auto text-blue-600 hover:underline">← Retour</a>
         </div>
     </div>
 </body>
