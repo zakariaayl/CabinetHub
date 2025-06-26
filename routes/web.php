@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\RH\resourceviewcontroller;
 use App\Http\Controllers\RH\CollaborateurController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ Route::get('/RH/collaborateurs', [CollaborateurController::class, 'dashboard'])
 
 Route::get('/RH/collaborateurs/{id}', [CollaborateurController::class, 'show'])->name('collaborateurs.show');
 
+Route::resource('resourceview', resourceviewcontroller::class);
 // Edit (formulaire)
 Route::get('/RH/collaborateurs/{id}/edit', [CollaborateurController::class, 'edit'])->name('collaborateurs.edit');
 

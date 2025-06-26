@@ -37,13 +37,15 @@
                     <th class="p-5">État</th>
                     <th class=" p-5">Localisation</th>
                     <th class=" p-5">Utilisateur Affecté</th>
-                    <th class="p-5">Remarque</th>
-                    <th class=" p-5">Changement</th>
+                    {{--
+                    <th class=" p-5">Changement</th> --}}
                 </tr>
             </thead>
             <tbody>
                 @foreach($rec as $resource)
-                    <tr class="text-center">
+
+                    <tr onclick="window.location='{{ route('ResourceController.edit', ['ResourceController'=> $resource->id]) }}'" class="text-center hover:bg-gray-300">
+
                         <td class=" p-4 pr-5 border-b border-gray-300">{{ $resource['type'] }}</td>
                         <td class="p-4 pr-5 border-b border-gray-300">{{ $resource['designation'] }}</td>
                         <td class=" p-4 pr-5 border-b border-gray-300">{{ $resource['marque'] ?? '---' }}</td>
@@ -51,8 +53,8 @@
                         <td class="p-4 pr-5 border-b border-gray-300">{{ $resource['etat'] }}</td>
                         <td class="p-4 pr-5 border-b border-gray-300">{{ $resource['localisation'] }}</td>
                         <td class="p-4 pr-5 border-b border-gray-300">{{ $resource['utilisateur_affecte'] }}</td>
-                        <td class=" p-4 pr-5 border-b border-gray-300">{{ $resource['remarque'] }}</td>
-                        <td class=" p-4 pr-5 border-b border-gray-300">
+
+                        {{-- <td class=" p-4 pr-5 border-b border-gray-300">
                             <div class="flex justify-center items-center gap-2">
                                 <!-- Bouton Modifier -->
                                 <form action="{{ route('ResourceController.edit',['ResourceController'=> $resource['id']]) }}" method="GET">
@@ -71,8 +73,9 @@
                                     </button>
                                 </form>
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
+
                 @endforeach
             </tbody>
         </table>
