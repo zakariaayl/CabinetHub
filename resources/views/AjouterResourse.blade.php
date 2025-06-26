@@ -30,7 +30,7 @@
                            id="type"
                            required
                            class="w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent border-black"
-                           placeholder="Ordinateur, Imprimante...">
+                           placeholder="Materiel ou Logiciel">
                 </div>
 
                 <!-- Designation -->
@@ -43,7 +43,7 @@
                            id="designation"
                            required
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
-                           placeholder="Description de l'équipement">
+                           placeholder="Ordinateur, Imprimante...">
                 </div>
 
                 <!-- Row: Brand and Model -->
