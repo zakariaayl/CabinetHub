@@ -16,22 +16,22 @@
 
         <!-- Form -->
         <div class="bg-white rounded-lg shadow-md p-8">
-            <form action="{{ route('ResourceController.update',['ResourceController'=>$resource->id ]) }}" method="POST" class="space-y-6">
+            <form action="{{ route('resourceview.update',['resourceview'=>$resource->id ]) }}" method="POST" class="space-y-6">
 
                 @csrf
   @method('PUT')
-                <!-- Type -->
-                <div>
-                    <label for="type" class="block text-sm font-medium text-gray-700 mb-2">
-                        Type <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text"
-                           name="type"
-                           id="type"
-                           required
-                           class="w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent border-black"
-                           placeholder="{{ $resource->type }}">
-                </div>
+               <div>
+                        <label for="etat" class="block text-sm font-medium text-gray-700 mb-2">
+                            Type
+                        </label>
+                        <select name="type"
+                                id="type"
+                                class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionner</option>
+                            <option value="Materiel">Materiel</option>
+                            <option value="Logiciel">Logiciel</option>
+                        </select>
+                    </div>
 
                 <!-- Designation -->
                 <div>
@@ -41,7 +41,7 @@
                     <input type="text"
                            name="designation"
                            id="designation"
-                           required
+
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
                            placeholder="{{ $resource->designation }}">
                 </div>

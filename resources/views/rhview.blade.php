@@ -79,10 +79,8 @@
                     <th class=" p-4">Marque</th>
                     <th class=" p-4">Modèle</th>
                     <th class="p-4">État</th>
-                    <th class=" p-4">Localisation</th>
+                    <th class=" p-4">Departement</th>
                     <th class=" p-4 pr-5 mr-5">Utilisateur Affecté</th>
-                    {{--
-                    <th class=" p-5">Changement</th> --}}
                 </tr>
             </thead>
             <tbody>

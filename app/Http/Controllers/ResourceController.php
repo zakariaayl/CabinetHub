@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\maintenance;
 use App\Models\ressource;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,8 @@ public function index(Request $request)
     }
     public function edit($id) {
         $resource=ressource::find($id);
-        return view('viewresource', ['resource'=> $resource]);
+         $maintenance=maintenance::where('resource_id',$id)->get();
+        return view('viewresource', ['resource'=> $resource,'maintenance'=>$maintenance]);
     }
 
     public function store(Request $request) {
