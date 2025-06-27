@@ -12,7 +12,6 @@
         <div class="mb-6">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Tableau de Bord RH</h1>
             <nav class="flex space-x-4 text-blue-600 font-medium">
-                <a href="#" class="hover:underline"> Tous les collaborateurs</a>
                 <a href="#" class="hover:underline"> Fiches de poste</a>
                 <a href="#" class="hover:underline"> Absences / Congés</a>
                 <a href="#" class="hover:underline"> Documents RH</a>
@@ -21,7 +20,7 @@
         </div>
 
         <!-- TABLEAU DES COLLABORATEURS -->
-        <div class="bg-white rounded-lg shadow overflow-x-auto">
+        <div class="bg-white rounded-lg shadow">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
@@ -30,12 +29,11 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Poste</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Département</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Présence aujourd’hui</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($collaborateurs as $collab)
-                        <tr>
+                        <tr onclick="window.location='{{ route('collaborateurs.show', ['id'=>$collab->id]) }}'" class="text-center hover:bg-gray-300">
                             <td class="px-6 py-4 whitespace-nowrap">{{ $collab->nom }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $collab->prenom }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $collab->poste }}</td>
@@ -45,15 +43,22 @@
                                     ✅ Présent
                                 </span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ url('/RH/collaborateurs/'.$collab->id) }}" class="text-blue-600 hover:underline">
-                                    👁️ Voir
-                                </a>
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-4 flex justify-center">
+        {{ $collaborateurs->links() }}
+        </div>
+
+        <div class="mt-6 flex justify-center">
+            <a href="{{ route('collaborateurs.create') }}"
+               class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700 transition duration-300">
+                + Ajouter un collaborateur
+            </a>
         </div>
     </div>
 

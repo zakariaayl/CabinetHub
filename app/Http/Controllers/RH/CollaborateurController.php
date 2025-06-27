@@ -10,7 +10,7 @@ class CollaborateurController extends Controller
 {
     public function dashboard()
     {
-    $collaborateurs = Collaborateur::all();
+    $collaborateurs = Collaborateur::paginate(12);
     return view('Collaborateur', compact('collaborateurs'));
     }
 
@@ -45,5 +45,33 @@ class CollaborateurController extends Controller
     return redirect()->route('collaborateurs.index')
         ->with('danger', 'Collaborateur supprimé avec succès.');
     }
+     public function create()
+    {
+    // Juste afficher la vue du formulaire vide
+    return view('create');
+    }
+
+    public function store(Request $request)
+{
+    // Validation simple (à adapter selon besoins)
+    $validated = $request->validate([
+        'nom' => 'required|string|max:255',
+        'prenom' => 'required|string|max:255',
+        'poste' => 'required|string|max:255',
+        'departement' => 'required|string|max:255',
+        'email' => 'required|email|unique:collaborateurs,email',
+        'telephone' => 'nullable|string|max:20',
+        'adresse' => 'nullable|string|max:255',
+        'date_embauche' => 'nullable|date',
+        'description_poste' => 'nullable|string',
+    ]);
+
+    // Création avec mass assignment (vérifie bien le $fillable dans le modèle)
+    Collaborateur::create($validated);
+
+    // Redirection vers le dashboard avec message de succès
+    return redirect()->route('collaborateurs.index')
+                     ->with('success', 'Collaborateur ajouté avec succès.');
+}
 
 }

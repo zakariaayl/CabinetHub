@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gray-100 py-8">
     <div class="max-w-3xl mx-auto px-4">
-        <h1 class="text-3xl font-bold mb-6 text-gray-800">Modifier {{ $collab->prenom }} {{ $collab->nom }}</h1>
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Modifier la fiche de {{ $collab->prenom }} {{ $collab->nom }}</h1>
 
         <form action="{{ route('collaborateurs.update', $collab->id) }}" method="POST" class="bg-white p-6 rounded-lg shadow space-y-4">
             @csrf
@@ -72,10 +72,9 @@
             {{ session('success') ? 'bg-green-500' : 'bg-red-500' }}"
         role="alert"
     >
-        @if (session('success')) ✅ {{ session('success') }} @endif
-        @if (session('danger')) ❌ {{ session('danger') }} @endif
+        @if (session('success'))  {{ session('success') }} @endif
+        @if (session('danger'))  {{ session('danger') }} @endif
     </div>
-
     <script>
         setTimeout(() => {
             const toast = document.getElementById('flash-message');
