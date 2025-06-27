@@ -6,7 +6,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 min-h-screen py-8">
-    <div class="max-w-3xl mx-auto px-4">
+    <div class="w-2/3 mx-auto px-4">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de {{ $resource->designation }}</h1>
 
         <div class="bg-white shadow-md rounded-lg p-6 space-y-4">
@@ -23,6 +23,30 @@
                 <p class="mt-1 text-gray-600 whitespace-pre-line">{{ $resource->remarque }}</p>
             </div>
 
+            <table class="table-auto w-full border-collapse">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="p-4">date de maintenance</th>
+                    <th class=" p-4">type maintenance</th>
+                    <th class=" p-4">commentaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($maintenance as $maint)
+
+                    <tr class="text-center hover:bg-gray-300">
+                        <td class=" p-4  border-b border-gray-300">{{ $maint['date_maintenance'] }}</td>
+                        <td class="p-4  border-b border-gray-300">{{ $maint['type_maintenance'] }}</td>
+                        <td class=" p-4 border-b border-gray-300">{{ $maint['commentaire'] ?? '---' }}</td>
+                    </tr>
+
+                @endforeach
+            </tbody>
+        </table>
+        <a href="{{ route('resourceview.create') }}"
+   class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2">
+    + planifier une maintenance
+</a>
         </div>
 
         <!-- BOUTONS -->
@@ -32,11 +56,12 @@
             <form action="{{ route('resourceview.destroy', $resource->id) }}" method="POST" onsubmit="return confirm('⚠️ Êtes-vous sûr de vouloir supprimer ce collaborateur ?')" class="inline">
             @csrf
             @method('DELETE')
-            <a href="#"><button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400">Supprimer</button></a>
+            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400">Supprimer</button>
             </form>
             <a href="{{ url('/RH/seeAllresources') }}" class="ml-auto text-blue-600 hover:underline">← Retour</a>
         </div>
     </div>
+
 </body>
 @if (session('success') || session('danger'))
     <div

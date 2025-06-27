@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class maintenance extends Model
 {
-    protected $table = "Maintenance";
+    protected $table = "maintenances";
     protected $fillable = [
     'resource_id',
     'date_maintenance',
