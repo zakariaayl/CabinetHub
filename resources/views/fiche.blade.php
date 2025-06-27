@@ -41,8 +41,8 @@
             {{ session('success') ? 'bg-green-500' : 'bg-red-500' }}"
         role="alert"
     >
-        @if (session('success')) ✅ {{ session('success') }} @endif
-        @if (session('danger')) ❌ {{ session('danger') }} @endif
+        @if (session('success'))  {{ session('success') }} @endif
+        @if (session('danger'))  {{ session('danger') }} @endif
     </div>
 
     <script>
