@@ -3,6 +3,7 @@
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\RH\resourceviewcontroller;
 use App\Http\Controllers\RH\CollaborateurController;
+use App\Http\Controllers\RH\PosteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,3 +35,17 @@ Route::delete('/RH/collaborateurs/{id}', [CollaborateurController::class, 'destr
 
 // Traiter la soumission du formulaire (ajout)
 Route::post('/RH/collaborateurs', [CollaborateurController::class, 'store'])->name('collaborateurs.store');
+
+Route::resource('postes', App\Http\Controllers\RH\PosteController::class);
+
+Route::prefix('RH')->group(function () {
+    Route::resource('postes', PosteController::class)->names([
+        'index' => 'postes.index',
+        'create' => 'postes.create',
+        'store' => 'postes.store',
+        'show' => 'postes.show',
+        'edit' => 'postes.edit',
+        'update' => 'postes.update',
+        'destroy' => 'postes.destroy',
+    ]);
+});
