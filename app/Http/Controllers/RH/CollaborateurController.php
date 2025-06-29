@@ -10,7 +10,7 @@ class CollaborateurController extends Controller
 {
     public function dashboard()
     {
-    $collaborateurs = Collaborateur::paginate(12);
+    $collaborateurs = Collaborateur::paginate(7);
     return view('Collaborateur', compact('collaborateurs'));
     }
 
