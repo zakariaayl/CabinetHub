@@ -11,12 +11,12 @@
         <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Planification du maintenance</h1>
-            <p class="text-gray-600">maintenance pour ....</p>
+            <p class="text-gray-600">maintenance pour {{ $des }}</p>
         </div>
 
         <!-- Form -->
         <div class="bg-white rounded-lg shadow-md p-8">
-            <form action="#" method="POST" class="space-y-6">
+            <form action="{{route('resourceview.storeplanif',$id)}}" method="POST" class="space-y-6">
 
                 @csrf
 
@@ -25,8 +25,8 @@
                         <label for="etat" class="block text-sm font-medium text-gray-700 mb-2">
                             Type
                         </label>
-                        <select name="type"
-                                id="type"
+                        <select name="type_maintenance"
+                                id="type_maintenance"
                                 class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             <option value="">Sélectionner</option>
                             <option value="Predictive">Predictive</option>
@@ -37,10 +37,6 @@
                     </div>
 
 
-
-
-
-                <!-- Row: Purchase Date and Status -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="date_achat" class="block text-sm font-medium text-gray-700 mb-2">

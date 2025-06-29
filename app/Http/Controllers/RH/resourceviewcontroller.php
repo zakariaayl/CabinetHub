@@ -42,10 +42,16 @@ class resourceviewcontroller extends Controller
         $resource->delete();
       return redirect()->route('ResourceController.index')->with('success','supprimer avec succes');
     }
-    public function create(Request $request) {
-        return view('planifierMaintenance');
+    public function view($id,$des) {
+        return view('planifierMaintenance',['id'=>$id,'des'=>$des]);
     }
 
-
+    public function storeplanif(Request $request,$id) {
+        $maintenance=new maintenance($request->all());
+        $maintenance->resource_id=$id;
+        $maintenance->save();
+        return redirect()->route('ResourceController.edit',$id)->with('success','planification a ete efectue');
+        // return $request->all();
+    }
 
 }

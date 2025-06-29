@@ -8,7 +8,6 @@
 <body class="bg-gray-50 min-h-screen py-8">
     <div class="w-2/3 mx-auto px-4">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de {{ $resource->designation }}</h1>
-
         <div class="bg-white shadow-md rounded-lg p-6 space-y-4">
             <div><strong class="text-gray-700">Type :</strong> {{ $resource->type }}</div>
             <div><strong class="text-gray-700">marque :</strong> {{ $resource->marque }}</div>
@@ -43,7 +42,7 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('resourceview.create') }}"
+        <a href="{{ route('resourceview.view',[$resource->id,urlencode($resource->designation)]) }}"
    class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2">
     + planifier une maintenance
 </a>
@@ -63,26 +62,20 @@
     </div>
 
 </body>
-@if (session('success') || session('danger'))
-    <div
-        id="flash-message"
-        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 px-6 py-4 rounded-md shadow-lg text-white text-center
-            {{ session('success') ? 'bg-green-500' : 'bg-red-500' }}"
-        role="alert"
-    >
-        @if (session('success')) ✅ {{ session('success') }} @endif
-        @if (session('danger')) ❌ {{ session('danger') }} @endif
-    </div>
+ @if(session('success'))
+    <div id="success-message"
+     class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-300 border border-green-500 text-white text-2xl font-bold p-4 rounded text-center transition-opacity duration-1000 ease-in-out z-50 w-fit max-w-md">
+    {{ session('success') }}
+</div>
 
     <script>
-        setTimeout(() => {
-            const toast = document.getElementById('flash-message');
-            if (toast) {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.5s';
-                setTimeout(() => toast.remove(), 500);
+        setTimeout(function() {
+            const msg = document.getElementById('success-message');
+            if (msg) {
+                msg.style.opacity = '0';
+                setTimeout(() => msg.style.display = 'none', 1000);
             }
-        }, 3000);
+        }, 4000);
     </script>
 @endif
 </html>

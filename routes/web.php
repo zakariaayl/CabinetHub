@@ -34,3 +34,8 @@ Route::delete('/RH/collaborateurs/{id}', [CollaborateurController::class, 'destr
 
 // Traiter la soumission du formulaire (ajout)
 Route::post('/RH/collaborateurs', [CollaborateurController::class, 'store'])->name('collaborateurs.store');
+
+Route::get('/resourceview/view/{id}/{designation}', [resourceviewcontroller::class, 'view'])
+    ->name('resourceview.view');
+Route::post('/resourceview/store/{id}/', [resourceviewcontroller::class, 'storeplanif'])
+    ->name('resourceview.storeplanif');
