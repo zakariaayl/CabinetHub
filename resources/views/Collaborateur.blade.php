@@ -12,10 +12,10 @@
         <div class="mb-6">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Tableau de Bord RH</h1>
             <nav class="flex space-x-4 text-blue-600 font-medium">
-                <a href="#" class="hover:underline"> Fiches de poste</a>
+                <a href="{{ route('postes.index') }}" class="hover:underline"> Fiches de poste</a>
                 <a href="#" class="hover:underline"> Absences / Congés</a>
                 <a href="#" class="hover:underline"> Documents RH</a>
-                <a href="#" class="hover:underline"> Formations & Évaluations</a>
+                <a href="#" class="hover:underline"> Formations et Évaluations</a>
             </nav>
         </div>
 

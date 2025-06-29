@@ -3,6 +3,7 @@
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\RH\resourceviewcontroller;
 use App\Http\Controllers\RH\CollaborateurController;
+use App\Http\Controllers\RH\PosteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,3 +40,16 @@ Route::get('/resourceview/view/{id}/{designation}', [resourceviewcontroller::cla
     ->name('resourceview.view');
 Route::post('/resourceview/store/{id}/', [resourceviewcontroller::class, 'storeplanif'])
     ->name('resourceview.storeplanif');
+Route::resource('postes', App\Http\Controllers\RH\PosteController::class);
+
+Route::prefix('RH')->group(function () {
+    Route::resource('postes', PosteController::class)->names([
+        'index' => 'postes.index',
+        'create' => 'postes.create',
+        'store' => 'postes.store',
+        'show' => 'postes.show',
+        'edit' => 'postes.edit',
+        'update' => 'postes.update',
+        'destroy' => 'postes.destroy',
+    ]);
+});
