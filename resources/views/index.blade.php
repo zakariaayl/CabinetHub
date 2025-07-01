@@ -6,8 +6,8 @@
     <title>Fiches de Poste</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 min-h-screen">
-    <div class="max-w-7xl mx-auto px-4 py-8">
+<body class="bg-white min-h-screen">
+    <div class="max-w-7xl border border-gray-200 shadow shadow-gray-300 mx-auto px-4 py-8">
         <!-- HEADER + NAVIGATION -->
         <div class="mb-6">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Fiches de Poste</h1>
