@@ -8,11 +8,35 @@ use Illuminate\Http\Request;
 
 class CollaborateurController extends Controller
 {
-    public function dashboard()
-    {
-    $collaborateurs = Collaborateur::paginate(7);
-    return view('Collaborateur', compact('collaborateurs'));
+    public function dashboard(Request $request)
+{
+    $query = Collaborateur::query();
+
+    // Filtrer par nom complet
+    if ($request->filled('nom')) {
+        $nom = $request->input('nom');
+        $query->whereRaw("CONCAT(nom, ' ', prenom) LIKE ?", ["%$nom%"]);
     }
+
+    // Filtrer par poste
+    if ($request->filled('poste')) {
+        $query->where('poste', $request->poste);
+    }
+
+    // Filtrer par département
+    if ($request->filled('departement')) {
+        $query->where('departement', $request->departement);
+    }
+
+    $collaborateurs = $query->paginate(7);
+
+    // Pour alimenter les <select> avec des options uniques
+    $postes = Collaborateur::select('poste')->distinct()->pluck('poste');
+    $departements = Collaborateur::select('departement')->distinct()->pluck('departement');
+
+    return view('Collaborateur', compact('collaborateurs', 'postes', 'departements'));
+}
+
 
     public function show($id)
     {
