@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\inventaireController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\RH\resourceviewcontroller;
 use App\Http\Controllers\RH\CollaborateurController;
@@ -53,3 +54,4 @@ Route::prefix('RH')->group(function () {
         'destroy' => 'postes.destroy',
     ]);
 });
+Route::resource('inventaire',inventaireController::class);
