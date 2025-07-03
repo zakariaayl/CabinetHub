@@ -22,5 +22,7 @@ class ressource extends Model
     'prochaine_maintenance',
     'remarque',
 ];
-
+public function inventaires() {
+    return $this->belongsToMany(inventaire::class, 'inventaire_ressource');
+}
 }

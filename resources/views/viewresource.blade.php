@@ -28,6 +28,7 @@
                     <th class="p-4">date de maintenance</th>
                     <th class=" p-4">type maintenance</th>
                     <th class=" p-4">commentaire</th>
+                    <th class=" p-4">action</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,27 +38,47 @@
                         <td class=" p-4  border-b border-gray-300">{{ $maint['date_maintenance'] }}</td>
                         <td class="p-4  border-b border-gray-300">{{ $maint['type_maintenance'] }}</td>
                         <td class=" p-4 border-b border-gray-300">{{ $maint['commentaire'] ?? '---' }}</td>
+                         <td class=" p-4 pr-5 border-b border-gray-300">
+                            <div class="flex justify-center items-center gap-2">
+                                <!-- Bouton Modifier -->
+                                <form action="{{ route('resourceview.editmain', $maint['id']) }}" method="GET">
+
+                                    <button type="submit" class="w-20 h-8 bg-blue-500 hover:bg-blue-400 text-white rounded hover:scale-105">
+                                        Modifier
+                                    </button>
+                                </form>
+
+
+                                <form action="{{ route('resourceview.deleteplanif',['id'=>$maint['id']]) }}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="w-20 h-8 bg-red-600 hover:bg-red-400 text-white rounded hover:scale-105">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
 
                 @endforeach
             </tbody>
         </table>
         <a href="{{ route('resourceview.view',[$resource->id,urlencode($resource->designation)]) }}"
-   class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2">
+   class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2 hover:scale-105">
     + planifier une maintenance
 </a>
         </div>
 
         <!-- BOUTONS -->
         <div class="mt-6 flex space-x-4">
-            <a href="{{ route('resourceview.edit', $resource->id) }}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-400">Modifier</a>
+            <a href="{{ route('resourceview.edit', $resource->id) }}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-400 hover:scale-105">Modifier</a>
 
             <form action="{{ route('resourceview.destroy', $resource->id) }}" method="POST" onsubmit="return confirm('⚠️ Êtes-vous sûr de vouloir supprimer ce collaborateur ?')" class="inline">
             @csrf
             @method('DELETE')
-            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400">Supprimer</button>
+            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400 hover:scale-105">Supprimer</button>
             </form>
-            <a href="{{ url('/RH/seeAllresources') }}" class="ml-auto text-blue-600 hover:underline">← Retour</a>
+            <a href="{{ url('/RH/seeAllresources') }}" class="ml-auto text-blue-600 hover:underline ">← Retour</a>
         </div>
     </div>
 
