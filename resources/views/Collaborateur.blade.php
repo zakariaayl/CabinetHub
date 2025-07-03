@@ -19,16 +19,16 @@
             </nav>
         </div>
 
-        <form method="GET" action="{{ route('collaborateurs.index') }}" class="mb-6 flex flex-wrap gap-8 items-center">
+        <form method="GET" action="{{ route('collaborateurs.index') }}" class="mb-6 flex gap-8 items-center ">
             <input
                 type="text"
                 name="nom"
                 value="{{ request('nom') }}"
                 placeholder="Rechercher par nom complet"
-                class="border border-gray-300 px-4 py-2 rounded-md w-64"
+                class="border border-gray-300 px-4 py-2 rounded-md w-64 mx-auto"
             >
 
-            <select name="poste" class="border border-gray-300 px-4 py-2 rounded-md">
+            <select name="poste" class="border border-gray-300 px-4 py-2 rounded-md mx-auto">
                 <option value="">Tous les postes</option>
                 @foreach ($postes as $poste)
                     <option value="{{ $poste }}" {{ request('poste') == $poste ? 'selected' : '' }}>
@@ -37,7 +37,7 @@
                 @endforeach
             </select>
 
-            <select name="departement" class="border border-gray-300 px-4 py-2 rounded-md">
+            <select name="departement" class="border border-gray-300 px-4 py-2 rounded-md mx-auto">
                 <option value="">Tous les départements</option>
                 @foreach ($departements as $departement)
                     <option value="{{ $departement }}" {{ request('departement') == $departement ? 'selected' : '' }}>
@@ -46,11 +46,11 @@
                 @endforeach
             </select>
 
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300 mx-auto">
                  Filtrer
             </button>
 
-            <a href="{{ route('collaborateurs.index') }}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300 ml-2 text-sm">
+            <a href="{{ route('collaborateurs.index') }}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300 text-sm mx-auto">
                 Réinitialiser
             </a>
         </form>

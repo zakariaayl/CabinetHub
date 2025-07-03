@@ -17,7 +17,7 @@
             <div><strong class="text-gray-700">Date d'achat :</strong> {{ $resource->date_achat }}</div>
             <div><strong class="text-gray-700">numero de serie :</strong> {{ $resource->numero_serie }}</div>
             <div><strong class="text-gray-700">utilisateur affecte :</strong> {{ $resource->utilisateur_affecte }}</div>
-
+            
             <div><strong class="text-gray-700">remarque :</strong><br>
                 <p class="mt-1 text-gray-600 whitespace-pre-line">{{ $resource->remarque }}</p>
             </div>
