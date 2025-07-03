@@ -15,7 +15,8 @@ class CollaborateurController extends Controller
     // Filtrer par nom complet
     if ($request->filled('nom')) {
         $nom = $request->input('nom');
-        $query->whereRaw("CONCAT(nom, ' ', prenom) LIKE ?", ["%$nom%"]);
+        $query->whereRaw("CONCAT(nom, ' ', prenom) LIKE ?", ["%$nom%"])
+          ->orWhereRaw("CONCAT(prenom, ' ', nom) LIKE ?", ["%$nom%"]);
     }
 
     // Filtrer par poste
