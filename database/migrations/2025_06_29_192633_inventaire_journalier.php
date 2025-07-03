@@ -13,12 +13,18 @@ return new class extends Migration
     {
          Schema::create("inventaire",function(Blueprint $table){
             $table->id();
-            $table->foreignId('id_tesource')->constrained('resource')->onDelete('cascade');
             $table->date("date_inventaire");
-            $table->boolean("trouve");
+            $table->string("faite_par");
             $table->string("remarques");
             $table->timestamps();
          });
+            Schema::create('inventaire_ressource', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('inventaire_id')->constrained('inventaire')->onDelete('cascade');
+            $table->foreignId('ressource_id')->constrained('resource')->onDelete('cascade');
+            $table->timestamps();
+            });
+
     }
 
     /**
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists("inventaire");
+      
     }
 };

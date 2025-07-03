@@ -23,7 +23,9 @@ public function index(Request $request)
     if ($request->filled('utilisateur_affecte')) {
         $query->where('utilisateur_affecte', 'like', '%' . $request->utilisateur_affecte . '%');
     }
-
+    if ($request->filled('designation')) {
+        $query->where('designation', 'like', '%' . $request->designation . '%');
+    }
     $rec = $query->paginate(10);
 
     return view('rhview', compact('rec'));

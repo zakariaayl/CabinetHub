@@ -6,6 +6,7 @@ use App\Models\ressource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\maintenance;
+use Laravel\Pail\ValueObjects\Origin\Console;
 
 class resourceviewcontroller extends Controller
 {
@@ -52,6 +53,26 @@ class resourceviewcontroller extends Controller
         $maintenance->save();
         return redirect()->route('ResourceController.edit',$id)->with('success','planification a ete efectue');
         // return $request->all();
+    }
+    public function editmain($id){
+        $maintenance=maintenance::find($id);
+        return view('editmaintview',['maintenance'=> $maintenance]);
+    }
+    public function updateplanif(Request $request,$id) {
+        $maintenance=maintenance::find($id);
+        if($request!=null){
+
+        $maintenance->update($request->all());
+        }
+
+        return redirect()->route('ResourceController.edit',['ResourceController'=>$maintenance['resource_id']])->with('success','maintenance updated succesifuly ');
+    }
+
+    public function deleteplanif($id) {
+         $maintenance=maintenance::find($id);
+         $resource_id=$maintenance['resource_id'];
+         $maintenance->delete();
+         return redirect()->route('ResourceController.edit',['ResourceController'=>$resource_id])->with('success','maintenance deleted succesifuly ');
     }
 
 }

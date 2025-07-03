@@ -55,3 +55,8 @@ Route::prefix('RH')->group(function () {
     ]);
 });
 Route::resource('inventaire',inventaireController::class);
+Route::get('editmaintenance/{maint}',[resourceviewcontroller::class,'editmain'])->name('resourceview.editmain');
+Route::put('updatemaint/{id}',[resourceviewcontroller::class,'updateplanif'])->name('resourceview.updateplanif');
+Route::get('updatemaint/{id}',[resourceviewcontroller::class,'updateplanif'])->name('resourceview.updateplanif');
+Route::delete('deletemaint/{id}',[resourceviewcontroller::class,'deleteplanif'])->name('resourceview.deleteplanif');
+Route::get('deletemaint/{id}',[resourceviewcontroller::class,'deleteplanif'])->name('resourceview.deleteplanif');
