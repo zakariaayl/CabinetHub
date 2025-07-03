@@ -13,4 +13,8 @@ class inventaire extends Model
     "trouve",
     "remarques"
    ];
+
+   public function ressources() {
+    return $this->belongsToMany(ressource::class, 'inventaire_ressource');
+}
 }
