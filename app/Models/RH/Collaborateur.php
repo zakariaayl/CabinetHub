@@ -19,4 +19,8 @@ class Collaborateur extends Model
         'date_embauche',
         'description_poste'
     ];
+    public function evolutions()
+{
+    return $this->hasMany(Evolution::class);
+}
 }
