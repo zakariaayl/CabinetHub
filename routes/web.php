@@ -4,6 +4,7 @@ use App\Http\Controllers\inventaireController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\RH\resourceviewcontroller;
 use App\Http\Controllers\RH\CollaborateurController;
+use App\Http\Controllers\RH\EvolutionController;
 use App\Http\Controllers\RH\PosteController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,3 +61,7 @@ Route::put('updatemaint/{id}',[resourceviewcontroller::class,'updateplanif'])->n
 Route::get('updatemaint/{id}',[resourceviewcontroller::class,'updateplanif'])->name('resourceview.updateplanif');
 Route::delete('deletemaint/{id}',[resourceviewcontroller::class,'deleteplanif'])->name('resourceview.deleteplanif');
 Route::get('deletemaint/{id}',[resourceviewcontroller::class,'deleteplanif'])->name('resourceview.deleteplanif');
+
+Route::resource('evolutions', EvolutionController::class);
+
+Route::get('evolutions/create/{collaborateur}', [EvolutionController::class, 'create'])->name('evolutions.create');
