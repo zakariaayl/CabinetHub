@@ -22,6 +22,9 @@ return new class extends Migration
                 $table->string('utilisateur_affecte')->nullable();
                 $table->date('date_fin_garantie')->nullable();
                 $table->date('prochaine_maintenance')->nullable();
+                $table->integer('duree_vie_mois')->nullable();
+                $table->boolean('est_amortie')->default(false);
+                $table->integer('quantite')->default(1);
                 $table->text('remarque')->nullable();
                 $table->timestamps();
 
@@ -52,8 +55,9 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('resource');
         Schema::dropIfExists('maintenances');
         Schema::dropIfExists('software_licenses');
+        Schema::dropIfExists('resource');
+
     }
 };

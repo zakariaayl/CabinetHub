@@ -31,7 +31,7 @@
                             <option value="">Sélectionner</option>
                             <option value="Predictive">Predictive</option>
                             <option value="Corrective">Corrective</option>
-                            <option value="Preventive">Preventive</option>
+                            <option value="Préventive">Préventive</option>
 
                         </select>
                     </div>

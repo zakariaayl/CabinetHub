@@ -11,7 +11,7 @@ use Laravel\Pail\ValueObjects\Origin\Console;
 class resourceviewcontroller extends Controller
 {
     public function index() {
-    $resources = ressource::paginate(12);
+    $resources = ressource::paginate(9);
     return view('rhview', ['rec' => $resources]);
 }
    public function edit($id) {
