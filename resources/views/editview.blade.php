@@ -28,8 +28,8 @@
                                 id="type"
                                 class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             <option value="">Sélectionner</option>
-                            <option value="Materiel">Materiel</option>
-                            <option value="Logiciel">Logiciel</option>
+                            <option value="Materiel" {{ $resource['type'] == 'Materiel' ? 'Logiciel' : '' }} >Materiel</option>
+                            <option value="Logiciel" {{ $resource['type'] == 'Logiciel' ? 'Materiel' : '' }}>Logiciel</option>
                         </select>
                     </div>
 
@@ -43,7 +43,8 @@
                            id="designation"
 
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
-                           placeholder="{{ $resource->designation }}">
+                           value="{{ $resource->designation }}"
+                           placeholder="imprimante,ordinateur..">
                 </div>
 
                 <!-- Row: Brand and Model -->
@@ -56,7 +57,8 @@
                                name="marque"
                                id="marque"
                                class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                               placeholder="{{ $resource->marque }}">
+                               value="{{ $resource->marque }}"
+                               placeholder="entrez la marque">
                     </div>
                     <div>
                         <label for="modele" class="block text-sm font-medium text-gray-700 mb-2">
@@ -66,10 +68,35 @@
                                name="modele"
                                id="modele"
                                class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                               placeholder="{{ $resource->modele }}">
+                               value="{{ $resource->modele }}"
+                               placeholder="entrez le modele">
                     </div>
                 </div>
 
+                <div>
+                    <label for="quantite" class="block text-sm font-medium text-gray-700 mb-2">
+                        quantite
+                    </label>
+                    <input type="number"
+                           name="quantite"
+                           id="quantitie"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           value="{{ $resource->quantite }}"
+                           placeholder="entrez la quantite"
+                           min="1">
+                </div>
+                <div>
+                    <label for="duree_vie_mois" class="block text-sm font-medium text-gray-700 mb-2">
+                        duree de vie par mois
+                    </label>
+                    <input type="number"
+                           name="duree_vie_mois"
+                           id="duree_vie_mois"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           value="{{ $resource->duree_vie_mois }}"
+                           placeholder="entrez la duree du vie par moi  "
+                           min="1">
+                </div>
                 <!-- Serial Number -->
                 <div>
                     <label for="numero_serie" class="block text-sm font-medium text-gray-700 mb-2">
@@ -79,10 +106,14 @@
                            name="numero_serie"
                            id="numero_serie"
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono"
-                           placeholder="{{ $resource->numero_serie }}">
+                           value="{{ $resource->numero_serie }}"
+                           placeholder="entrez le numero de serie">
                 </div>
 
-                <!-- Software Version -->
+
+                @if ($resource->type == "Logiciel")
+
+
                 <div>
                     <label for="version_logiciel" class="block text-sm font-medium text-gray-700 mb-2">
                         Version Logiciel
@@ -91,8 +122,10 @@
                            name="version_logiciel"
                            id="version_logiciel"
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           placeholder="{{ $resource->version_logiciel }}">
+                           value="{{ $resource->version_logiciel }}"
+                           placeholder="entrez la version du logiciel">
                 </div>
+                @endif
 
                 <!-- Row: Purchase Date and Status -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -105,10 +138,10 @@
                                 id="etat"
                                 class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             <option value="">Sélectionner</option>
-                            <option value="Neuf">Neuf</option>
-                            <option value="Bon">Bon</option>
-                            <option value="Usagé">Usagé</option>
-                            <option value="Hors Service">Hors Service</option>
+                            <option value="Neuf" {{ $resource['etat'] == 'Neuf' ? 'selected' : '' }}>Neuf</option>
+                            <option value="Bon" {{ $resource['etat'] == 'Bon' ? 'selected' : '' }} >Bon</option>
+                            <option value="Usagé" {{ $resource['etat'] == 'Usagé' ? 'selected' : '' }}>Usagé</option>
+                            <option value="Hors Service" {{ $resource['etat'] == 'Hors Service' ? 'selected' : '' }}>Hors Service</option>
                         </select>
                     </div>
                 </div>
@@ -122,7 +155,8 @@
                            name="localisation"
                            id="localisation"
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           placeholder="{{ $resource->numero_serie }}{{ $resource->localisation }}">
+                           value="{{ $resource->localisation }}"
+                           placeholder="entrez quel departement">
                 </div>
 
                 <!-- Assigned User -->
@@ -134,7 +168,8 @@
                            name="utilisateur_affecte"
                            id="utilisateur_affecte"
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           placeholder="{{ $resource->utilisateur_affecte }}">
+                           value="{{ $resource->utilisateur_affecte }}"
+                           placeholder="entrez l'utilisateur Affecté">
                 </div>
 
                 <!-- Row: Warranty and Maintenance -->
@@ -146,7 +181,8 @@
                         <input type="date"
                                name="date_fin_garantie"
                                id="date_fin_garantie"
-                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               value="{{ $resource->date_fin_garantie }}">
                     </div>
                     <div>
                         <label for="prochaine_maintenance" class="block text-sm font-medium text-gray-700 mb-2">
@@ -155,7 +191,8 @@
                         <input type="date"
                                name="prochaine_maintenance"
                                id="prochaine_maintenance"
-                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               value="{{ $resource->prochaine_maintenance }}">
                     </div>
                 </div>
 
@@ -168,7 +205,7 @@
                               id="remarque"
                               rows="3"
                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                              placeholder="{{ $resource->remarque }}"></textarea>
+                              placeholder="entrez votre remarque">{{ $resource->remarque }}</textarea>
                 </div>
 
                 <!-- Submit Button -->

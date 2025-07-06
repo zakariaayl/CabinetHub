@@ -92,9 +92,30 @@
                            name="version_logiciel"
                            id="version_logiciel"
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           placeholder="v2.1.5">
+                           placeholder="entrez la version du logiciel comme v1.2.5..">
                 </div>
-
+               <div>
+                    <label for="quantite" class="block text-sm font-medium text-gray-700 mb-2">
+                        quantite
+                    </label>
+                    <input type="number"
+                           name="quantite"
+                           id="quantitie"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="entrez la quantite du ressource"
+                           min="1">
+                </div>
+                <div>
+                    <label for="duree_vie_mois" class="block text-sm font-medium text-gray-700 mb-2">
+                        duree de vie par mois
+                    </label>
+                    <input type="number"
+                           name="duree_vie_mois"
+                           id="duree_vie_mois"
+                           class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="entrez la dure du vie par moi"
+                           min="1">
+                </div>
                 <!-- Row: Purchase Date and Status -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>

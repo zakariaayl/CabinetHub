@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SoftwareLicense extends Model
 {
-    protected $table = "SoftwareLicense";
+    protected $table = "software_licenses";
     protected $fillable = [
     'nom_logiciel',
     'version',

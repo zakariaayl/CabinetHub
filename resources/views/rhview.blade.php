@@ -70,13 +70,14 @@
                         <label for="etat" class="block text-sm font-medium text-gray-700 mb-2">
                             designation
                         </label>
-                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" name="designation">
+                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" name="designation"
+                        value="{{ request('designation') }}">
                         </div>
 
-                            <button type="submit" class="block w-1/12 bg-green-500 hover:bg-green-300 text-white font-bold rounded-lg shadow-xl text-center mx-5 mt-6 py-2 " >filter</button>
+                            <button type="submit" class="block w-1/12 bg-green-500 hover:bg-green-300 text-white font-bold rounded-lg shadow-xl text-center mx-5 mt-6 py-2 hover:scale-105" >filter</button>
 
                         <a href="{{ route('ResourceController.index') }}"
-   class="block w-1/12 bg-gray-400 hover:bg-gray-300 text-white font-bold rounded-lg shadow-xl text-center mx-5 mt-6 py-2">
+   class="block w-1/12 bg-gray-300  text-white font-bold rounded-lg shadow-xl text-center mx-5 mt-6 py-2 hover:scale-105">
     reinisialiser
 </a>
                     </div>
@@ -92,12 +93,16 @@
                     <th class="p-4">État</th>
                     <th class=" p-4">Departement</th>
                     <th class=" p-4 pr-5 mr-5">Utilisateur Affecté</th>
+                    <th class=" p-4 pr-5 mr-5">dure du vie par moi</th>
+                    <th class=" p-4 pr-5 mr-5">quantite</th>
+                    <th class=" p-4 pr-5 mr-5">action</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach($rec as $resource)
 
-                    <tr onclick="window.location='{{ route('ResourceController.edit', ['ResourceController'=> $resource->id]) }}'" class="text-center hover:bg-gray-300">
+                    <tr class="text-center hover:bg-gray-300">
 
                         <td class=" p-4  border-b border-gray-300">{{ $resource['type'] }}</td>
                         <td class="p-4  border-b border-gray-300">{{ $resource['designation'] }}</td>
@@ -106,7 +111,8 @@
                         <td class="p-4  border-b border-gray-300">{{ $resource['etat'] }}</td>
                         <td class="p-4 border-b border-gray-300">{{ $resource['localisation'] }}</td>
                         <td class="p-4 pr-5 mr-4 border-b border-gray-300">{{ $resource['utilisateur_affecte'] }}</td>
-
+                        <td class="p-4 pr-5 mr-4 border-b border-gray-300">{{ $resource['duree_vie_mois'] }}</td>
+                        <td class="p-4 pr-5 mr-4 border-b border-gray-300">{{ $resource['quantite'] }}</td>
                         {{-- <td class=" p-4 pr-5 border-b border-gray-300">
                             <div class="flex justify-center items-center gap-2">
                                 <!-- Bouton Modifier -->
@@ -127,6 +133,17 @@
                                 </form>
                             </div>
                         </td> --}}
+                        <td class=" p-4 pr-5 border-b border-gray-300">
+                            <div class="flex justify-center items-center gap-2">
+                                <!-- Bouton Modifier -->
+                                <form action="{{ route('ResourceController.edit',['ResourceController'=> $resource['id']]) }}" method="GET">
+
+                                    <button type="submit" class="w-20 h-8 bg-blue-500 hover:bg-blue-300 text-white rounded hover:scale-105">
+                                        voir
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
 
                 @endforeach
@@ -138,7 +155,7 @@
     </div>
 </div>
 <a href="{{ route('ResourceController.create') }}"
-   class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2">
+   class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2 hover:scale-105">
     + Ajouter
 </a>
 

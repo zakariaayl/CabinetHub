@@ -32,7 +32,7 @@
                             <option value="">Sélectionner</option>
                             <option value="Predictive" {{ $maintenance['type_maintenance'] == 'Predictive' ? 'selected' : '' }}>Predictive</option>
                             <option value="Corrective" {{ $maintenance['type_maintenance'] == 'Corrective' ? 'selected' : '' }}>Corrective</option>
-                            <option value="Preventive" {{ $maintenance['type_maintenance'] == 'Preventive' ? 'selected' : '' }} value="">Preventive</option>
+                            <option value="Préventive" {{ $maintenance['type_maintenance'] == 'Préventive' ? 'selected' : '' }} value="">Préventive</option>
 
                         </select>
                     </div>
