@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evolution extends Model
 {
-    protected $fillable = ['collaborateur_id', 'date', 'poste', 'departement', 'description'];
+    protected $fillable = ['collaborateur_id', 'date','date_fin', 'poste', 'departement','type_contrat', 'description'];
 
     public function collaborateur()
     {
