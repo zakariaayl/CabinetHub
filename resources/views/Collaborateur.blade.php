@@ -56,31 +56,32 @@
         </form>
 
         <!-- TABLEAU DES COLLABORATEURS -->
+        <!-- TABLEAU DES COLLABORATEURS -->
         <div class="bg-white rounded-lg shadow">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prénom</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Poste</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Département</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Présence aujourd’hui</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Prénom</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Poste</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Département</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Présence aujourd'hui</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($collaborateurs as $collab)
-                        <tr class="text-center hover:bg-gray-300">
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $collab->nom }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $collab->prenom }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $collab->poste }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $collab->departement }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                        <tr class="hover:bg-gray-300">
+                            <td class="px-6 py-4 whitespace-nowrap text-center">{{ $collab->nom }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">{{ $collab->prenom }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">{{ $collab->poste }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">{{ $collab->departement }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
                                 <span class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
                                     ✅ Présent
                                 </span>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-center">
                                 <a href="{{ route('collaborateurs.show', $collab->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Voir</a>
                             </td>
                         </tr>
