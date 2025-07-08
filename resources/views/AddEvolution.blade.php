@@ -35,6 +35,27 @@
                 </div>
 
                 <div>
+                    <label for="date_fin" class="block text-sm font-medium text-gray-700 mb-2">
+                        Date de fin (laisser vide si poste actuel)
+                    </label>
+                    <input type="date" name="date_fin" id="date_fin"
+                        value="{{ old('date_fin', isset($evolution) ? $evolution->date_fin : '') }}"
+                        class="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                </div>
+
+                <div>
+                    <label for="type_contrat" class="block text-sm font-medium text-gray-700 mb-2">Type de contrat</label>
+                    <select name="type_contrat" id="type_contrat"
+                        class="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="" {{ old('type_contrat', $evolution->type_contrat ?? '') == '' ? 'selected' : '' }}>Non spécifié</option>
+                        <option value="Temps plein" {{ old('type_contrat', $evolution->type_contrat ?? '') == 'Temps plein' ? 'selected' : '' }}>Temps plein</option>
+                        <option value="CDD" {{ old('type_contrat', $evolution->type_contrat ?? '') == 'CDD' ? 'selected' : '' }}>CDD</option>
+                        <option value="Stage" {{ old('type_contrat', $evolution->type_contrat ?? '') == 'Stage' ? 'selected' : '' }}>Stage</option>
+                        <option value="Freelance" {{ old('type_contrat', $evolution->type_contrat ?? '') == 'Freelance' ? 'selected' : '' }}>Freelance</option>
+                    </select>
+                </div>
+
+                <div>
                     <label for="poste" class="block text-sm font-medium text-gray-700 mb-2">Poste évolué</label>
                     <input type="text" name="poste" id="poste" required
                         value="{{ old('poste', isset($evolution) ? $evolution->poste : '') }}"

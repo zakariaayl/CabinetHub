@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
+@php
+    use Carbon\Carbon;
+@endphp
 <head>
     <meta charset="UTF-8">
     <title>Fiche Collaborateur</title>
@@ -23,50 +26,70 @@
             <!-- Section Évolutions -->
             <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Évolutions</h2>
 
-            <table class="w-full table-auto border border-gray-300 mb-6">
-                <thead>
-                    <tr class="bg-gray-100 text-gray-700">
-                        <th class="border p-2 text-left">Date</th>
-                        <th class="border p-2 text-left">Poste évolué</th>
-                        <th class="border p-2 text-left">Département</th>
-                        <th class="border p-2 text-left">Description</th>
-                        <th class="border p-2 text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($collab->evolutions as $evolution)
-                        <tr class="hover:bg-gray-50">
-                            <td class="border p-2">{{ \Carbon\Carbon::parse($evolution->date)->format('Y-m-d') }}</td>
-                            <td class="border p-2">{{ $evolution->poste }}</td>
-                            <td class="border p-2">{{ $evolution->departement }}</td>
-                            <td class="border p-2">{{ $evolution->description }}</td>
-                            <td class="border p-2 text-center">
-                                <div class="flex justify-center gap-2">
-                                    <a href="{{ route('evolutions.edit', $evolution->id) }}"
-                                       class="px-3 py-1 bg-blue-500 hover:bg-blue-400 text-white rounded text-sm">
-                                        Modifier
-                                    </a>
+            <div class="space-y-6">
+                @forelse ($collab->evolutions->sortByDesc('date') as $evolution)
+                    @php
+                        $dateDebut = \Carbon\Carbon::parse($evolution->date);
+                        $dateFin = $evolution->date_fin ? \Carbon\Carbon::parse($evolution->date_fin) : \Carbon\Carbon::now();
+                        $diffInMonths = $dateDebut->diffInMonths($dateFin);
+                        $years = intdiv($diffInMonths, 12);
+                        $months = $diffInMonths % 12;
+                        setlocale(LC_TIME, 'fr_FR.UTF-8');
+                        $formattedDateDebut = $dateDebut->translatedFormat('M Y');
+                        $formattedDateFin = $evolution->date_fin ? $dateFin->translatedFormat('M Y') : "aujourd’hui";
 
-                                    <form action="{{ route('evolutions.destroy', $evolution->id) }}" method="POST" class="inline"
-                                          onsubmit="return confirm('Supprimer cette évolution ?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="px-3 py-1 bg-red-600 hover:bg-red-500 text-white rounded text-sm">
-                                            Supprimer
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+                        $duration = '';
+                        if ($years > 0) {
+                            $duration .= $years . ' an' . ($years > 1 ? 's' : '');
+                            if ($months > 0) {
+                                $duration .= ' ' . $months . ' mois';
+                            }
+                        } else {
+                            $duration .= $months . ' mois';
+                        }
+                    @endphp
 
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center p-4 text-gray-500">Aucune évolution enregistrée.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    <div class="bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">{{ $evolution->poste }}</h3>
+                                <p class="text-sm text-gray-600">
+                                    {{ $formattedDateDebut }} - {{ $formattedDateFin }} • {{ $duration }}
+                                </p>
+                            </div>
+                            <div class="flex space-x-2 text-sm">
+                                <a href="{{ route('evolutions.edit', $evolution->id) }}"
+                                   class="px-3 py-1 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition">
+                                   Modifier
+                                </a>
+                                <form action="{{ route('evolutions.destroy', $evolution->id) }}" method="POST" class="inline"
+                                    onsubmit="return confirm('Supprimer cette évolution ?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            class="px-3 py-1 border border-red-600 text-red-600 rounded hover:bg-red-600 hover:text-white transition">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 text-gray-700">
+                            <p>
+                                {{ $evolution->departement }}
+                                @if ($evolution->type_contrat)
+                                    • {{ $evolution->type_contrat }}
+                                @endif
+                            </p>
+                            @if ($evolution->description)
+                                <p class="mt-1 whitespace-pre-line">{{ $evolution->description }}</p>
+                            @endif
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-center text-gray-500">Aucune évolution enregistrée.</p>
+                @endforelse
+            </div>
 
             <!-- Bouton Ajouter une évolution -->
             <a href="{{ route('evolutions.create', ['collaborateur' => $collab->id]) }}"
