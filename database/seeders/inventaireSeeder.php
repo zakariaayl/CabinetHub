@@ -13,7 +13,7 @@ class InventaireSeeder extends Seeder
      */
     public function run(): void
     {
-        // On suppose qu'on a déjà des ressources (id de 1 à 30)
+
         $ressourceIds = DB::table('resource')->pluck('id')->toArray();
 
         $inventaires = [
