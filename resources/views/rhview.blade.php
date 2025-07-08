@@ -77,7 +77,7 @@
                             <button type="submit" class="block w-1/12 bg-green-500 hover:bg-green-300 text-white font-bold rounded-lg shadow-xl text-center mx-5 mt-6 py-2 hover:scale-105" >filter</button>
 
                         <a href="{{ route('ResourceController.index') }}"
-   class="block w-1/12 bg-gray-300  text-white font-bold rounded-lg shadow-xl text-center mx-5 mt-6 py-2 hover:scale-105">
+   class="block w-1/12 bg-gray-400 hover:bg-gray-300 text-white font-bold rounded-lg shadow-xl text-center mx-5 mt-6 py-2 hover:scale-105">
     reinisialiser
 </a>
                     </div>

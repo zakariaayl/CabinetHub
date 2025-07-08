@@ -27,22 +27,22 @@
         <h1 class="text-3xl font-bold mb-4">Inventaires </h1>
 
         <h2 class="text-2xl font-bold text-gray-500 ">filter by</h2>
-        <form action="{{ route('ResourceController.index') }}">
-        <div class="flex">
+        <form action="{{ route('inventaire.index') }}">
+        <div class="flex mb-5">
 
 
 
                         <div class="m-auto">
                         <label for="etat" class="block text-sm font-medium text-gray-700 mb-2">
-                            utilisateur affecte
+                             faite par
                         </label>
-                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" name="utilisateur_affecte">
+                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" name="faite_par">
                         </div>
                         <div class="m-auto">
                         <label for="etat" class="block text-sm font-medium text-gray-700 mb-2">
-                            designation
+                            date du l'inventaire
                         </label>
-                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" name="designation">
+                        <input type="date" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" name="date_inventaire">
                         </div>
 
                             <button type="submit" class="bg-green-600 hover:bg-green-300 text-center w-1/12 h-2/3 text-white " >filter</button>
@@ -54,28 +54,27 @@
         <table class="table-auto w-full border-collapse">
             <thead class="bg-gray-100">
                 <tr>
-                    <th class="p-4">item id</th>
-                    <th class=" p-4">Désignation</th>
-                    <th class=" p-4">Marque</th>
-                    <th class=" p-4">Modèle</th>
+                    <th class="p-4">faite par</th>
+                    <th class=" p-4">date de l'inventaire</th>
+                    <th class=" p-4">remarque</th>
+                    <th class=" p-4">action</th>
 
                 </tr>
             </thead>
             <tbody>
-                @foreach($inventaires as $resource)
+                @foreach($inventaires as $inventaire)
 
                     <tr class="text-center hover:bg-gray-300">
 
-                        <td class=" p-4  border-b border-gray-300">{{ $resource['item_id'] }}</td>
-                        <td class="p-4  border-b border-gray-300">{{ $resource['date_inventaire'] }}</td>
-                        <td class=" p-4 border-b border-gray-300">{{ $resource['trouve'] ?? 'true' }}</td>
-                        <td class="p-4   border-b border-gray-300">{{ $resource['remarques'] ?? '---' }}</td>
+                        <td class=" p-4  border-b border-gray-300">{{ $inventaire['faite_par'] }}</td>
+                        <td class="p-4  border-b border-gray-300">{{ $inventaire['date_inventaire'] }}</td>
+                        <td class="p-4   border-b border-gray-300">{{ $inventaire['remarques'] ?? '---' }}</td>
 
 
-                        {{-- <td class=" p-4 pr-5 border-b border-gray-300">
+                        <td class=" p-4 pr-5 border-b border-gray-300">
                             <div class="flex justify-center items-center gap-2">
                                 <!-- Bouton Modifier -->
-                                <form action="{{ route('ResourceController.edit',['ResourceController'=> $resource['id']]) }}" method="GET">
+                                <form action="" method="GET">
 
                                     <button type="submit" class="w-20 h-8 bg-blue-600 hover:bg-blue-400 text-white rounded">
                                         Modifier
@@ -83,7 +82,7 @@
                                 </form>
 
 
-                                <form action="{{ route('ResourceController.destroy',['ResourceController'=>$resource['id']]) }}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
+                                <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="w-20 h-8 bg-red-600 hover:bg-red-400 text-white rounded">
@@ -91,22 +90,22 @@
                                     </button>
                                 </form>
                             </div>
-                        </td> --}}
+                        </td>
                     </tr>
 
                 @endforeach
             </tbody>
         </table>
        <div class="mt-6 flex p-4 justify-center">
-    <div class="text-black text-2xl font-bold mr-3">
-
+     <div class="text-black text-2xl font-bold mr-3">
+        {{ $inventaires->links('pagination::tailwind') }}
     </div>
 </div>
 <a href="{{ route('ResourceController.create') }}"
    class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2">
     + Ajouter
 </a>
-
+{{-- {{ $inventaires }} --}}
     </div>
 </body>
 </html>

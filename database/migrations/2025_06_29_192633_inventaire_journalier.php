@@ -22,6 +22,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('inventaire_id')->constrained('inventaire')->onDelete('cascade');
             $table->foreignId('ressource_id')->constrained('resource')->onDelete('cascade');
+            $table->integer("quantite");
+            $table->string("etat_releve");
+            $table->string("commentaire");
             $table->timestamps();
             });
 
