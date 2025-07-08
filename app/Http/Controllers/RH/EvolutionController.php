@@ -33,9 +33,11 @@ class EvolutionController extends Controller
         $validated = $request->validate([
             'collaborateur_id' => 'required|exists:collaborateurs,id',
             'date' => 'required|date',
+            'date_fin' => 'nullable|date|after_or_equal:date',
             'poste' => 'required|string|max:255',
             'departement' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type_contrat' => 'nullable|string|max:255',
         ]);
 
         Evolution::create($validated);
@@ -66,10 +68,13 @@ class EvolutionController extends Controller
     public function update(Request $request, Evolution $evolution)
     {
         $validated = $request->validate([
+            'collaborateur_id' => 'required|exists:collaborateurs,id',
             'date' => 'required|date',
+            'date_fin' => 'nullable|date|after_or_equal:date',
             'poste' => 'required|string|max:255',
             'departement' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type_contrat' => 'nullable|string|max:255',
         ]);
 
         $evolution->update($validated);
