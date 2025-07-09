@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->string('type_conge');
-            $table->string('statut');
+            $table->string('statut')->default('en_attente');;
             $table->string('justificatif_path')->nullable();
             $table->timestamps();
         });
