@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>Ajouter une Ressource</title>
 </head>
 <body class="bg-gray-50 min-h-screen py-8">
-    <div class="max-w-2xl mx-auto px-4">
+    <div class="max-w-2xl mx-auto  px-4 ">
         <!-- Header -->
-        <div class="text-center mb-8">
+        <div class="text-center m-8">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Planification du maintenance</h1>
             <p class="text-gray-600">maintenance pour {{ $des }}</p>
         </div>
 
         <!-- Form -->
-        <div class="bg-white rounded-lg shadow-md p-8">
+        <div class=" rounded-xl shadow-2xl p-8 mb-5 bg-gradient-to-b from-yellow-100 to-orange-50 border border-gray-100">
             <form action="{{route('resourceview.storeplanif',$id)}}" method="POST" class="space-y-6">
 
                 @csrf
@@ -37,7 +38,6 @@
                     </div>
 
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="date_achat" class="block text-sm font-medium text-gray-700 mb-2">
                             Date d'Achat
@@ -48,7 +48,7 @@
                                class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     </div>
 
-                </div>
+                
                 <div>
                     <label for="remarque" class="block text-sm font-medium text-gray-700 mb-2">
                         Remarques
@@ -63,7 +63,7 @@
                 <!-- Submit Button -->
                 <div class="pt-4">
                     <button type="submit"
-                            class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium">
+                            class="w-full bg-blue-400 text-white py-3 px-4 rounded-md hover:bg-white hover:text-blue-400  border border-white hover:border-blue-400 transition-colors duration-200 font-medium">
                         planifier une maintenance
                     </button>
                 </div>

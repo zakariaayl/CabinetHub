@@ -1,5 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    // tailwind.config.js
+theme: {
+    extend: {
+      colors: {
+        gray: {
+          75: '#f9fafb' // a custom color between gray-50 and gray-100
+        }
+      }
+    }
+  },
+  plugins: [
+  require('tailwind-scrollbar'),
+],
+
   content: [
     './resources/views/**/*.blade.php',
     './resources/js/**/*.js',

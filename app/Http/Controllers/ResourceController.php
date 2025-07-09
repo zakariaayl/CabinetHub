@@ -26,7 +26,7 @@ public function index(Request $request)
     if ($request->filled('designation')) {
         $query->where('designation', 'like', '%' . $request->designation . '%');
     }
-    $rec = $query->paginate(10);
+    $rec = $query->paginate(8);
 
     return view('rhview', compact('rec'));
 }

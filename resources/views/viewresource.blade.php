@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Fiche Collaborateur</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 min-h-screen py-8">
-    <div class="w-2/3 mx-auto px-4">
+<body class=" bg-white min-h-screen py-8">
+    <div class="w-2/3  mx-auto px-4 to-green-50">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de {{ $resource->designation }}</h1>
-        <div class="bg-white shadow-md rounded-lg p-6 space-y-4">
+        <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100 bg-gradient-to-br from-yellow-100 via-white to-orange-50 shadow-2xl">
             <div><strong class="text-gray-700">Type :</strong> {{ $resource->type }}</div>
             <div><strong class="text-gray-700">marque :</strong> {{ $resource->marque }}</div>
             <div><strong class="text-gray-700">modele :</strong> {{ $resource->modele }}</div>
@@ -17,18 +18,18 @@
             <div><strong class="text-gray-700">Date d'achat :</strong> {{ $resource->date_achat }}</div>
             <div><strong class="text-gray-700">numero de serie :</strong> {{ $resource->numero_serie }}</div>
             <div><strong class="text-gray-700">utilisateur affecte :</strong> {{ $resource->utilisateur_affecte }}</div>
-            
+
             <div><strong class="text-gray-700">remarque :</strong><br>
                 <p class="mt-1 text-gray-600 whitespace-pre-line">{{ $resource->remarque }}</p>
             </div>
-
-            <table class="table-auto w-full border-collapse">
+<div class="overflow-x-auto">
+            <table class="table-auto w-full border-collapse ">
             <thead class="bg-gray-100">
                 <tr>
-                    <th class="p-4">date de maintenance</th>
-                    <th class=" p-4">type maintenance</th>
-                    <th class=" p-4">commentaire</th>
-                    <th class=" p-4">action</th>
+                    <th class="px-2 py-4">date de maintenance</th>
+                    <th class=" px-6">type maintenance</th>
+                    <th class=" px-9">commentaire</th>
+                    <th class=" px-10">action</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,20 +64,21 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('resourceview.view',[$resource->id,urlencode($resource->designation)]) }}"
-   class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2 hover:scale-105">
+</div>
+        <a href="{{ route('resourceview.view',[$resource->id,rawurlencode($resource->designation)]) }}"
+   class="block w-full bg-green-600 hover:bg-green-400 text-white font-bold rounded-lg shadow-lg text-center mx-auto mt-6 py-2 hover:scale-[1.01] hover:shadow-lg">
     + planifier une maintenance
 </a>
         </div>
 
         <!-- BOUTONS -->
         <div class="mt-6 flex space-x-4">
-            <a href="{{ route('resourceview.edit', $resource->id) }}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-400 hover:scale-105">Modifier</a>
+            <a href="{{ route('resourceview.edit', $resource->id) }}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-400 hover:scale-105 shadow-2xl">Modifier</a>
 
             <form action="{{ route('resourceview.destroy', $resource->id) }}" method="POST" onsubmit="return confirm('⚠️ Êtes-vous sûr de vouloir supprimer ce collaborateur ?')" class="inline">
             @csrf
             @method('DELETE')
-            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400 hover:scale-105">Supprimer</button>
+            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400 hover:scale-105 shodow-2xl">Supprimer</button>
             </form>
             <a href="{{ url('/RH/seeAllresources') }}" class="ml-auto text-blue-600 hover:underline ">← Retour</a>
         </div>
