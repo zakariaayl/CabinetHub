@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('id_collaborateur')->constrained('collaborateurs')->onDelete('cascade');
             $table->date('date_jour');
             $table->time('heure_arrivee');
-            $table->time('heure_depart');
+            $table->time('heure_depart')->nullable();
             $table->string('remarque')->nullable();
             $table->timestamps();
         });
