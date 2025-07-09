@@ -45,6 +45,9 @@ class InventaireSeeder extends Seeder
                 DB::table('inventaire_ressource')->insert([
                     'inventaire_id' => $inventaireId,
                     'ressource_id' => $ressourceId,
+                    "quantite"=>rand(1,100),
+                    "etat_releve"=>'Bon',
+                    "commentaire"=>'aucun commentaire',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

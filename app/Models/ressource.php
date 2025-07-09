@@ -20,6 +20,9 @@ class ressource extends Model
     'utilisateur_affecte',
     'date_fin_garantie',
     'prochaine_maintenance',
+    'duree_vie_mois',
+    'est_amortie',
+     'quantite',
     'remarque',
 ];
 public function inventaires() {

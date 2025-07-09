@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>Ajouter une Ressource</title>
 </head>
 <body class="bg-gray-50 min-h-screen py-8">
-    <div class="max-w-2xl mx-auto px-4">
+    <div class="max-w-2xl mx-auto px-4 bg-gradient-to-b from-yellow-100 to-orange-50">
         <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Gestion d'Équipement</h1>
