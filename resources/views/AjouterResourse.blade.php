@@ -16,7 +16,7 @@
         </div>
 
         <!-- Form -->
-        <div class="bg-white rounded-lg shadow-md p-8 bg-gradient-to-b from-yellow-100 to-orange-50 shadow-2xl">
+        <div class="bg-white rounded-lg  p-8 bg-gradient-to-b from-gray-100 via-white to-gray-100 shadow-2xl">
             <form action="{{ route('ResourceController.store') }}" method="POST" class="space-y-6">
 
                 @csrf

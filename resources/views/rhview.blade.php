@@ -14,7 +14,7 @@
 </style>
 <body class=" flex items-top justify-center min-h-screen relative">
 
-    <div class="container  p-4 shadow-2xl border-gray-200  bg-custom  items-center justify-center   ">
+    <div class="container  p-4 shadow-2xl border-gray-200  b-gradient-to-br from-gray-100 via-white to-gray-100  items-center justify-center   ">
         @if(session('success'))
     <div id="success-message"
      class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-300 border border-green-500 text-white text-2xl font-bold p-4 rounded text-center transition-opacity duration-1000 ease-in-out z-50 w-fit max-w-md">
@@ -83,7 +83,7 @@
     </button>
 
     <a href="{{ route('ResourceController.index') }}"
-      class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400">
+      class="bg-blue-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-blue-400 hover:text-blue-400">
       Réinitialiser
     </a>
   </div>

@@ -24,7 +24,7 @@
         </div>
 
         <!-- Form -->
-        <div class="rounded-lg p-8 bg-custom  shadow-2xl">
+        <div class="rounded-lg p-8 b-gradient-to-br from-gray-100 via-white to-gray-100  shadow-2xl">
             <form action="{{ route('resourceview.update',['resourceview'=>$resource->id ]) }}" method="POST" class="space-y-6">
 
                 @csrf

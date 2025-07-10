@@ -5,7 +5,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class=" flex items-top justify-center min-h-screen relative ">
-<div class="max-w-7xl mx-auto p-6 bg-gradient-to-b rounded-xl shadow-2xl from-yellow-100 via-white to-yellow-100">
+<div class="max-w-7xl mx-auto p-6 bg-gradient-to-b rounded-xl shadow-2xl from-gray-100 via-white to-gray-100">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">Créer un Inventaire</h1>
 
   <form method="POST" action="{{ route('inventaire.update',$id) }}">
