@@ -13,28 +13,32 @@ class CollaborateurController extends Controller
 {
     public function dashboard(Request $request)
 {
+    $today = Carbon::today();
+
     $query = Collaborateur::query();
 
-    // Filtrer par nom complet
     if ($request->filled('nom')) {
         $nom = $request->input('nom');
         $query->whereRaw("CONCAT(nom, ' ', prenom) LIKE ?", ["%$nom%"])
-          ->orWhereRaw("CONCAT(prenom, ' ', nom) LIKE ?", ["%$nom%"]);
+              ->orWhereRaw("CONCAT(prenom, ' ', nom) LIKE ?", ["%$nom%"]);
     }
-
-    // Filtrer par poste
     if ($request->filled('poste')) {
         $query->where('poste', $request->poste);
     }
-
-    // Filtrer par département
     if ($request->filled('departement')) {
         $query->where('departement', $request->departement);
     }
 
-    $collaborateurs = $query->paginate(7);
+    // Charger la présence du jour avec une relation "presencesToday"
+    $collaborateurs = $query->with(['presences' => function ($query) use ($today) {
+        $query->whereDate('date_jour', $today);
+    }])->paginate(7);
 
-    // Pour alimenter les <select> avec des options uniques
+    // Ajout d'une propriété isPresentToday pour chaque collaborateur
+    foreach ($collaborateurs as $collab) {
+        $collab->isPresentToday = $collab->presences->isNotEmpty();
+    }
+
     $postes = Collaborateur::select('poste')->distinct()->pluck('poste');
     $departements = Collaborateur::select('departement')->distinct()->pluck('departement');
 

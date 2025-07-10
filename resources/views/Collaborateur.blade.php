@@ -77,9 +77,15 @@
                             <td class="px-6 py-4 whitespace-nowrap text-center">{{ $collab->poste }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">{{ $collab->departement }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                <span class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                    ✅ Présent
-                                </span>
+                                @if($collab->isPresentToday)
+                                    <span class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                         Présent
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                                         Absent
+                                    </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <a href="{{ route('collaborateurs.show', $collab->id) }}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Voir</a>
