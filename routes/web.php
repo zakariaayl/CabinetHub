@@ -7,6 +7,7 @@ use App\Http\Controllers\RH\CollaborateurController;
 use App\Http\Controllers\RH\EvolutionController;
 use App\Http\Controllers\RH\PosteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RH\PresenceController;
 
 
 Route::get('/', function () {
@@ -65,3 +66,8 @@ Route::get('deletemaint/{id}',[resourceviewcontroller::class,'deleteplanif'])->n
 Route::resource('evolutions', EvolutionController::class);
 
 Route::get('evolutions/create/{collaborateur}', [EvolutionController::class, 'create'])->name('evolutions.create');
+
+Route::get('/collaborateur/home/{id}', [CollaborateurController::class, 'home'])->name('collaborateur.home');
+Route::post('/presences', [PresenceController::class, 'store'])->name('presences.store');
+
+Route::post('/presences', [PresenceController::class, 'storePresence'])->name('presences.store');
