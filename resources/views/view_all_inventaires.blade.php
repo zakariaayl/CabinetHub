@@ -107,7 +107,7 @@
                                     </button>
                                 </form>
 
-                                <form action="" method="GET">
+                                <form action="{{route('inventaire.edit',$inventaire['id'])}}" method="GET">
 
                                     <button type="submit" class="w-20 h-8 bg-white border border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400  rounded hover:scale-110 transition ">
                                         Modifier
@@ -115,7 +115,7 @@
                                 </form>
 
 
-                                <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
+                                <form action="{{route('inventaire.destroy',$inventaire['id'])}}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="w-20 h-8 bg-white border border-red-400 hover:bg-red-400 hover:text-white text-red-400 hover:scale-110 transition rounded">

@@ -67,4 +67,37 @@ public function create() {
     $ressources=ressource::all();
     return view('add_inventaire',compact('ressources'));
 }
+public function edit($id) {
+    $inventaire=inventaire::find($id);
+    $ressources=$inventaire->ressources;
+    return view('edit_inventaire',compact('ressources','id'));
+}
+public function update(Request $request,$id)
+{
+    $inventaire = Inventaire::find($id);
+
+    foreach ($request->ressources as $res) {
+        if (!empty($res['etat_releve'])) {
+            $inventaire->ressources()->updateExistingPivot($res['id'], [
+                'etat_releve' => $res['etat_releve'],
+                'quantite' => $res['quantite'],
+                'commentaire' => $res['commentaire'],
+            ]);
+        }else {
+                $inventaire->ressources()->attach($res['id'], [
+                    'etat_releve' => $res['etat_releve'],
+                    'quantite' => $res['quantite'],
+                    'commentaire' => $res['commentaire'],
+                ]);
+            }
+    }
+
+    return redirect()->route('inventaire.index')->with('success', 'Inventaire edité avec succès.');
+}
+public function destroy($id) {
+   $inventaire=Inventaire::find($id);
+   $inventaire->ressources()->detach();
+   $inventaire->delete();
+    return redirect()->route('inventaire.index')->with('success', 'Inventaire supprimé avec succès.');
+}
 }
