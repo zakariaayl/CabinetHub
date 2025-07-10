@@ -28,5 +28,8 @@ public function conges()
 {
     return $this->hasMany(\App\Models\RH\Conge::class, 'collaborateur_id');
 }
-
+public function presences()
+{
+    return $this->hasMany(Presence::class, 'id_collaborateur', 'id');
+}
 }
