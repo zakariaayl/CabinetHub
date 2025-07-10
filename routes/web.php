@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DemandeAchatController;
 use App\Http\Controllers\inventaireController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\RH\resourceviewcontroller;
@@ -69,5 +70,7 @@ Route::get('evolutions/create/{collaborateur}', [EvolutionController::class, 'cr
 
 Route::get('/collaborateur/home/{id}', [CollaborateurController::class, 'home'])->name('collaborateur.home');
 Route::post('/presences', [PresenceController::class, 'store'])->name('presences.store');
+
+Route::resource('demande_achat',DemandeAchatController::class);
 
 Route::post('/presences', [PresenceController::class, 'storePresence'])->name('presences.store');
