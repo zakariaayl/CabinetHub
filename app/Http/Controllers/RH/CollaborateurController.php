@@ -5,6 +5,8 @@ namespace App\Http\Controllers\RH;
 use App\Http\Controllers\Controller;
 use App\Models\RH\Collaborateur;
 use Illuminate\Http\Request;
+use App\Models\RH\Presence;
+use Carbon\Carbon;
 
 class CollaborateurController extends Controller
 {
@@ -96,7 +98,33 @@ class CollaborateurController extends Controller
 
     // Redirection vers le dashboard avec message de succès
     return redirect()->route('collaborateurs.index')
-                     ->with('success', 'Collaborateur ajouté avec succès.');
-}
+                     ->with('success', 'Collaborateur ajouté avec succès.');}
+
+                     public function home($id)
+                     {
+                         $collaborateur = Collaborateur::findOrFail($id);
+                         $today = Carbon::today();
+
+                         $a_deja_pointe = Presence::where('id_collaborateur', $id)
+                             ->whereDate('date_jour', $today)
+                             ->exists();
+
+                         $est_en_conge = Presence::where('id_collaborateur', $id)
+                             ->whereDate('date_jour', $today)
+                             ->where('remarque', 'congé')
+                             ->exists();
+
+                         $historique = Presence::where('id_collaborateur', $id)
+                             ->orderBy('date_jour', 'desc')
+                             ->take(10)
+                             ->get();
+
+                             return view('collaborateur_home', [
+                                'collaborateur' => $collaborateur,
+                                'dejaPointe' => $a_deja_pointe, // 👈 c’est ce nom que tu utilises dans la vue
+                                'est_en_conge' => $est_en_conge,
+                                'presences' => $historique,
+                            ]);
+                     }
 
 }
