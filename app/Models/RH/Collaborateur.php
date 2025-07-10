@@ -23,4 +23,10 @@ class Collaborateur extends Model
 {
     return $this->hasMany(Evolution::class);
 }
+
+public function conges()
+{
+    return $this->hasMany(\App\Models\RH\Conge::class, 'collaborateur_id');
+}
+
 }

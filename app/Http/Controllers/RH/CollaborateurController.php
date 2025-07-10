@@ -7,6 +7,7 @@ use App\Models\RH\Collaborateur;
 use Illuminate\Http\Request;
 use App\Models\RH\Presence;
 use Carbon\Carbon;
+use App\Models\RH\Conge;
 
 class CollaborateurController extends Controller
 {
@@ -100,31 +101,48 @@ class CollaborateurController extends Controller
     return redirect()->route('collaborateurs.index')
                      ->with('success', 'Collaborateur ajouté avec succès.');}
 
-                     public function home($id)
-                     {
-                         $collaborateur = Collaborateur::findOrFail($id);
-                         $today = Carbon::today();
+    public function home($id)
+    {
+        $collaborateur = Collaborateur::findOrFail($id);
+        $today         = Carbon::today();
 
-                         $a_deja_pointe = Presence::where('id_collaborateur', $id)
-                             ->whereDate('date_jour', $today)
-                             ->exists();
+        /* ----- présence du jour ----- */
+        $a_deja_pointe = Presence::where('id_collaborateur', $id)
+                                 ->whereDate('date_jour', $today)
+                                 ->exists();
 
-                         $est_en_conge = Presence::where('id_collaborateur', $id)
-                             ->whereDate('date_jour', $today)
-                             ->where('remarque', 'congé')
-                             ->exists();
+        /* ----- vue demandée : présences ou congés ? ----- */
+        $vue = request('vue', 'presences');   // ?vue=presences (défaut) ou ?vue=conges
 
-                         $historique = Presence::where('id_collaborateur', $id)
-                             ->orderBy('date_jour', 'desc')
-                             ->take(10)
-                             ->get();
+        $presences = collect();   // collections vides par défaut
+        $conges    = collect();
 
-                             return view('collaborateur_home', [
-                                'collaborateur' => $collaborateur,
-                                'dejaPointe' => $a_deja_pointe, // 👈 c’est ce nom que tu utilises dans la vue
-                                'est_en_conge' => $est_en_conge,
-                                'presences' => $historique,
-                            ]);
-                     }
+        if ($vue === 'presences') {
+            $presences = Presence::where('id_collaborateur', $id)
+                                 ->orderByDesc('date_jour')
+                                 ->get();
+        } else { // $vue === 'conges'
+            $conges = Conge::where('collaborateur_id', $id)
+                           ->orderByDesc('created_at')
+                           ->get();
+        }
+
+        return view('collaborateur_home', [
+            'collaborateur' => $collaborateur,
+            'dejaPointe'    => $a_deja_pointe,
+            'vue'           => $vue,         // ← on envoie l’info à la vue
+            'presences'     => $presences,
+            'conges'        => $conges,
+        ]);
+    }
+
+    public function historiqueConges($id){
+    $collaborateur = Collaborateur::findOrFail($id);
+    $conges = $collaborateur->conges()->latest()->get();   // relation conges()
+
+    return view('collaborateur_historique_conges',
+                compact('collaborateur','conges'));}
+
+
 
 }
