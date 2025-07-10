@@ -7,6 +7,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Ajouter une Ressource</title>
 </head>
+<style>
+.bg-custom {
+    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
 <body class="bg-gray-50 min-h-screen py-8">
     <div class="max-w-2xl mx-auto  px-4 ">
         <!-- Header -->
@@ -16,7 +24,7 @@
         </div>
 
         <!-- Form -->
-        <div class=" rounded-xl shadow-2xl p-8 mb-5 bg-gradient-to-b from-yellow-100 to-orange-50 border border-gray-100">
+        <div class=" rounded-xl shadow-2xl p-8 mb-5 bg-custom border border-gray-100">
             <form action="{{route('resourceview.storeplanif',$id)}}" method="POST" class="space-y-6">
 
                 @csrf
@@ -48,7 +56,7 @@
                                class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     </div>
 
-                
+
                 <div>
                     <label for="remarque" class="block text-sm font-medium text-gray-700 mb-2">
                         Remarques

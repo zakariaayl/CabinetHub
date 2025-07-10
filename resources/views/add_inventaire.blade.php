@@ -11,10 +11,10 @@
   <form method="POST" action="{{ route('inventaire.store') }}">
     @csrf
   <input type="text" name="faite_par" class="mb-5" >
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-y-auto max-h-[83vh]">
 
       @foreach ($ressources as $index => $ressource)
-      <div class="bg-white border border-gray-100 shadow-xl rounded-xl p-6">
+      <div class="bg-white border border-gray-100 hover:shadow-2xl hover:scale-105 transition rounded-xl p-6">
 
         <input type="hidden" name="ressources[{{ $index }}][id]" value="{{ $ressource->id }}">
 
