@@ -1,136 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
-<head >
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
-<script src="https://cdn.tailwindcss.com"></script>
-
+    <title>Tableau de bord des demandes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<body class=" flex items-top justify-center min-h-screen relative">
+<body class="bg-gradient-to-b from-gray-100 via-white to-gray-100 min-h-screen py-8 px-4 text-gray-800 grid grid-cols-12 gap-2">
 
-    <div class="container  p-4  shadow-2xl border-gray-200 bg-gradient-to-b from-yellow-100 via-white to-orange-50
-
-
-
-
- items-center justify-center   ">
-        @if(session('success'))
-    <div id="success-message"
-     class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-300 border border-green-500 text-white text-2xl font-bold p-4 rounded text-center transition-opacity duration-1000 ease-in-out z-50 w-fit max-w-md">
-    {{ session('success') }}
-</div>
-
-    <script>
-        setTimeout(function() {
-            const msg = document.getElementById('success-message');
-            if (msg) {
-                msg.style.opacity = '0';
-                setTimeout(() => msg.style.display = 'none', 1000);
-            }
-        }, 4000);
-    </script>
-@endif
-        <h1 class="text-3xl font-bold mb-4">Inventaires </h1>
-
-        <form action="{{ route('inventaire.index') }}" class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mb-6">
-  <div class="mb-6">
-    <h2 class="text-xl font-semibold text-gray-700 flex items-center gap-2">
-      <i class="ti ti-filter text-lg"></i> Filtres d'inventaire
-    </h2>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-    <div>
-      <label for="faite_par" class="block text-sm font-medium text-gray-600 mb-1">Responsable</label>
-      <input type="text" name="faite_par" id="faite_par" placeholder="Nom du responsable"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-        value="{{request('faite_par')}}">
-    </div>
-    <div>
-      <label for="date_inventaire" class="block text-sm font-medium text-gray-600 mb-1">Date de l'inventaire</label>
-      <input type="date" name="date_inventaire" id="date_inventaire"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-        value="{{request('date_inventaire')}}">
-    </div>
-  </div>
-
-  <div class="flex justify-end gap-4">
-    <button type="submit"
-      class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400">
-      Appliquer
-    </button>
-    <a href="{{route('inventaire.index')}}"
-      class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400">
-      Réinitialiser
-    </a>
-  </div>
-</form>
-
-
-
-        <div class="overflow-x-scroll">
-        <table class="table-auto w-full border-collapse">
-            <thead class="bg-white shadow-md border border-gray-100">
-                <tr>
-                    <th class="p-4">faite par</th>
-                    <th class=" p-4">date de l'inventaire</th>
-                    <th class=" p-4">remarque</th>
-                    <th class=" p-4">action</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($inventaires as $inventaire)
-
-                    <tr class="text-center hover:bg-gray-200">
-
-                        <td class=" p-4  border-b border-gray-300">{{ $inventaire['faite_par'] }}</td>
-                        <td class="p-4  border-b border-gray-300">{{ $inventaire['date_inventaire'] }}</td>
-                        <td class="p-4   border-b border-gray-300">{{ $inventaire['remarques'] ?? '---' }}</td>
-
-
-                        <td class=" p-4 pr-5 border-b border-gray-300">
-                            <div class="flex justify-center items-center gap-2">
-                                <form action="{{route('inventaire.show',$inventaire['id'])}}" method="GET">
-
-                                    <button type="submit" class="w-20 h-8 bg-white border border-green-400 hover:bg-green-400 hover:text-white text-green-400 hover:scale-110 transition rounded">
-                                        voir
-                                    </button>
-                                </form>
-
-                                <form action="" method="GET">
-
-                                    <button type="submit" class="w-20 h-8 bg-white border border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400  rounded hover:scale-110 transition ">
-                                        Modifier
-                                    </button>
-                                </form>
-
-
-                                <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="w-20 h-8 bg-white border border-red-400 hover:bg-red-400 hover:text-white text-red-400 hover:scale-110 transition rounded">
-                                        Supprimer
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-
-                @endforeach
-            </tbody>
-        </table>
+    @if(session('success'))
+        <div id="success-message"
+             class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white font-bold text-lg px-6 py-3 rounded shadow-lg transition-opacity duration-1000 z-50">
+            {{ session('success') }}
         </div>
-       <div class="mt-6 flex p-4 justify-center">
-     <div class="text-black text-2xl font-bold mr-3">
-        {{ $inventaires->links('pagination::tailwind') }}
+
+        <script>
+            setTimeout(() => {
+                const msg = document.getElementById('success-message');
+                if (msg) {
+                    msg.style.opacity = '0';
+                    setTimeout(() => msg.style.display = 'none', 1000);
+                }
+            }, 4000);
+        </script>
+    @endif
+
+    <div class="max-w-7xl mx-auto lg:col-span-8 sm:col-span-12">
+        <h1 class="text-3xl font-bold mb-6">Tableau de bord des demandes</h1>
+
+        <form action="{{ route('demande_achat.index') }}" method="GET"
+              class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Filtres de recherche</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Responsable</label>
+                    <input type="text" name="responsabl_demande" value="{{ request('responsabl_demande') }}"
+                           class="w-full border px-4 py-2 rounded focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Date d'inventaire</label>
+                    <input type="date" name="date_demande" value="{{ request('date_demande') }}"
+                           class="w-full border px-4 py-2 rounded focus:ring-2 focus:ring-green-500">
+                </div>
+            </div>
+            <div class="flex justify-end gap-4">
+                <button type="submit"
+                        class="bg-green-500 text-white px-5 py-2 rounded hover:bg-white hover:text-green-500 border hover:border-green-500 transition">
+                    Appliquer
+                </button>
+                <a href="{{ route('demande_achat.index') }}"
+                   class="bg-red-400 text-white px-5 py-2 rounded hover:bg-white hover:text-red-400 border hover:border-red-400 transition">
+                    Réinitialiser
+                </a>
+            </div>
+        </form>
+        <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200 items-center">
+            <div>tous les demandes</div>
+            <div>{{$all}}</div>
+           </div>
+        <div class="grid grid-cols-4 h-1/6 m-2 gap-4 mb-6">
+
+           <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200 items-center">
+            <div>livree</div>
+            <div>{{$livre}}</div>
+           </div>
+           <div class="bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200  text-center items-center">
+            <div>en cours de traitement</div>
+            <div>{{$attente}}</div>
+           </div>
+           <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200  text-center items-center">
+              <div>approuvee</div>
+            <div>{{$aprouv}}</div>
+           </div>
+           <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200  text-center items-center">
+               <div>refusee</div>
+            <div>{{$refus}}</div>
+           </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @forelse($demandes as $demande)
+            @if ($demande['statut']=="approuvée")
+
+                <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-green-500">
+                    <div>
+                        <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
+                        <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
+                        <p class="text-sm text-gray-500"> {{ $demande['description'] ?? '---' }}</p>
+                    </div>
+
+                    <div class="flex gap-2 mt-4">
+                        <form action="{{ route('demande_achat.show', $demande['id']) }}" method="GET" class="w-full">
+                            <button class="w-full bg-white text-green-400 border border-green-400 py-2 rounded hover:bg-green-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Voir
+                            </button>
+                        </form>
+                        <form action="" method="GET" class="w-full">
+                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Modifier
+                            </button>
+                        </form>
+                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                            @csrf
+                            @method('DELETE')
+                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @elseif ($demande['statut']=="refusée")
+                     <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-red-400">
+                    <div>
+                        <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
+                        <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
+                        <p class="text-sm text-gray-500"> {{ $demande['description'] ?? '---' }}</p>
+                    </div>
+
+                    <div class="flex gap-2 mt-4">
+                        <form action="{{ route('demande_achat.show', $demande['id']) }}" method="GET" class="w-full">
+                            <button class="w-full bg-white text-green-400 border border-green-400 py-2 rounded hover:bg-green-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Voir
+                            </button>
+                        </form>
+                        <form action="" method="GET" class="w-full">
+                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Modifier
+                            </button>
+                        </form>
+                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                            @csrf
+                            @method('DELETE')
+                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @elseif($demande['statut']==" en cours de traitement" || "en attente")
+                      <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-yellow-500">
+                    <div>
+                        <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
+                        <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
+                        <p class="text-sm text-gray-500"> {{ $demande['description'] ?? '---' }}</p>
+                    </div>
+
+                    <div class="flex gap-2 mt-4">
+                        <form action="{{ route('demande_achat.show', $demande['id']) }}" method="GET" class="w-full">
+                            <button class="w-full bg-white text-green-400 border border-green-400 py-2 rounded hover:bg-green-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Voir
+                            </button>
+                        </form>
+                        <form action="" method="GET" class="w-full">
+                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Modifier
+                            </button>
+                        </form>
+                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                            @csrf
+                            @method('DELETE')
+                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @elseif($demande->statut=="livrée")
+                <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between  border-t-4  hover:shadow-2xl transition border-gray-400">
+                    <div>
+                        <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
+                        <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
+                        <p class="text-sm text-gray-500"> {{ $demande['description'] ?? '---' }}</p>
+                    </div>
+
+                    <div class="flex gap-2 mt-4">
+                        <form action="{{ route('demande_achat.show', $demande['id']) }}" method="GET" class="w-full">
+                            <button class="w-full bg-white text-green-400 border border-green-400 py-2 rounded hover:bg-green-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Voir
+                            </button>
+                        </form>
+                        <form action="" method="GET" class="w-full">
+                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Modifier
+                            </button>
+                        </form>
+                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                            @csrf
+                            @method('DELETE')
+                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @else
+    {{-- Debug unknown statut --}}
+    <div class="bg-red-100 text-red-700 p-4 rounded shadow">
+        Statut inconnu: {{ $demande['statut'] ?? 'N/A' }}
+    </div>
+                @endif
+            @empty
+                <p class="text-gray-600 col-span-full text-center">Aucune demande trouvée.</p>
+            @endforelse
+        </div>
+
+        <div class="mt-10 flex justify-center">
+            {{ $demandes->links('pagination::tailwind') }}
+        </div>
+
+        <a href="{{ route('demande_achat.create') }}"
+           class="block mt-8 w-full text-center bg-green-500 hover:bg-white text-white hover:text-green-500 border hover:border-green-500 font-bold py-3 rounded-lg shadow-lg transition">
+            + Ajouter une nouvelle demande
+        </a>
+    </div>
+    <div class="flex flex-col  md:col-span-12 lg:col-span-4 lg:h-1/3">
+    <div class="bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-14 rounded-lg grid grid-cols-1 mb-10">
+
+    <div class="h-80">
+         <canvas id="statusChart" class="w-full h-full"></canvas>
+          <script>
+  const ctx = document.getElementById('statusChart').getContext('2d');
+
+  const statusChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['livrée','en cours de traitement', 'approuvée','refusée'],
+      datasets: [{
+        label: 'Status du Distribution',
+        data: [{{ $aprouv }}, {{ $refus }}, {{ $attente }},{{ $livre }}],
+        //
+        backgroundColor: ['#74E149', '#EE3A3C', '#FFDA44','#CBBDBD'],
+        borderColor: ['#74E149', '#EE3A3C', '#FFDA44','#CBBDBD'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: {
+              size: 14
+            }
+          }
+        },
+        title: {
+          display: true,
+          text: 'Status des Inventaires',
+          font: {
+            size: 16
+          }
+        }
+      }
+    }
+  });
+</script>
+    </div>
+
+</div>
+<div class=" bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-14 rounded-lg h-full grid grid-cols-1 mb-10 p-4">
+
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+        <h1>ayeeeeeeeewo</h1>
+
     </div>
 </div>
-<a href="{{ route('inventaire.create') }}"
-   class="block w-full bg-green-400 border border-white hover:bg-white hover:text-green-400 hover:border-green-400 text-white  hover:scale-105 font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2 hover:scale-[1.01] transition-colors">
-    + Ajouter
-</a>
-{{-- {{ $inventaires }} --}}
-    </div>
 </body>
 </html>

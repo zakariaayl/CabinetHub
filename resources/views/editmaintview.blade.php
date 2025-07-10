@@ -8,14 +8,7 @@
   <title>Ajouter une Ressource</title>
 
 </head>
-<style>
-.bg-custom {
-    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-</style>
+
 <body class="bg-gray-50 min-h-screen py-8">
     <div class="max-w-2xl mx-auto px-4  rounded-lg ">
         <!-- Header -->
@@ -25,7 +18,7 @@
         </div>
 
         <!-- Form -->
-        <div class="bg-custom border border-gray-100 rounded-lg shadow-2xl p-8 mb-5">
+        <div class="b-gradient-to-br from-gray-100 via-white to-gray-100 border border-gray-100 rounded-lg shadow-2xl p-8 mb-5">
             <form action="{{route('resourceview.updateplanif',$maintenance['id'])}}" method="PUT" class="space-y-6">
 
                 @csrf

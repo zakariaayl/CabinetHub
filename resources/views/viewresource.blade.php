@@ -17,7 +17,7 @@
 <body class=" bg-white min-h-screen py-8">
     <div class="w-2/3  mx-auto px-4 to-green-50">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de {{ $resource->designation }}</h1>
-        <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100 bg-gradient-to-br from-yellow-100 via-white to-orange-50 bg-cutom shadow-2xl">
+        <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100 b-gradient-to-br from-gray-100 via-white to-gray-100 bg-cutom shadow-2xl">
             <div><strong class="text-gray-700">Type :</strong> {{ $resource->type }}</div>
             <div><strong class="text-gray-700">marque :</strong> {{ $resource->marque }}</div>
             <div><strong class="text-gray-700">modele :</strong> {{ $resource->modele }}</div>

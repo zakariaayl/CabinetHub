@@ -24,7 +24,7 @@
         </div>
 
         <!-- Form -->
-        <div class=" rounded-xl shadow-2xl p-8 mb-5 bg-custom border border-gray-100">
+        <div class=" rounded-xl shadow-2xl p-8 mb-5 b-gradient-to-br from-gray-100 via-white to-gray-100 border border-gray-100">
             <form action="{{route('resourceview.storeplanif',$id)}}" method="POST" class="space-y-6">
 
                 @csrf

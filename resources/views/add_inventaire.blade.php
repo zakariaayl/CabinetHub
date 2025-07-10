@@ -5,13 +5,13 @@
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class=" flex items-top justify-center min-h-screen relative ">
-<div class="max-w-7xl mx-auto p-6 bg-gradient-to-b rounded-xl shadow-2xl from-yellow-100 via-white to-yellow-100">
+<div class="max-w-7xl mx-auto p-6 bg-gradient-to-b rounded-xl shadow-2xl from-gray-100 via-white to-gray-100">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">Créer un Inventaire</h1>
 
   <form method="POST" action="{{ route('inventaire.store') }}">
     @csrf
   <input type="text" name="faite_par" class="mb-5" >
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-y-auto max-h-[83vh]">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-y-auto max-h-[83vh] overflow-x-hidden">
 
       @foreach ($ressources as $index => $ressource)
       <div class="bg-white border border-gray-100 hover:shadow-2xl hover:scale-105 transition rounded-xl p-6">

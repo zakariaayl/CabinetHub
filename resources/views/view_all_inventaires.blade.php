@@ -21,7 +21,7 @@
     </button>
   </nav>
     <div
-   class="bg-custom container  p-4  shadow-2xl border-gray-200  items-center justify-center   ">
+   class=" container  p-4  shadow-2xl border-gray-200  items-center justify-center  b-gradient-to-br from-gray-100 via-white to-gray-100  ">
    {{-- bg-gradient-to-br from-green-50 to-blue-100 --}}
         @if(session('success'))
     <div id="success-message"
