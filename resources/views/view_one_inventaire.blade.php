@@ -10,11 +10,18 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 
 </head>
-
+<style>
+.bg-custom {
+    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
 
 <body class=" min-h-screen bg-white text-gray-800 font-sans">
 
-  <div class="max-w-7xl mx-auto p-6 border border-gray-200 shadow-2xl bg-gradient-to-b from-yellow-100 via-white to-orange-50">
+  <div class="max-w-7xl mx-auto p-6 border border-gray-200 shadow-2xl bg-custom">
     <header class="text-center text-white mb-10">
       <h1 class="text-4xl font-bold text-gray-800 drop-shadow">Gestion Avancée des Inventaires</h1>
       <p class="text-lg text-gray-800 opacity-90">Suivi en temps réel et analyses de vos ressources</p>
@@ -66,7 +73,7 @@
 
         @if ($ressource->pivot->etat_releve=="Hors Service")
 <div class="bg-white rounded-2xl p-6 relative border-t-4 border-red-500 shadow-lg">
-          <div class="absolute top-4 right-4 bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full">Expired</div>
+          <div class="absolute top-4 right-4 bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full">Expiré</div>
           <div class="flex items-center mb-4">
             <i class="ti ti-router text-red-500 text-2xl mr-3"></i>
             <h3 class="text-lg font-semibold"> {{$ressource['designation']}}</h3>
@@ -82,7 +89,7 @@
         </div>
         @elseif ($ressource->pivot->etat_releve=="Bon")
 <div class="bg-white rounded-2xl p-6 relative border-t-4 border-green-500 shadow-lg  ">
-          <div class="absolute top-4 right-4 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Active</div>
+          <div class="absolute top-4 right-4 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Actif</div>
           <div class="flex items-center mb-4">
             <i class="ti ti-device-laptop text-green-500 text-2xl mr-3"></i>
             <h3 class="text-lg font-semibold"> {{$ressource['designation']}}</h3>
@@ -100,7 +107,7 @@
         @elseif ($ressource->pivot->etat_releve=="Usagé")
 
          <div class="bg-white rounded-2xl shadow p-6 relative border-t-4 border-yellow-400 shadow-lg">
-          <div class="absolute top-4 right-4 bg-yellow-100 text-yellow-700 text-xs font-bold px-3 py-1 rounded-full">Nearing End</div>
+          <div class="absolute top-4 right-4 bg-yellow-100 text-yellow-700 text-xs font-bold px-3 py-1 rounded-full">besoin d'Attention</div>
           <div class="flex items-center mb-4">
             <i class="ti ti-license text-yellow-500 text-2xl mr-3"></i>
             <h3 class="text-lg font-semibold"> {{$ressource['designation']}}</h3>
@@ -122,11 +129,6 @@
         @endif
 
      @endforeach
-
-        <!-- Warning Card -->
-
-
-        <!-- Expired Card -->
 
 
       </div>

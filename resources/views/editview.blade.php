@@ -7,8 +7,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Ajouter une Ressource</title>
 </head>
+<style>
+.bg-custom {
+    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
 <body class="bg-gray-50 min-h-screen py-8">
-    <div class="max-w-2xl mx-auto px-4 bg-gradient-to-b from-yellow-100 to-orange-50">
+    <div class="max-w-2xl mx-auto px-4 ">
         <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Gestion d'Équipement</h1>
@@ -16,7 +24,7 @@
         </div>
 
         <!-- Form -->
-        <div class="bg-white rounded-lg shadow-md p-8">
+        <div class="rounded-lg p-8 bg-custom  shadow-2xl">
             <form action="{{ route('resourceview.update',['resourceview'=>$resource->id ]) }}" method="POST" class="space-y-6">
 
                 @csrf
@@ -212,7 +220,7 @@
                 <!-- Submit Button -->
                 <div class="pt-4">
                     <button type="submit"
-                            class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium">
+                            class="w-full  py-3 px-4 rounded-md bg-green-400 border border-white text-white hover:bg-white hover:text-green-400 hover:border-green-400 hover:scale-[1.01] transition focus:ring-offset-2  duration-200 font-medium">
                         Enregistrer les modifications
                     </button>
                 </div>

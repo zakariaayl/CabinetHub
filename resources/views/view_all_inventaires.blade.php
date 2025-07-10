@@ -5,15 +5,24 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-
+<style>
+.bg-custom {
+    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
 <body class=" flex items-top justify-center min-h-screen relative">
-
-    <div class="container  p-4  shadow-2xl border-gray-200 bg-gradient-to-b from-yellow-100 via-white to-orange-50
-
-
-
-
- items-center justify-center   ">
+<nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-600">📦 Gestion de Stock</h1>
+    <button class="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-600 transition">
+      Ajouter une ressource
+    </button>
+  </nav>
+    <div
+   class="bg-custom container  p-4  shadow-2xl border-gray-200  items-center justify-center   ">
+   {{-- bg-gradient-to-br from-green-50 to-blue-100 --}}
         @if(session('success'))
     <div id="success-message"
      class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-300 border border-green-500 text-white text-2xl font-bold p-4 rounded text-center transition-opacity duration-1000 ease-in-out z-50 w-fit max-w-md">
@@ -82,7 +91,7 @@
             <tbody>
                 @foreach($inventaires as $inventaire)
 
-                    <tr class="text-center hover:bg-gray-200">
+                    <tr class="text-center hover:bg-blue-100/15">
 
                         <td class=" p-4  border-b border-gray-300">{{ $inventaire['faite_par'] }}</td>
                         <td class="p-4  border-b border-gray-300">{{ $inventaire['date_inventaire'] }}</td>
