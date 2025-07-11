@@ -58,11 +58,12 @@
                     required
                     class="w-full border rounded px-4 py-2"
                 >
-                    <option value="">-- Sélectionnez --</option>
-                    <option value="annuel" {{ old('type_conge') == 'annuel' ? 'selected' : '' }}>Annuel</option>
-                    <option value="maladie" {{ old('type_conge') == 'maladie' ? 'selected' : '' }}>Maladie</option>
-                    <option value="exceptionnel" {{ old('type_conge') == 'exceptionnel' ? 'selected' : '' }}>Exceptionnel</option>
-                    <option value="sans_solde" {{ old('type_conge') == 'sans_solde' ? 'selected' : '' }}>Sans solde</option>
+                <option value=""> Sélectionnez </option>
+                <option value="annuel" {{ old('type_conge') == 'annuel' ? 'selected' : '' }}>Annuel</option>
+                <option value="maladie" {{ old('type_conge') == 'maladie' ? 'selected' : '' }}>Maladie</option>
+                <option value="exceptionnel" {{ old('type_conge') == 'exceptionnel' ? 'selected' : '' }}>Exceptionnel</option>
+                <option value="sans_solde" {{ old('type_conge') == 'sans_solde' ? 'selected' : '' }}>Sans solde</option>
+                <option value="maternite_paternite" {{ old('type_conge') == 'maternite_paternite' ? 'selected' : '' }}>Congé maternité / paternité</option>
                 </select>
             </div>
 
