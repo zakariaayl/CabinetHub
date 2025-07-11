@@ -16,38 +16,41 @@
 
         {{-- Bloc Présence du jour --}}
         <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <div class="flex flex-wrap items-center gap-4">
 
-            @if ($dejaPointe)
-                <p class="text-green-700 font-medium text-lg mb-4">✅ Vous avez déjà pointé aujourd’hui.</p>
+                @if ($dejaPointe)
+                    <p class="text-green-700 font-medium text-lg">
+                        ✅ Vous avez déjà pointé aujourd’hui.
+                    </p>
 
-                {{-- Bouton Départ (sans logique pour l’instant) --}}
-                <form action="#" method="POST" class="mb-4">
-                    @csrf
-                    <input type="hidden" name="id_collaborateur" value="{{ $collaborateur->id }}">
-                    <button type="submit"
-                        class="bg-red-600 text-white px-6 py-3 rounded-md hover:bg-red-700 font-semibold transition-colors">
-                        Enregistrer mon départ
-                    </button>
-                </form>
+                    {{-- Bouton Départ --}}
+                    <form action="#" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_collaborateur" value="{{ $collaborateur->id }}">
+                        <button type="submit"
+                            class="bg-red-600 text-white px-6 py-3 rounded-md hover:bg-red-700 font-semibold transition-colors">
+                            Enregistrer mon départ
+                        </button>
+                    </form>
+                @else
+                    {{-- Bouton Présence --}}
+                    <form action="{{ route('presences.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_collaborateur" value="{{ $collaborateur->id }}">
+                        <button type="submit"
+                            class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-semibold transition-colors">
+                            Enregistrer ma présence
+                        </button>
+                    </form>
+                @endif
 
-            @else
-                {{-- Bouton Présence --}}
-                <form action="{{ route('presences.store') }}" method="POST" class="mb-4">
-                    @csrf
-                    <input type="hidden" name="id_collaborateur" value="{{ $collaborateur->id }}">
-                    <button type="submit"
-                        class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-semibold transition-colors">
-                        Enregistrer ma présence
-                    </button>
-                </form>
-            @endif
+                {{-- Bouton Demander un congé --}}
+                <a href="{{ route('conges.create', $collaborateur->id) }}"
+                   class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md font-semibold transition-colors">
+                     Demander un congé
+                </a>
 
-            {{-- 🟨 Nouveau : Bouton Demander un congé --}}
-            <a href="{{ route('conges.create', $collaborateur->id) }}"
-            class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md font-semibold transition-colors">
-                📝 Demander un congé
-            </a>
-
+            </div>
         </div>
 
 
