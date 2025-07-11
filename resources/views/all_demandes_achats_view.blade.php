@@ -165,34 +165,7 @@
                         </form>
                     </div>
                 </div>
-                @elseif($demande->statut=="livrée")
-                <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between  border-t-4  hover:shadow-2xl transition border-gray-400">
-                    <div>
-                        <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
-                        <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
-                        <p class="text-sm text-gray-500"> {{ $demande['description'] ?? '---' }}</p>
-                    </div>
 
-                    <div class="flex gap-2 mt-4">
-                        <form action="{{ route('demande_achat.show', $demande['id']) }}" method="GET" class="w-full">
-                            <button class="w-full bg-white text-green-400 border border-green-400 py-2 rounded hover:bg-green-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Voir
-                            </button>
-                        </form>
-                        <form action="" method="GET" class="w-full">
-                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Modifier
-                            </button>
-                        </form>
-                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
-                            @csrf
-                            @method('DELETE')
-                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Supprimer
-                            </button>
-                        </form>
-                    </div>
-                </div>
                 @else
     {{-- Debug unknown statut --}}
     <div class="bg-red-100 text-red-700 p-4 rounded shadow">
@@ -261,17 +234,20 @@
 
 </div>
 <div class=" bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-14 rounded-lg h-full grid grid-cols-1 mb-10 p-4">
+    <div class="overflow-y-scroll overflow-x-hidden gap-2">
+@foreach($demandes as $demande)
 
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-        <h1>ayeeeeeeeewo</h1>
-
+     @if($demande['statut']==" en cours de traitement" || "en attente")
+            <div class="flex items-start p-4 border-l-4 border-yellow-500 bg-yellow-100 rounded-xl mb-2">
+              <i class="ti ti-calendar text-yellow-500 text-xl mr-3"></i>
+              <div>
+                <h4 class="font-semibold">{{$demande->resource_demande}}</h4>
+                <p class="text-sm text-gray-600">{{$demande->description}}</p>
+              </div>
+            </div>
+      @endif
+  @endforeach
+  </div>
     </div>
 </div>
 </body>
