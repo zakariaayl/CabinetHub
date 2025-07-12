@@ -18,7 +18,7 @@ class inventaireController extends Controller
     $query->whereDate("date_inventaire", $request->date_inventaire);
 }
     $inventaires=$query->paginate(8);
-    return view("view_all_inventaires",compact("inventaires"));
+    return view("inventaire.view_all_inventaires",compact("inventaires"));
  }
  public function store(Request $request)
 {
@@ -61,16 +61,16 @@ class inventaireController extends Controller
         if($ressource->pivot->etat_releve=="Hors Service") $expired++;
         if($ressource->pivot->etat_releve=="Bon") $active++;
     }
-    return view ("view_one_inventaire",compact("ressources","active","neartoend","all","expired"));
+    return view ("incentaire.view_one_inventaire",compact("ressources","active","neartoend","all","expired"));
  }
 public function create() {
     $ressources=ressource::all();
-    return view('add_inventaire',compact('ressources'));
+    return view('inventaire.add_inventaire',compact('ressources'));
 }
 public function edit($id) {
     $inventaire=inventaire::find($id);
     $ressources=$inventaire->ressources;
-    return view('edit_inventaire',compact('ressources','id'));
+    return view('inventaire.edit_inventaire',compact('ressources','id'));
 }
 public function update(Request $request,$id)
 {

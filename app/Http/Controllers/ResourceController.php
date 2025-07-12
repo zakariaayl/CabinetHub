@@ -28,7 +28,7 @@ public function index(Request $request)
     }
     $rec = $query->paginate(8);
 
-    return view('rhview', compact('rec'));
+    return view('resource.rhview', compact('rec'));
 }
 
 
@@ -38,7 +38,7 @@ public function index(Request $request)
     public function edit($id) {
         $resource=ressource::find($id);
          $maintenance=maintenance::where('resource_id',$id)->get();
-        return view('viewresource', ['resource'=> $resource,'maintenance'=>$maintenance]);
+        return view('resource.viewresource', ['resource'=> $resource,'maintenance'=>$maintenance]);
     }
 
     public function store(Request $request) {
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $resource->save();
 
 return redirect()->route('ResourceController.index')->with('success', 'Ressource ajoutée avec succès !');
-} else return view("AjouterResourse");
+} else return view("resource.AjouterResourse");
     }
     public function update(Request $request) {
         return $request->all();
