@@ -55,29 +55,28 @@
                 </a>
             </div>
         </form>
-        <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200 items-center">
-            <div>tous les demandes</div>
-            <div>{{$all}}</div>
-           </div>
-        <div class="grid grid-cols-4 h-1/6 m-2 gap-4 mb-6">
+        <!-- All demandes -->
+<div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6">
+    <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
+    <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
+</div>
 
-           <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200 items-center">
-            <div>livree</div>
-            <div>{{$livre}}</div>
-           </div>
-           <div class="bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200  text-center items-center">
-            <div>en cours de traitement</div>
-            <div>{{$attente}}</div>
-           </div>
-           <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200  text-center items-center">
-              <div>approuvee</div>
-            <div>{{$aprouv}}</div>
-           </div>
-           <div class=" bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-center border border-gray-200  text-center items-center">
-               <div>refusee</div>
-            <div>{{$refus}}</div>
-           </div>
-        </div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+    <div class="bg-yellow-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-lg transition">
+        <h4 class="text-md font-semibold text-yellow-700 mb-1">En attente</h4>
+        <p class="text-xl font-bold text-yellow-600">{{ $attente }}</p>
+    </div>
+    <div class="bg-green-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition">
+        <h4 class="text-md font-semibold text-green-700 mb-1">Approuvée</h4>
+        <p class="text-xl font-bold text-green-600">{{ $aprouv }}</p>
+    </div>
+    <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition">
+        <h4 class="text-md font-semibold text-red-700 mb-1">Refusée</h4>
+        <p class="text-xl font-bold text-red-600">{{ $refus }}</p>
+    </div>
+</div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @forelse($demandes as $demande)
             @if ($demande['statut']=="approuvée")
@@ -90,27 +89,29 @@
                     </div>
 
                     <div class="flex gap-2 mt-4">
-                        <form action="{{ route('demande_achat.show', $demande['id']) }}" method="GET" class="w-full">
+                        <form action="{{ route('demande_achat.update', $demande['id']) }}" method="GET" class="w-full">
                             <button class="w-full bg-white text-green-400 border border-green-400 py-2 rounded hover:bg-green-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
                                 Voir
                             </button>
                         </form>
-                        <form action="" method="GET" class="w-full">
-                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Modifier
+                        {{-- <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" class="w-full">
+                             @csrf
+                            @method('PUT')
+                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="valider">
+                                valider
                             </button>
-                        </form>
-                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                        </form> --}}
+                        <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
                             @csrf
-                            @method('DELETE')
-                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Supprimer
+                            @method('PUT')
+                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="refuser">
+                                refuser
                             </button>
                         </form>
                     </div>
                 </div>
                 @elseif ($demande['statut']=="refusée")
-                     <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-red-400">
+                     <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-red-400 duration-300">
                     <div>
                         <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
                         <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
@@ -123,21 +124,23 @@
                                 Voir
                             </button>
                         </form>
-                        <form action="" method="GET" class="w-full">
-                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Modifier
+                        <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" class="w-full">
+                             @csrf
+                            @method('PUT')
+                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="valider">
+                                valider
                             </button>
                         </form>
-                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                        {{-- <form action="{{route('demande_achat.update',$demande->id)}}" method="POST"  class="w-full">
                             @csrf
-                            @method('DELETE')
-                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Supprimer
+                            @method('PUT')
+                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="refuser">
+                                refuser
                             </button>
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
-                @elseif($demande['statut']==" en cours de traitement" || "en attente")
+                 @elseif(trim($demande['statut']) == "en cours de traitement" || trim($demande['statut']) == "en attente")
                       <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-yellow-500">
                     <div>
                         <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
@@ -151,16 +154,18 @@
                                 Voir
                             </button>
                         </form>
-                        <form action="" method="GET" class="w-full">
-                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Modifier
+                        <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" class="w-full">
+                             @csrf
+                            @method('PUT')
+                            <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="valider">
+                                valider
                             </button>
                         </form>
-                        <form action="" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                        <form action="{{route('demande_achat.update',$demande->id)}}" method="POST"  class="w-full">
                             @csrf
-                            @method('DELETE')
-                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
-                                Supprimer
+                            @method('PUT')
+                            <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="refuser">
+                                refuser
                             </button>
                         </form>
                     </div>
@@ -197,13 +202,12 @@
   const statusChart = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ['livrée','en cours de traitement', 'approuvée','refusée'],
+      labels: ['approuvée', 'refusée','en cours de traitement'],
       datasets: [{
         label: 'Status du Distribution',
-        data: [{{ $aprouv }}, {{ $refus }}, {{ $attente }},{{ $livre }}],
-        //
-        backgroundColor: ['#74E149', '#EE3A3C', '#FFDA44','#CBBDBD'],
-        borderColor: ['#74E149', '#EE3A3C', '#FFDA44','#CBBDBD'],
+        data: [{{ $aprouv }}, {{ $refus }}, {{ $attente  }}],
+        backgroundColor: ['#74E149', '#EE3A3C', '#FFDA44'],
+        borderColor: ['#74E149', '#EE3A3C', '#FFDA44'],
         borderWidth: 1
       }]
     },
@@ -233,18 +237,23 @@
     </div>
 
 </div>
-<div class=" bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-14 rounded-lg h-full grid grid-cols-1 mb-10 p-4">
+<div class=" bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-5 rounded-lg h-full grid grid-cols-1 mb-10 p-4">
+    <h1 class="font-bold text-xl text-black text-center items-center mb-2  ">Liste des demandes en attentes</h1>
     <div class="overflow-y-scroll overflow-x-hidden gap-2">
-@foreach($demandes as $demande)
 
-     @if($demande['statut']==" en cours de traitement" || "en attente")
-            <div class="flex items-start p-4 border-l-4 border-yellow-500 bg-yellow-100 rounded-xl mb-2">
-              <i class="ti ti-calendar text-yellow-500 text-xl mr-3"></i>
-              <div>
-                <h4 class="font-semibold">{{$demande->resource_demande}}</h4>
-                <p class="text-sm text-gray-600">{{$demande->description}}</p>
-              </div>
-            </div>
+@foreach($demandes as $demande)
+    @if(trim($demande['statut']) == "en cours de traitement" || trim($demande['statut']) == "en attente")
+
+          <div class="flex flex-col  p-5 border-l-[6px] border-yellow-500 bg-yellow-50 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 m-3">
+    <h4 class="text-lg font-semibold text-gray-800 mb-2 text-center">
+        {{ $demande->resource_demande }}
+    </h4>
+    <p class="text-sm text-gray-600 leading-relaxed text-start">
+        {{ $demande->description ?? 'Aucune description.' }}
+    </p>
+</div>
+
+
       @endif
   @endforeach
   </div>

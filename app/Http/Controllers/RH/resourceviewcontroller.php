@@ -12,12 +12,12 @@ class resourceviewcontroller extends Controller
 {
     public function index() {
     $resources = ressource::paginate(9);
-    return view('rhview', ['rec' => $resources]);
+    return view('recource.rhview', ['rec' => $resources]);
 }
    public function edit($id) {
         $resource=ressource::find($id);
 
-        return view('editview', ['resource'=> $resource]);
+        return view('resource.editview', ['resource'=> $resource]);
     }
      public function update(Request $request,$id) {
         $resource=ressource::find( $id );
@@ -44,7 +44,7 @@ class resourceviewcontroller extends Controller
       return redirect()->route('ResourceController.index')->with('success','supprimer avec succes');
     }
     public function view($id,$des) {
-        return view('planifierMaintenance',['id'=>$id,'des'=>$des]);
+        return view('maintenance.planifierMaintenance',['id'=>$id,'des'=>$des]);
     }
 
     public function storeplanif(Request $request,$id) {
@@ -56,7 +56,7 @@ class resourceviewcontroller extends Controller
     }
     public function editmain($id){
         $maintenance=maintenance::find($id);
-        return view('editmaintview',['maintenance'=> $maintenance]);
+        return view('maintenance.editmaintview',['maintenance'=> $maintenance]);
     }
     public function updateplanif(Request $request,$id) {
         $maintenance=maintenance::find($id);
