@@ -33,7 +33,7 @@ public function index(Request $request)
 
 
     public function create() {
-        return view("AjouterResourse");
+        return view("resource.AjouterResourse");
     }
     public function edit($id) {
         $resource=ressource::find($id);

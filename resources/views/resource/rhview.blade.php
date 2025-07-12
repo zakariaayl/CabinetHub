@@ -3,17 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
-    @include('shared.navbar_resource')
-    <style>
-        .bg-custom {
-            background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-    </style>
+
 </head>
-<body class=" min-h-screen bg-gray-200">
+<body class=" min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-100">
+    @include('shared.navbar_resource')
     <div class="flex items-start justify-center w-full px-4">
         <div class="container p-4  border-gray-200  mt-5">
             @if(session('success'))
@@ -31,7 +24,7 @@
             </script>
             @endif
 
-            <h1 class="text-3xl font-bold mb-4 text-center mx-auto block">Liste des Ressources</h1>
+            <h1 class="text-3xl font-bold mb-4 mt-10 text-center mx-auto block">Liste des Ressources</h1>
 
             <form action="{{ route('ResourceController.index') }}" class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mb-6">
                 <h2 class="font-medium text-black text-lg mb-6">Filtres du Ressources</h2>
@@ -89,9 +82,9 @@
                             <th class="p-4">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="shadow-lg ">
                         @foreach($rec as $resource)
-                        <tr class="text-center hover:bg-blue-100/15 hover:shadow-lg ">
+                        <tr class="text-center hover:bg-blue-100/15 hover:shadow-md hover:border hover:border-gray-500">
                             <td class="p-4 border-b border-gray-300">{{ $resource['type'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['designation'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['marque'] ?? '---' }}</td>

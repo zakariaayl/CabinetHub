@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Tableau de bord des demandes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<body class="bg-gradient-to-b from-gray-100 via-white to-gray-100 min-h-screen py-8 px-4 text-gray-800 grid grid-cols-12 gap-2">
-
+<body class="bg-gradient-to-br from-gray-100 via-white to-gray-100 min-h-screen   text-gray-800 ">
+ @include('shared.navbar_resource')
+ <div class="grid grid-cols-12 gap-2 mt-20">
     @if(session('success'))
         <div id="success-message"
              class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white font-bold text-lg px-6 py-3 rounded shadow-lg transition-opacity duration-1000 z-50">
@@ -85,11 +87,12 @@
                     <div>
                         <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
                         <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
+                        <p class="text-sm text-gray-500 mb-1">par  {{ $demande['responsabl_demande'] }}</p>
                         <p class="text-sm text-gray-500"> {{ $demande['description'] ?? '---' }}</p>
                     </div>
 
                     <div class="flex gap-2 mt-4">
-                        <form action="{{ route('demande_achat.update', $demande['id']) }}" method="GET" class="w-full">
+                        <form action="{{ route('demande_achat.show', $demande['id']) }}" method="GET" class="w-full">
                             <button class="w-full bg-white text-green-400 border border-green-400 py-2 rounded hover:bg-green-400  hover:scale-110  hover:text-white transition text-sm font-semibold">
                                 Voir
                             </button>
@@ -258,6 +261,7 @@
   @endforeach
   </div>
     </div>
+</div>
 </div>
 </body>
 </html>

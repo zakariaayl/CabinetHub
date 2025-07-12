@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
 <script src="https://cdn.tailwindcss.com"></script>
+@include('shared.navbar_resource')
 </head>
 <body class=" flex items-top justify-center min-h-screen relative ">
 <div class="max-w-7xl mx-auto p-6 bg-gradient-to-b rounded-xl shadow-2xl from-gray-100 via-white to-gray-100">
