@@ -5,18 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+
   <title>Ajouter une Ressource</title>
 </head>
-<body class="bg-gray-50 min-h-screen py-8">
+<body class=" bg-gradient-to-b from-gray-100 via-white to-gray-100 min-h-screen py-8">
+     @include('shared.navbar_resource')
     <div class="max-w-2xl mx-auto px-4 ">
         <!-- Header -->
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Gestion d'Équipement</h1>
-            <p class="text-gray-600">Enregistrez un nouvel équipement</p>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2 mt-10">Gestion d'Équipement</h1>
+            <p class="text-gray-600 mt-10">Enregistrez un nouvel équipement</p>
         </div>
 
         <!-- Form -->
-        <div class="bg-white rounded-lg  p-8 bg-gradient-to-b from-gray-100 via-white to-gray-100 shadow-2xl">
+        <div class="bg-white rounded-lg  p-8 bg-white   shadow-2xl">
             <form action="{{ route('ResourceController.store') }}" method="POST" class="space-y-6">
 
                 @csrf

@@ -43,4 +43,11 @@ $all++;
        $demande=demande_achat::find( $id );
        return view('demandes.view_one_demande',compact('demande'));
    }
+   public function create() {
+      return view('demandes.create_demande');
+   }
+   public function store(Request $request) {
+      $demande=demande_achat::create($request->all());
+      return redirect()->route('demande_achat.index')->with('success','demande effectuee avec succes');
+   }
 }

@@ -5,16 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
   <script src="https://cdn.tailwindcss.com"></script>
+  @include('shared.navbar_resource')
   <title>Ajouter une Ressource</title>
 </head>
-<style>
-.bg-custom {
-    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-</style>
+
 <body class="bg-gray-50 min-h-screen py-8">
     <div class="max-w-2xl mx-auto px-4 ">
         <!-- Header -->

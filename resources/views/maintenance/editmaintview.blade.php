@@ -6,7 +6,7 @@
   {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Ajouter une Ressource</title>
-
+@include('shared.navbar_resource')
 </head>
 
 <body class="bg-gray-50 min-h-screen py-8">

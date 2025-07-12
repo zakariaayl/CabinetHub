@@ -8,15 +8,10 @@
   <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css" rel="stylesheet">
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-
+@include('shared.navbar_resource')
 </head>
 <style>
-.bg-custom {
-    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+
 </style>
 
 <body class=" min-h-screen bg-white text-gray-800 font-sans">

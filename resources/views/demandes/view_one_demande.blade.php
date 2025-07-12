@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Fiche Demande</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>\
+
 </head>
-<style>
-.bg-custom {
-    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-</style>
-<body class="bg-white min-h-screen py-8">
-    <div class="w-2/3 mx-auto px-4 to-green-50">
+
+
+<body class=" min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-100 py-0">
+    @include('shared.navbar_resource')
+    <div class="w-2/3 mx-auto  ">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de la Demande</h1>
-        <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100 bg-custom shadow-2xl">
+        <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100  shadow-2xl">
             <div><strong class="text-gray-700">Responsable :</strong> {{ $demande->responsabl_demande }}</div>
             <div><strong class="text-gray-700">Date de Demande :</strong> {{ $demande->date_demande }}</div>
             <div><strong class="text-gray-700">Date de Besoin :</strong> {{ $demande->date_besoin }}</div>
@@ -34,16 +30,19 @@
             <div><strong class="text-gray-700">Commentaire :</strong><br>
                 <p class="mt-1 text-gray-600 whitespace-pre-line">{{ $demande->commentaire }}</p>
             </div>
-           
+
         </div>
 
         <div class="mt-6 flex space-x-4 relative">
-            <a href=""
-               class="px-4 py-2 bg-green-400 border border-white hover:bg-white hover:text-green-400 hover:border-green-400 text-white transition hover:scale-105 shadow-2xl rounded">
-               valider
-            </a>
-
-            <form action="" method="POST" onsubmit="return confirm('⚠️ Êtes-vous sûr de vouloir supprimer cette demande ?')" class="inline">
+            <div class="flex space-x-1">
+            <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" class="w-full">
+                             @csrf
+                            @method('PUT')
+                            <button class="px-4 py-2 bg-green-400 border border-white hover:bg-white hover:text-green-400 hover:border-green-400 text-white transition hover:scale-105 shadow-2xl rounded" name="action" value="valider">
+                                valider
+                            </button>
+                        </form>
+            <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" onsubmit="return confirm('⚠️ Êtes-vous sûr de vouloir supprimer cette demande ?')" class="inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit"
@@ -51,7 +50,7 @@
                     refuser
                 </button>
             </form>
-
+</div>
             <a href="{{ url('demande_achat') }}" class="absolute right-0 text-blue-600 hover:underline">← Retour</a>
         </div>
     </div>

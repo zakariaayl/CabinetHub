@@ -5,19 +5,12 @@
     <title>Fiche Collaborateur</title>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    @include('shared.navbar_resource')
 </head>
-<style>
-.bg-custom {
-    background-image: url('{{ asset('images_cabinethub/pic7.jpg') }}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-</style>
 <body class=" bg-white min-h-screen py-8">
     <div class="w-2/3  mx-auto px-4 to-green-50">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de {{ $resource->designation }}</h1>
-        <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100 b-gradient-to-br from-gray-100 via-white to-gray-100 bg-cutom shadow-2xl">
+        <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100 b-gradient-to-br from-gray-100 via-white to-gray-100 shadow-2xl">
             <div><strong class="text-gray-700">Type :</strong> {{ $resource->type }}</div>
             <div><strong class="text-gray-700">marque :</strong> {{ $resource->marque }}</div>
             <div><strong class="text-gray-700">modele :</strong> {{ $resource->modele }}</div>

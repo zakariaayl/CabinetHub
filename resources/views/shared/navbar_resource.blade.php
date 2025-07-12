@@ -2,16 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Fiche Collaborateur</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-gray-100 via-white via-50% to-gray-100 ">
-<nav class="bg-white shadow-xl">
+<body class="">
+<nav class="bg-white shadow-md fixed top-0 w-full mb-5">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center h-16">
       <div class="flex items-center flex-1">
         <div class="flex items-center sm:hidden mr-3">
-          <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+          <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-black bg-white  hover:scale-110 transition duration-300 ease-in-out hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
             <span class="absolute -inset-0.5"></span>
             <span class="sr-only">Open main menu</span>
             <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -22,17 +21,93 @@
         <div class="flex-shrink-0">
             <form action="" method="GET">
                 <button type="submit" >
-          <img class="h-8 w-auto" src="https://cdn.corenexis.com/media?zxrzqm&2160H&p&b&jjo2.png" alt="Your Company" />
+          <img class="h-12 w-24 rounded-md" src="{{ asset('images_cabinethub/original.png') }}" alt="CabinetHub" />
+
           </button>
         </form>
         </div>
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-200 bg-gray-700 hover:text-white">resourses</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-200 bg-gray-700  hover:text-white">inventaires</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-200 bg-gray-700  hover:text-white">demandes</a>
-             <a href="#" class="rounded-md px-3  py-2 text-sm font-medium text-gray-300 hover:bg-gray-200 bg-gray-700 hover:text-white">Calendar</a>
-              <a href="#" class="rounded-md px-3   py-2 text-sm font-medium text-gray-300 hover:bg-gray-200 bg-gray-700 hover:text-white">Calendar</a>
+            <div class="relative inline-block text-left">
+<div class="relative inline-block text-left group">
+  <button
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    Resources
+  </button>
+
+  <div
+    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+    transition duration-400 ease-in-out"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    id="dropdown-menu"
+  >
+    <div class="py-1" role="none">
+      <a href="{{route('ResourceController.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les resources</a>
+      <a href="{{route('ResourceController.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter resource</a>
+    </div>
+  </div>
+</div>
+
+
+            <div class="relative inline-block text-left group">
+  <button
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    inventaire
+  </button>
+
+  <div
+    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+    transition duration-400 ease-in-out"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    id="dropdown-menu"
+  >
+    <div class="py-1" role="none">
+      <a href="{{route('inventaire.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les inventaires</a>
+      <a href="{{route('inventaire.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter inventaire</a>
+    </div>
+  </div>
+</div>
+            <div class="relative inline-block text-left group">
+  <button
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    demandes achats
+  </button>
+
+  <div
+    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+    transition duration-400 ease-in-out"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    id="dropdown-menu"
+  >
+    <div class="py-1" role="none">
+      <a href="{{route('demande_achat.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les demandes</a>
+      <a href="{{route('demande_achat.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter demande achat</a>
+    </div>
+  </div>
+</div>
+             {{-- <a href="#" class="rounded-md px-3 py-2 text-sm text-black font-semibold hover:bg-black hover:scale-110  transition bg-white hover:text-white">Calendar</a>
+              <a href="#" class="rounded-md px-3 py-2 text-sm text-black font-semibold hover:bg-black hover:scale-110  transition bg-white hover:text-white">Calendar</a> --}}
           </div>
         </div>
       </div>
@@ -63,20 +138,90 @@
       </div>
     </div>
   </div>
-
-  <!-- Mobile menu -->
   <div class="sm:hidden hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pt-2 pb-3">
-      <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+      <div class="relative inline-block text-left group">
+  <button
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    Resources
+  </button>
+
+  <div
+    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+    transition duration-400 ease-in-out"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    id="dropdown-menu"
+  >
+    <div class="py-1" role="none">
+      <a href="{{route('ResourceController.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les resources</a>
+      <a href="{{route('ResourceController.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter resource</a>
+    </div>
+  </div>
+</div>
+
+
+            <div class="relative inline-block text-left group">
+  <button
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    inventaire
+  </button>
+
+  <div
+    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+    transition duration-400 ease-in-out"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    id="dropdown-menu"
+  >
+    <div class="py-1" role="none">
+      <a href="{{route('inventaire.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les inventaires</a>
+      <a href="{{route('inventaire.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter inventaire</a>
+    </div>
+  </div>
+</div>
+            <div class="relative inline-block text-left group">
+  <button
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    demandes achats
+  </button>
+
+  <div
+    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+    transition duration-400 ease-in-out"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    id="dropdown-menu"
+  >
+    <div class="py-1" role="none">
+      <a href="{{route('demande_achat.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les demandes</a>
+      <a href="{{route('demande_achat.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter demande achat</a>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </nav>
 
 <script>
-// Simple dropdown toggle functionality
 document.getElementById('user-menu-button').addEventListener('click', function() {
     const dropdown = this.nextElementSibling;
     const isVisible = !dropdown.classList.contains('opacity-0');
@@ -89,8 +234,6 @@ document.getElementById('user-menu-button').addEventListener('click', function()
         dropdown.classList.add('opacity-100', 'scale-100');
     }
 });
-
-// Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
     const dropdown = document.querySelector('.absolute.right-0.z-10');
     const button = document.getElementById('user-menu-button');
@@ -100,8 +243,6 @@ document.addEventListener('click', function(event) {
         dropdown.classList.remove('opacity-100', 'scale-100');
     }
 });
-
-// Mobile menu toggle
 document.querySelector('[aria-controls="mobile-menu"]').addEventListener('click', function() {
     const mobileMenu = document.getElementById('mobile-menu');
     const isHidden = mobileMenu.classList.contains('hidden');
