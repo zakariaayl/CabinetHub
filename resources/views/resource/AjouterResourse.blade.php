@@ -8,7 +8,7 @@
 
   <title>Ajouter une Ressource</title>
 </head>
-<body class=" bg-gradient-to-b from-gray-100 via-white to-gray-100 min-h-screen py-8">
+<body class=" bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen py-8">
      @include('shared.navbar_resource')
     <div class="max-w-2xl mx-auto px-4 ">
         <!-- Header -->
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Form -->
-        <div class="bg-white rounded-lg  p-8 bg-white   shadow-2xl">
+        <div class="bg-white rounded-lg  p-8    shadow-2xl">
             <form action="{{ route('ResourceController.store') }}" method="POST" class="space-y-6">
 
                 @csrf

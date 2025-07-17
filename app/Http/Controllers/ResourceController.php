@@ -27,8 +27,16 @@ public function index(Request $request)
         $query->where('designation', 'like', '%' . $request->designation . '%');
     }
     $rec = $query->paginate(8);
+    $bon=0;$Usage=0;$hors=0;$all=0;
 
-    return view('resource.rhview', compact('rec'));
+    foreach($rec as $resource){
+        if ($resource->etat=='Bon') $bon++;
+        if ($resource->etat=='Usagé')$Usage++;
+        if ($resource->etat=='Hors Service') $hors++;
+        $all++;
+    }
+
+    return view('resource.rhview', compact('rec','all','hors','bon','Usage'));
 }
 
 
@@ -37,8 +45,9 @@ public function index(Request $request)
     }
     public function edit($id) {
         $resource=ressource::find($id);
-         $maintenance=maintenance::where('resource_id',$id)->get();
-        return view('resource.viewresource', ['resource'=> $resource,'maintenance'=>$maintenance]);
+         $maintenance=maintenance::where('resource_id',$id)->get()->sortByDesc('date_maintenance');
+         $date_maintenance=$maintenance->first()['date_maintenance'];
+        return view('resource.viewresource', ['resource'=> $resource,'maintenance'=>$maintenance,'der_date'=>$date_maintenance]);
     }
 
     public function store(Request $request) {

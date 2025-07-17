@@ -61,7 +61,7 @@ class inventaireController extends Controller
         if($ressource->pivot->etat_releve=="Hors Service") $expired++;
         if($ressource->pivot->etat_releve=="Bon") $active++;
     }
-    return view ("incentaire.view_one_inventaire",compact("ressources","active","neartoend","all","expired"));
+    return view ("inventaire.view_one_inventaire",compact("ressources","active","neartoend","all","expired"));
  }
 public function create() {
     $ressources=ressource::all();
@@ -70,7 +70,7 @@ public function create() {
 public function edit($id) {
     $inventaire=inventaire::find($id);
     $ressources=$inventaire->ressources;
-    return view('inventaire.edit_inventaire',compact('ressources','id'));
+    return view('inventaire.edit_inventaire',compact('ressources','id','inventaire'));
 }
 public function update(Request $request,$id)
 {

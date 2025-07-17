@@ -8,7 +8,7 @@
 </head>
 
 
-<body class=" min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-100 py-0">
+<body class=" min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-0">
     @include('shared.navbar_resource')
     <div class="w-2/3 mx-auto  ">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de la Demande</h1>

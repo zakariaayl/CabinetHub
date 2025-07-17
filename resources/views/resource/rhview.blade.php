@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class=" min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-100">
+<body class=" min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
     @include('shared.navbar_resource')
-    <div class="flex items-start justify-center w-full px-4">
-        <div class="container p-4  border-gray-200  mt-5">
+    <h1 class="text-4xl font-bold  text-start mx-auto block mt-20">Tableau du Bord du Ressources</h1>
+    <div class="grid grid-cols-12  items-start justify-center w-full px-4">
+        <div class="container p-4  border-gray-200   col-span-12 lg:col-span-8 ">
+
             @if(session('success'))
-            <div id="success-message" class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-300 border border-green-500 text-white text-2xl font-bold p-4 rounded text-center transition-opacity duration-1000 ease-in-out z-50 w-fit max-w-md">
+            <div id="success-message" class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-300 border-l-[6px]  border-green-500  text-white text-2xl font-bold p-4 rounded-xl text-center transition-opacity duration-1000 ease-in-out z-50 w-fit max-w-md">
                 {{ session('success') }}
             </div>
             <script>
@@ -24,11 +26,8 @@
             </script>
             @endif
 
-            <h1 class="text-3xl font-bold mb-4 mt-10 text-center mx-auto block">Liste des Ressources</h1>
-
             <form action="{{ route('ResourceController.index') }}" class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mb-6">
-                <h2 class="font-medium text-black text-lg mb-6">Filtres du Ressources</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                     <div>
                         <label for="filtertype" class="block text-sm font-medium text-gray-600 mb-1">Type</label>
                         <select name="filtertype" id="filtertype" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
@@ -50,47 +49,68 @@
                     <div>
                         <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-600 mb-1">Utilisateur affecté</label>
                         <input type="text" name="utilisateur_affecte" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="{{ request('utilisateur_affecte') }}">
+                        <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                     <div>
                         <label for="designation" class="block text-sm font-medium text-gray-600 mb-1">Désignation</label>
                         <input type="text" name="designation" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="{{ request('designation') }}">
+                        <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                 </div>
                 <div class="flex justify-end gap-4">
-                    <button type="submit" class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400">
+                    <button type="submit" class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400 active:shadow-none shadow-2xl shadow-green-300">
                         Appliquer
                     </button>
-                    <a href="{{ route('ResourceController.index') }}" class="bg-blue-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-blue-400 hover:text-blue-400">
+                    <a href="{{ route('ResourceController.index') }}" class="bg-red-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-red-400 hover:text-red-400 active:shadow-none shadow-2xl shadow-red-300 ">
                         Réinitialiser
                     </a>
                 </div>
             </form>
+<div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6">
+    <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les Ressourcess</h3>
+    <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
+</div>
 
-            <div class="overflow-x-scroll">
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+    <div class="bg-yellow-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-lg transition">
+        <h4 class="text-md font-semibold text-yellow-700 mb-1">Usagé</h4>
+        <p class="text-xl font-bold text-yellow-600">{{ $Usage }}</p>
+    </div>
+    <div class="bg-green-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition">
+        <h4 class="text-md font-semibold text-green-700 mb-1">Bon</h4>
+        <p class="text-xl font-bold text-green-600">{{ $bon }}</p>
+    </div>
+    <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition">
+        <h4 class="text-md font-semibold text-red-700 mb-1">Hors Service</h4>
+        <p class="text-xl font-bold text-red-600">{{ $hors }}</p>
+    </div>
+</div>
+            <div class="overflow-x-scroll rounded-2xl shadow-xl">
                 <table class="table-auto w-full border-collapse">
-                    <thead class="bg-white shadow-lg border border-gray-100">
+                    <thead class="bg-gradient-to-r from-indigo-300 to-purple-300  border border-gray-100 rounded-t-2xl  shadow-xl">
                         <tr>
                             <th class="p-4">Type</th>
                             <th class="p-4">Désignation</th>
                             <th class="p-4">Marque</th>
                             <th class="p-4">Modèle</th>
                             <th class="p-4">État</th>
-                            <th class="p-4">Département</th>
+
                             <th class="p-4">Utilisateur Affecté</th>
                             <th class="p-4">Durée de vie (mois)</th>
                             <th class="p-4">Quantité</th>
                             <th class="p-4">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="shadow-lg ">
+                    <tbody class="bg-white/60  ">
                         @foreach($rec as $resource)
-                        <tr class="text-center hover:bg-blue-100/15 hover:shadow-md hover:border hover:border-gray-500">
+                        <tr class="text-center hover:bg-blue-50 hover:shadow-md hover:border hover:border-gray-500">
                             <td class="p-4 border-b border-gray-300">{{ $resource['type'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['designation'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['marque'] ?? '---' }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['modele'] ?? '---' }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['etat'] }}</td>
-                            <td class="p-4 border-b border-gray-300">{{ $resource['localisation'] }}</td>
+
                             <td class="p-4 border-b border-gray-300">{{ $resource['utilisateur_affecte'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['duree_vie_mois'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['quantite'] }}</td>
@@ -119,6 +139,115 @@
                 + Ajouter
             </a>
         </div>
+        <div class="flex flex-col   col-span-12 lg:col-span-4 p-6  ">
+
+            <div class="bg-white border border-gray-100 rounded-xl shadow-xl">
+            <div class="mb-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Statistiques des resources</h3>
+            </div>
+            <div class=" h-80 mb-6">
+                <canvas id="statusChart" class="w-full h-full"></canvas>
+          <script>
+  const ctx = document.getElementById('statusChart').getContext('2d');
+
+  const statusChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Bon', 'Usagé', 'Hors Service'],
+                datasets: [{
+            data: [{{$bon}},{{$Usage}},{{$hors}}],
+                    backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
+                    borderWidth: 4,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true,
+                            font: { size: 14 }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Répartition des Ressources',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                elements: {
+                    arc: {
+                        borderWidth: 0
+                    }
+                }
+            },
+            plugins: [{
+                beforeDraw: function(chart) {
+                    const width = chart.width,
+                          height = chart.height,
+                          ctx = chart.ctx;
+
+                    ctx.restore();
+                    const fontSize = (height / 114).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+                    ctx.fillStyle = "#374151";
+
+                    const total = {{$all}};
+                    const text = total,
+                          textX = Math.round((width - ctx.measureText(text).width) / 2.04),
+                          textY = height / 2.05;
+
+                    ctx.fillText(text, textX, textY - 10);
+                    ctx.font = (fontSize * 0.6) + "em sans-serif";
+                    ctx.fillText("Total", textX + 5, textY + 20);
+                    ctx.save();
+                }
+            }]
+        });
+</script>
+            </div>
+
+            </div>
+            <div class=" bg-white text-center text-amber-300 text-2xl shadow-xl w-full  mt-5 border border-gray-100 rounded-xl h-full grid grid-cols-1 mb-10 p-4">
+    <h1 class="font-bold text-xl text-black text-center items-center mb-2  ">Liste des resources Hors Service</h1>
+    <div class="overflow-y-scroll overflow-x-hidden gap-2">
+@php
+    $horsService = $rec->where('etat', 'Hors Service');
+@endphp
+@if($horsService->isEmpty())
+    <div class="flex flex-col  p-5 border-l-[6px] border-green-500 bg-green-50 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 m-3">
+    <p class="text-md font-bold text-gray-600 leading-relaxed text-start">
+        aucune ressource est Hors service
+    </p>
+</div>
+@else
+    @foreach($rec as $resource)
+    @if(trim($resource['etat']) == "Hors Service")
+
+          <div class="flex flex-col  p-5 border-l-[6px] border-red-500 bg-red-50 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 m-3">
+    <h4 class="text-lg font-semibold text-gray-800 mb-2 text-center">
+        {{ $resource->designation }}
+    </h4>
+    <p class="text-sm text-gray-600 leading-relaxed text-start">
+        {{ $resource->remarque ?? 'Aucune description.' }}
+    </p>
+</div>
+
+
+      @endif
+  @endforeach
+@endif
+
+  </div>
     </div>
+        </div>
+
+
+
 </body>
 </html>
