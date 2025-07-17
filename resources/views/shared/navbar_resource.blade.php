@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
 </head>
 <body class="">
-<nav class="bg-white shadow-md fixed top-0 w-full mb-5">
+<nav class="bg-white shadow-md fixed top-0 w-full mb-5 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center h-16">
       <div class="flex items-center flex-1">
@@ -19,9 +27,13 @@
           </button>
         </div>
         <div class="flex-shrink-0">
-            <form action="" method="GET">
+            <form action="/" method="GET">
                 <button type="submit" >
-          <img class="h-12 w-24 rounded-md" src="{{ asset('images_cabinethub/original.png') }}" alt="CabinetHub" />
+   <div class="flex items-center space-x-2">
+<i class="fas fa-sitemap text-blue-600 text-xl"></i>
+  <span class="text-xl font-bold text-gray-800">CabinetHub</span>
+</div>
+
 
           </button>
         </form>
@@ -40,7 +52,7 @@
   </button>
 
   <div
-    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    class="origin-top-right absolute  w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
     opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
     transition duration-400 ease-in-out"
     role="menu"
@@ -48,7 +60,7 @@
     aria-labelledby="menu-button"
     id="dropdown-menu"
   >
-    <div class="py-1" role="none">
+    <div class="py-0" role="none">
       <a href="{{route('ResourceController.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les resources</a>
       <a href="{{route('ResourceController.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter resource</a>
     </div>
@@ -67,7 +79,7 @@
   </button>
 
   <div
-    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    class="origin-top-right absolute w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
     opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
     transition duration-400 ease-in-out"
     role="menu"
@@ -92,7 +104,7 @@
   </button>
 
   <div
-    class="origin-top-right absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    class="origin-top-right absolute w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
     opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
     transition duration-400 ease-in-out"
     role="menu"

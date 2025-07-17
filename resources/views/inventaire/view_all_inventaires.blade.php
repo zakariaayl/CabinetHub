@@ -6,10 +6,10 @@
 
 </head>
 
-<body class=" flex items-top justify-center min-h-screen relative  b-gradient-to-br from-gray-100 via-white to-gray-100">
+<body class=" flex items-top justify-center min-h-screen relative  bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
 @include('shared.navbar_resource')
     <div
-   class=" container  p-4  shadow-2xl   items-center justify-center mt-20  ">
+   class=" container  p-4     items-center justify-center mt-20  ">
    {{-- bg-gradient-to-br from-green-50 to-blue-100 --}}
         @if(session('success'))
     <div id="success-message"
@@ -27,16 +27,16 @@
         }, 4000);
     </script>
 @endif
-        <h1 class="text-3xl font-bold mb-4">Inventaires </h1>
+        <h1 class="text-3xl font-bold mb-4 text-center">Tous les Inventaires </h1>
 
-        <form action="{{ route('inventaire.index') }}" class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mb-6">
+        <form action="{{ route('inventaire.index') }}" class="bg-white p-6 rounded-xl shadow-xl border border-gray-100 mb-6">
   <div class="mb-6">
     <h2 class="text-xl font-semibold text-gray-700 flex items-center gap-2">
       <i class="ti ti-filter text-lg"></i> Filtres d'inventaire
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 ">
     <div>
       <label for="faite_par" class="block text-sm font-medium text-gray-600 mb-1">Responsable</label>
       <input type="text" name="faite_par" id="faite_par" placeholder="Nom du responsable"
@@ -65,9 +65,9 @@
 
 
 
-        <div class="overflow-x-scroll">
+        <div class="overflow-x-scroll rounded-2xl">
         <table class="table-auto w-full border-collapse">
-            <thead class="bg-white shadow-md border border-gray-100">
+            <thead class="bg-gradient-to-r from-indigo-300 to-purple-300 shadow-lg border border-gray-100">
                 <tr>
                     <th class="p-4">faite par</th>
                     <th class=" p-4">date de l'inventaire</th>
@@ -76,10 +76,10 @@
 
                 </tr>
             </thead>
-            <tbody class="">
+            <tbody class="bg-white/60">
                 @foreach($inventaires as $inventaire)
 
-                    <tr class="text-center hover:bg-blue-100/25 hover:shadow-md hover:border hover:border-gray-500">
+                    <tr class="text-center hover:bg-blue-50 hover:shadow-lg hover:border hover:border-gray-500">
 
                         <td class=" p-4  border-b border-gray-300">{{ $inventaire['faite_par'] }}</td>
                         <td class="p-4  border-b border-gray-300">{{ $inventaire['date_inventaire'] }}</td>

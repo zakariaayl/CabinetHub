@@ -8,7 +8,7 @@
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<body class="bg-gradient-to-br from-gray-100 via-white to-gray-100 min-h-screen   text-gray-800 ">
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100  min-h-screen   text-gray-800 ">
  @include('shared.navbar_resource')
  <div class="grid grid-cols-12 gap-2 mt-20">
     @if(session('success'))
@@ -28,7 +28,7 @@
         </script>
     @endif
 
-    <div class="max-w-7xl mx-auto lg:col-span-8 sm:col-span-12">
+    <div class="max-w-7xl mx-auto lg:col-span-8  col-span-12 sm:col-span-12">
         <h1 class="text-3xl font-bold mb-6">Tableau de bord des demandes</h1>
 
         <form action="{{ route('demande_achat.index') }}" method="GET"
@@ -57,7 +57,7 @@
                 </a>
             </div>
         </form>
-        <!-- All demandes -->
+       
 <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6">
     <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
     <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
@@ -175,7 +175,7 @@
                 </div>
 
                 @else
-    {{-- Debug unknown statut --}}
+
     <div class="bg-red-100 text-red-700 p-4 rounded shadow">
         Statut inconnu: {{ $demande['statut'] ?? 'N/A' }}
     </div>
@@ -194,7 +194,7 @@
             + Ajouter une nouvelle demande
         </a>
     </div>
-    <div class="flex flex-col  md:col-span-12 lg:col-span-4 lg:h-1/3">
+    <div class="flex flex-col  col-span-12 lg:col-span-4 lg:h-1/3">
     <div class="bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-14 rounded-lg grid grid-cols-1 mb-10">
 
     <div class="h-80">
@@ -203,43 +203,153 @@
   const ctx = document.getElementById('statusChart').getContext('2d');
 
   const statusChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: ['approuvée', 'refusée','en cours de traitement'],
-      datasets: [{
-        label: 'Status du Distribution',
-        data: [{{ $aprouv }}, {{ $refus }}, {{ $attente  }}],
-        backgroundColor: ['#74E149', '#EE3A3C', '#FFDA44'],
-        borderColor: ['#74E149', '#EE3A3C', '#FFDA44'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: {
-            font: {
-              size: 14
-            }
-          }
-        },
-        title: {
-          display: true,
-          text: 'Status des Inventaires',
-          font: {
-            size: 16
-          }
-        }
-      }
-    }
-  });
+            type: 'doughnut',
+            data: {
+                labels: ['Approuvées', 'Refusées', 'En attente'],
+                datasets: [{
+            data: [{{$aprouv}}, {{$refus}}, {{$attente}}],
+                    backgroundColor: ['#10B981', '#EF4444', '#F59E0B'],
+                    borderWidth: 4,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true,
+                            font: { size: 14 }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Répartition des Ressources',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                elements: {
+                    arc: {
+                        borderWidth: 0
+                    }
+                }
+            },
+            plugins: [{
+                beforeDraw: function(chart) {
+                    const width = chart.width,
+                          height = chart.height,
+                          ctx = chart.ctx;
+
+                    ctx.restore();
+                    const fontSize = (height / 114).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+                    ctx.fillStyle = "#374151";
+
+                    const total = {{$all}};
+                    const text = total,
+                          textX = Math.round((width - ctx.measureText(text).width) / 2.04),
+                          textY = height / 2.05;
+
+                    ctx.fillText(text, textX, textY - 10);
+                    ctx.font = (fontSize * 0.6) + "em sans-serif";
+                    ctx.fillText("Total", textX + 5, textY + 20);
+                    ctx.save();
+                }
+            }]
+        });
 </script>
     </div>
 
+
 </div>
+<div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700 text-center">Cartes de Statut</h2>
+            <div class="space-y-4">
+                <!-- Approved -->
+                <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-green-700">Approuvées</span>
+                        <span class="text-2xl font-bold text-green-600">{{$aprouv}}</span>
+                    </div>
+                    <div class="w-full bg-green-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 45%"></div>
+                    </div>
+                    <div class="text-sm text-green-600 mt-1">{{ $all != 0 ? number_format($aprouv * 100 / $all, 2) : '0' }}%
+% du total</div>
+                </div>
+                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-yellow-700">En attente</span>
+                        <span class="text-2xl font-bold text-yellow-600">{{$attente}}</span>
+                    </div>
+                    <div class="w-full bg-yellow-200 rounded-full h-2">
+                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 36%"></div>
+                    </div>
+                    <div class="text-sm text-yellow-600 mt-1">{{ $all != 0 ? number_format($attente * 100 / $all, 2) : '0' }}%
+ du total</div>
+                </div>
+                <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-red-700">Refusées</span>
+                        <span class="text-2xl font-bold text-red-600">{{$refus}}</span>
+                    </div>
+                    <div class="w-full bg-red-200 rounded-full h-2">
+                        <div class="bg-red-500 h-2 rounded-full" style="width: 18%"></div>
+                    </div>
+                    <div class="text-sm text-red-600 mt-1">{{ $all != 0 ? number_format($refus * 100 / $all, 2) : '0' }}%
+% du total</div>
+                </div>
+            </div>
+
+        </div>
+         <script>
+            const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Approuvées', 'En attente', 'Refusées'],
+                datasets: [{
+                    label: 'Nombre de demandes',
+                    data: [{{$aprouv}}, {{$attente}}, {{$refus}}],
+                    backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
+                    borderRadius: 6,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Statut des Demandes d\'Achat',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+         </script>
 <div class=" bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-5 rounded-lg h-full grid grid-cols-1 mb-10 p-4">
     <h1 class="font-bold text-xl text-black text-center items-center mb-2  ">Liste des demandes en attentes</h1>
     <div class="overflow-y-scroll overflow-x-hidden gap-2">

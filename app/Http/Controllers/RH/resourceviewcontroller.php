@@ -10,10 +10,7 @@ use Laravel\Pail\ValueObjects\Origin\Console;
 
 class resourceviewcontroller extends Controller
 {
-    public function index() {
-    $resources = ressource::paginate(9);
-    return view('recource.rhview', ['rec' => $resources]);
-}
+
    public function edit($id) {
         $resource=ressource::find($id);
 
@@ -36,12 +33,12 @@ class resourceviewcontroller extends Controller
         }
     );
     $resource->update($dataToUpdate);
-        return redirect()->route('resourceview.index')->with('success',' modification a ete effectue');
+        return redirect()->route('ResourceController.index')->with('success',' modification a ete effectue');
     }
      public function destroy($id) {
         $resource=ressource::find($id);
         $resource->delete();
-      return redirect()->route('ResourceController.index')->with('success','supprimer avec succes');
+      return redirect()->route('ResourceController.index')->with('success','suppression avec succes');
     }
     public function view($id,$des) {
         return view('maintenance.planifierMaintenance',['id'=>$id,'des'=>$des]);
