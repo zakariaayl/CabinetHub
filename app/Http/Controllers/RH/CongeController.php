@@ -13,9 +13,28 @@ class CongeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request )
     {
-        //
+        $query = Conge::with('collaborateur')->latest();
+
+    if ($request->filled('collaborateur')) {
+        $query->whereHas('collaborateur', function ($q) use ($request) {
+            $q->where('nom', 'like', '%' . $request->collaborateur . '%')
+              ->orWhere('prenom', 'like', '%' . $request->collaborateur . '%');
+        });
+    }
+
+    if ($request->filled('type')) {
+        $query->where('type', $request->type);
+    }
+
+    if ($request->filled('statut')) {
+        $query->where('statut', $request->statut);
+    }
+
+    $conges = $query->paginate(10);
+
+    return view('conges.index', compact('conges'));
     }
 
     /**
@@ -83,9 +102,18 @@ class CongeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'statut' => 'required|in:accepté,refusé',
+        ]);
+
+        $conge = Conge::findOrFail($id);
+        $conge->update([
+            'statut' => $request->statut
+        ]);
+
+        return redirect()->route('rh.conges.index')->with('success', 'Le congé a été mis à jour.');
     }
 
     /**
