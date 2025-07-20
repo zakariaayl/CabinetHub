@@ -88,3 +88,12 @@ Route::get('/collaborateur/{id}/conges/historique',
            [CollaborateurController::class,'historiqueConges'])
       ->name('collaborateur.conges');
 
+      Route::resource('rh/conges', CongeController::class)->names([
+        'index'   => 'rh.conges.index',
+        'create'  => 'rh.conges.create',
+        'store'   => 'rh.conges.store',
+        'show'    => 'rh.conges.show',
+        'edit'    => 'rh.conges.edit',
+        'update'  => 'rh.conges.update',
+        'destroy' => 'rh.conges.destroy',
+    ]);
