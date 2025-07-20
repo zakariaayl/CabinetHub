@@ -46,7 +46,7 @@
 
                 {{-- Bouton Demander un congé --}}
                 <a href="{{ route('conges.create', $collaborateur->id) }}"
-                   class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md font-semibold transition-colors">
+                   class="inline-block bg-green-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-md font-semibold transition-colors">
                      Demander un congé
                 </a>
 
