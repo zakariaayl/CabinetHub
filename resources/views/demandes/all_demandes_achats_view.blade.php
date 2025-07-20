@@ -48,16 +48,16 @@
             </div>
             <div class="flex justify-end gap-4">
                 <button type="submit"
-                        class="bg-green-500 text-white px-5 py-2 rounded hover:bg-white hover:text-green-500 border hover:border-green-500 transition">
+                        class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400 active:shadow-none shadow-2xl shadow-green-300">
                     Appliquer
                 </button>
                 <a href="{{ route('demande_achat.index') }}"
-                   class="bg-red-400 text-white px-5 py-2 rounded hover:bg-white hover:text-red-400 border hover:border-red-400 transition">
+                   class="bg-red-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-red-400 hover:text-red-400 active:shadow-none shadow-2xl shadow-red-300 ">
                     Réinitialiser
                 </a>
             </div>
         </form>
-       
+
 <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6">
     <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
     <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
   <script src="https://cdn.tailwindcss.com"></script>
-  @include('shared.navbar_resource')
+
   <title>Ajouter une Ressource</title>
 </head>
 <style>
@@ -16,7 +16,8 @@
     background-position: center;
 }
 </style>
-<body class="bg-gray-50 min-h-screen py-8">
+<body class="bg-gray-50 min-h-screen py-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    @include('shared.navbar_resource')
     <div class="max-w-2xl mx-auto  px-4 ">
         <!-- Header -->
         <div class="text-center m-8">
@@ -24,8 +25,8 @@
             <p class="text-gray-600">maintenance pour {{ $des }}</p>
         </div>
 
-        <!-- Form -->
-        <div class=" rounded-xl shadow-2xl p-8 mb-5 b-gradient-to-br from-gray-100 via-white to-gray-100 border border-gray-100">
+
+        <div class=" rounded-xl shadow-2xl p-8 mb-5 bg-white hover:shadow-none transition duration-500  border-gray-100">
             <form action="{{route('resourceview.storeplanif',$id)}}" method="POST" class="space-y-6">
 
                 @csrf

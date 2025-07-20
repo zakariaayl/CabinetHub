@@ -53,11 +53,11 @@
 
   <div class="flex justify-end gap-4">
     <button type="submit"
-      class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400">
+      class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400 active:shadow-none shadow-2xl shadow-green-300">
       Appliquer
     </button>
     <a href="{{route('inventaire.index')}}"
-      class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400">
+      class="bg-red-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-red-400 hover:text-red-400 active:shadow-none shadow-2xl shadow-red-300 ">
       Réinitialiser
     </a>
   </div>
@@ -65,7 +65,7 @@
 
 
 
-        <div class="overflow-x-scroll rounded-2xl">
+        <div class="overflow-x-scroll rounded-2xl shadow-2xl">
         <table class="table-auto w-full border-collapse">
             <thead class="bg-gradient-to-r from-indigo-300 to-purple-300 shadow-lg border border-gray-100">
                 <tr>

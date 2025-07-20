@@ -6,33 +6,7 @@
     <title>Fiche Ressource</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.6s ease-out',
-                        'slide-in': 'slideIn 0.5s ease-out',
-                        'bounce-gentle': 'bounceGentle 2s infinite',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
-                        },
-                        slideIn: {
-                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' }
-                        },
-                        bounceGentle: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+   
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
 
@@ -56,7 +30,12 @@
                     </h1>
                     <p class="text-gray-600 flex items-center">
                         <i class="fas fa-calendar-alt mr-2"></i>
-                        Dernière mise à jour: <span class="ml-1 font-medium">{{$der_date}}</span>
+                        @if ($der_date<date('Y'))
+                            Dernière mise à jour: <span class="ml-1 font-medium">{{$der_date}}</span>
+                        @else
+                            Prochaine mise à jour: <span class="ml-1 font-medium">{{$der_date}}</span>
+                        @endif
+
                     </p>
                 </div>
                 <div class="flex items-center space-x-3">

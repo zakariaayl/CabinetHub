@@ -42,14 +42,14 @@
                                 valider
                             </button>
                         </form>
-            <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" onsubmit="return confirm('⚠️ Êtes-vous sûr de vouloir supprimer cette demande ?')" class="inline">
-                @csrf
-                @method('DELETE')
-                <button type="submit"
-                        class="px-4 py-2 bg-red-400 border border-white hover:bg-white hover:text-red-400 hover:border-red-400 text-white hover:scale-105 transition shadow-2xl">
-                    refuser
-                </button>
-            </form>
+
+            <form action="{{route('demande_achat.update',$demande->id)}}" method="POST"  class="w-full">
+                            @csrf
+                            @method('PUT')
+                            <button class="px-4 py-2 bg-red-400 border border-white hover:bg-white hover:text-red-400 hover:border-red-400 text-white hover:scale-105 transition shadow-2xl" name="action" value="refuser">
+                                refuser
+                            </button>
+                        </form>
 </div>
             <a href="{{ url('demande_achat') }}" class="absolute right-0 text-blue-600 hover:underline">← Retour</a>
         </div>
