@@ -47,7 +47,8 @@
 
       <li>
         <a href="#"   {{-- remplace par route('absences.index') quand prête --}}
-           class="flex items-center justify-center gap-2 h-10 px-5 rounded-lg {{ navActive('absences.*') }}">
+           class="flex items-center justify-center gap-2 h-10 px-5 rounded-lg
+           {{ navActive('absences.*') }}">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
                viewBox="0 0 24 24"><path d="M8 7h8m-8 4h8m-8 4h8M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
           <span>Absences / Congés</span>

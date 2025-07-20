@@ -11,14 +11,12 @@
 <body class=" bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen py-8">
      @include('shared.navbar_resource')
     <div class="max-w-2xl mx-auto px-4 ">
-        <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900 mb-2 mt-10">Gestion d'Équipement</h1>
             <p class="text-gray-600 mt-10">Enregistrez un nouvel équipement</p>
         </div>
 
-        <!-- Form -->
-        <div class="bg-white rounded-lg  p-8    shadow-2xl">
+        <div class="bg-white hover:shadow-none transition duration-500 rounded-lg  p-8    shadow-2xl">
             <form action="{{ route('ResourceController.store') }}" method="POST" class="space-y-6">
 
                 @csrf
