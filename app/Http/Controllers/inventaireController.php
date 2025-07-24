@@ -8,18 +8,7 @@ use Illuminate\Http\Request;
 
 class inventaireController extends Controller
 {
- public function index(Request $request){
 
-    $query=inventaire::query();
-    if($request->filled("faite_par")){
-       $query->where("faite_par", "like", "%" . $request->faite_par . "%");
-    }
-    if ($request->filled("date_inventaire")) {
-    $query->whereDate("date_inventaire", $request->date_inventaire);
-}
-    $inventaires=$query->paginate(8);
-    return view("inventaire.view_all_inventaires",compact("inventaires"));
- }
  public function store(Request $request)
 {
     $inventaire = Inventaire::create([
@@ -38,7 +27,7 @@ class inventaireController extends Controller
         }
     }
 
-    return redirect()->route('inventaire.index')->with('success', 'Inventaire créé avec succès.');
+    return redirect()->route('raInventaire')->with('success', 'Inventaire créé avec succès.');
 }
 
  public function show($id,Request $request){
@@ -92,12 +81,12 @@ public function update(Request $request,$id)
             }
     }
 
-    return redirect()->route('inventaire.index')->with('success', 'Inventaire edité avec succès.');
+    return redirect()->route('raInventaire')->with('success', 'Inventaire edité avec succès.');
 }
 public function destroy($id) {
    $inventaire=Inventaire::find($id);
    $inventaire->ressources()->detach();
    $inventaire->delete();
-    return redirect()->route('inventaire.index')->with('success', 'Inventaire supprimé avec succès.');
+    return redirect()->route('raInventaire')->with('success', 'Inventaire supprimé avec succès.');
 }
 }

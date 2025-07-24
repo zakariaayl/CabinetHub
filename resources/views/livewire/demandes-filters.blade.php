@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Tableau de bord des demandes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100  min-h-screen   text-gray-800 ">
- @include('shared.navbar_resource')
- <div class="grid grid-cols-12 gap-2 mt-20">
+<div>
+    <div class="grid grid-cols-12 gap-2 mt-20">
     @if(session('success'))
         <div id="success-message"
              class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white font-bold text-lg px-6 py-3 rounded shadow-lg transition-opacity duration-1000 z-50">
@@ -31,32 +20,37 @@
     <div class="max-w-7xl mx-auto lg:col-span-8  col-span-12 sm:col-span-12">
         <h1 class="text-3xl font-bold mb-6">Tableau de bord des demandes</h1>
 
-        <form action="{{ route('demande_achat.index') }}" method="GET"
+        <div
               class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-8">
             <h2 class="text-xl font-semibold mb-4">Filtres de recherche</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                <div>
-                    <label class="block text-sm font-medium mb-1">Responsable</label>
-                    <input type="text" name="responsabl_demande" value="{{ request('responsabl_demande') }}"
-                           class="w-full border px-4 py-2 rounded focus:ring-2 focus:ring-green-500">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-1">Date d'inventaire</label>
-                    <input type="date" name="date_demande" value="{{ request('date_demande') }}"
-                           class="w-full border px-4 py-2 rounded focus:ring-2 focus:ring-green-500">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div>
+                        <label for="date_besoin" class="block text-sm font-medium text-gray-600 mb-1">date du besoin</label>
+                        <input type="date" name="date_besoin" id="date_besoin"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        wire:model.live.debounce.500ms="date_besoin">
+                    </div>
+                    <div>
+                        <label for="date_demande" class="block text-sm font-medium text-gray-600 mb-1">date du demande</label>
+                        <input type="date" name="date_demande" id="date_demande"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        wire:model.live.debounce.500ms="date_demande">
+                    </div>
+                    <div>
+                        <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-600 mb-1">responsabl du demande</label>
+                        <input type="text" name="utilisateur_affecte" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="responsabl_demande">
+                        <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <div>
+                        <label for="designation" class="block text-sm font-medium text-gray-600 mb-1">resource du demande</label>
+                        <input type="text" name="designation" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"wire:model.live.debounce.500m="resource_demande">
+                        <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
                 </div>
             </div>
-            <div class="flex justify-end gap-4">
-                <button type="submit"
-                        class="bg-green-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-green-400 hover:text-green-400 active:shadow-none shadow-2xl shadow-green-300">
-                    Appliquer
-                </button>
-                <a href="{{ route('demande_achat.index') }}"
-                   class="bg-red-400 text-white border border-white font-semibold px-5 py-2 rounded-md transition hover:scale-105 hover:bg-white hover:border-red-400 hover:text-red-400 active:shadow-none shadow-2xl shadow-red-300 ">
-                    Réinitialiser
-                </a>
-            </div>
-        </form>
+
+        </div>
 
 <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6">
     <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
@@ -189,15 +183,15 @@
             {{ $demandes->links('pagination::tailwind') }}
         </div>
 
-        <a href="{{ route('demande_achat.create') }}"
+        {{-- <a href="{{ route('demande_achat.create') }}"
            class="block mt-8 w-full text-center bg-green-500 hover:bg-white text-white hover:text-green-500 border hover:border-green-500 font-bold py-3 rounded-lg shadow-lg transition">
             + Ajouter une nouvelle demande
-        </a>
+        </a> --}}
     </div>
     <div class="flex flex-col  col-span-12 lg:col-span-4 lg:h-1/3">
     <div class="bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-14 rounded-lg grid grid-cols-1 mb-10">
 
-    <div class="h-80">
+    <div class="h-80" wire:ignore>
          <canvas id="statusChart" class="w-full h-full"></canvas>
           <script>
   const ctx = document.getElementById('statusChart').getContext('2d');
@@ -373,5 +367,4 @@
     </div>
 </div>
 </div>
-</body>
-</html>
+</div>

@@ -51,7 +51,7 @@
                             </button>
                         </form>
 </div>
-            <a href="{{ url('demande_achat') }}" class="absolute right-0 text-blue-600 hover:underline">← Retour</a>
+            <a href="{{ url('/raDemandes') }}" class="absolute right-0 text-blue-600 hover:underline">← Retour</a>
         </div>
     </div>
 

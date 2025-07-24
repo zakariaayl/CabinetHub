@@ -33,12 +33,12 @@ class resourceviewcontroller extends Controller
         }
     );
     $resource->update($dataToUpdate);
-        return redirect()->route('ResourceController.index')->with('success',' modification a ete effectue');
+        return redirect()->route('raView')->with('success',' modification a ete effectue');
     }
      public function destroy($id) {
         $resource=ressource::find($id);
         $resource->delete();
-      return redirect()->route('ResourceController.index')->with('success','suppression avec succes');
+      return redirect()->route('raView')->with('success','suppression avec succes');
     }
     public function view($id,$des) {
         return view('maintenance.planifierMaintenance',['id'=>$id,'des'=>$des]);
