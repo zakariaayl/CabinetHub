@@ -52,8 +52,10 @@ class resourceviewcontroller extends Controller
         // return $request->all();
     }
     public function editmain($id){
-        $maintenance=maintenance::find($id);
-        return view('maintenance.editmaintview',['maintenance'=> $maintenance]);
+
+        [$maintId, $idrec] = explode('-', $id);
+        $maintenance=maintenance::find($maintId);
+        return view('maintenance.editmaintview',compact('maintenance','idrec'));
     }
     public function updateplanif(Request $request,$id) {
         $maintenance=maintenance::find($id);

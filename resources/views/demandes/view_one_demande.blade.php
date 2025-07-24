@@ -9,7 +9,7 @@
 
 
 <body class=" min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-0">
-    @include('shared.navbar_resource')
+    @include('components.navbar_resource')
     <div class="w-2/3 mx-auto  ">
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Fiche de la Demande</h1>
         <div class="bg-white rounded-lg p-6 space-y-4 border border-gray-100  shadow-2xl">

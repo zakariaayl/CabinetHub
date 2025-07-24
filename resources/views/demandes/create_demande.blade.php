@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen py-10">
-  @include('shared.navbar_resource')
+  @include('components.navbar_resource')
 
   <div class="max-w-3xl mx-auto px-4">
     <h1 class="text-3xl font-bold text-center text-gray-900 mb-8 mt-10">Nouvelle Demande d'Achat</h1>

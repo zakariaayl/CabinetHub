@@ -15,7 +15,7 @@
 </style>
 
 <body class=" min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100  text-gray-800 font-sans ">
-@include('shared.navbar_resource')
+@include('components.navbar_resource')
   <div class="max-w-7xl mx-auto p-6 mt-12">
     <div class="text-center text-white mb-10">
       <h1 class="text-4xl font-bold text-gray-800 drop-shadow">Gestion Avancée des Inventaires</h1>

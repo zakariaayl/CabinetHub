@@ -88,7 +88,7 @@
     id="dropdown-menu"
   >
     <div class="py-1" role="none">
-      <a href="{{route('inventaire.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les inventaires</a>
+      <a href="{{route('raInventaire')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les inventaires</a>
       <a href="{{route('inventaire.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter inventaire</a>
     </div>
   </div>
@@ -113,7 +113,7 @@
     id="dropdown-menu"
   >
     <div class="py-1" role="none">
-      <a href="{{route('demande_achat.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les demandes</a>
+      <a href="{{route('raDemandes')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les demandes</a>
       <a href="{{route('demande_achat.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter demande achat</a>
     </div>
   </div>

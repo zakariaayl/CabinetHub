@@ -10,10 +10,8 @@
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
 
-   @include('shared.navbar_resource')
-    <div class="max-w-6xl mx-auto px-4 py-8">
-
-        <!-- Header with breadcrumb -->
+   @include('components.navbar_resource')
+    <div class=" mx-auto px-4 py-8">
         <div class="mb-8 animate-fade-in-up">
             <nav class="flex items-center space-x-2 text-sm text-gray-600 mb-4">
                 <a href="/RH/seeAllresources" class="hover:text-indigo-600 transition-colors">
@@ -255,7 +253,7 @@
                             <td class="px-6 py-4 text-gray-700">{{ $maint['commentaire'] ?? '---' }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center justify-end space-x-2">
-                                    <form action="{{ route('resourceview.editmain', $maint['id']) }}" method="GET" class="inline">
+                                    <form action="{{ route('resourceview.editmain', [$maint['id'].'-'.$resource->id]) }}" method="GET" class="inline">
                                         <button type="submit" class="p-2 bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors group-hover:scale-110">
                                             <i class="fas fa-edit"></i>
                                         </button>
