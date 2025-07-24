@@ -9,7 +9,7 @@
   <title>Ajouter une Ressource</title>
 </head>
 <body class=" bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen py-8">
-     @include('shared.navbar_resource')
+     @include('components.navbar_resource')
     <div class="max-w-2xl mx-auto px-4 ">
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900 mb-2 mt-10">Gestion d'Équipement</h1>

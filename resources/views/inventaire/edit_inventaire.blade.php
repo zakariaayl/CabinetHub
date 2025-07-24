@@ -6,7 +6,7 @@
 
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-top justify-center min-h-screen relative ">
-    @include('shared.navbar_resource')
+    @include('components.navbar_resource')
 <div class="max-w-7xl mx-auto p-6 bg-white rounded-xl shadow-2xl ">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">Créer un Inventaire</h1>
 

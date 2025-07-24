@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen py-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-    @include('shared.navbar_resource')
+    @include('components.navbar_resource')
     <div class="max-w-2xl mx-auto px-4  rounded-lg ">
         <!-- Header -->
         <div class="text-center m-8">
@@ -74,6 +74,12 @@
                     </button>
                 </div>
             </form>
+            <div class="mt-8 flex justify-end">
+            <a href="{{ url('/ResourceController/'.$idrec .'/edit') }}" class="px-6 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 transition-all duration-300 flex items-center group">
+                <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
+                Retour à la liste
+            </a>
+        </div>
         </div>
     </div>
 </body>

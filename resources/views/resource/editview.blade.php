@@ -10,8 +10,8 @@
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen py-8">
-    @include('shared.navbar_resource')
-    <div class="max-w-2xl mx-auto px-4 mt-10">
+    @include('components.navbar_resource')
+    <div class="max-w-5xl mx-auto px-4 mt-10">
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Gestion d'Équipement</h1>
             <p class="text-gray-600 font-bold">modifier {{ $resource->designation }}</p>
@@ -208,15 +208,18 @@
                               class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                               placeholder="entrez votre remarque">{{ $resource->remarque }}</textarea>
                 </div>
-
-                <!-- Submit Button -->
                 <div class="pt-4">
                     <button type="submit"
                             class="w-full  py-3 px-4 rounded-md bg-green-400 border border-white text-white hover:bg-white hover:text-green-400 hover:border-green-400 hover:scale-[1.01] transition focus:ring-offset-2  duration-200 font-medium">
                         Enregistrer les modifications
                     </button>
                 </div>
+
             </form>
+            <a href="{{ url('/ResourceController/'.$resource->id.'/edit') }}" class="w-1/3 px-6 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 transition-all duration-300 flex items-center group">
+                <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
+                Retour à la liste
+            </a>
         </div>
     </div>
 </body>
