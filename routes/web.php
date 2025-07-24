@@ -8,6 +8,7 @@ use App\Http\Controllers\RH\CollaborateurController;
 use App\Http\Controllers\RH\CongeController;
 use App\Http\Controllers\RH\EvolutionController;
 use App\Http\Controllers\RH\PosteController;
+use App\Livewire\FilterRessources;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RH\PresenceController;
 
@@ -15,8 +16,18 @@ use App\Http\Controllers\RH\PresenceController;
 Route::get('/', function () {
     return view('login');
 });
-
-Route::get('/RH/seeAllresources', [ResourceController::class,'index']);
+Route::get('/raView', function () {
+    return view('resource.index');
+})->name('raView');
+Route::get('/raInventaire', function () {
+    return view('inventaire.index');
+})->name('raInventaire');
+Route::get('/raDemandes', function () {
+    return view('demandes.index');
+})->name('raDemandes');
+Route::get('/RH/seeAllresources', function(){
+    return view('resource.index');
+});
 Route::resource('ResourceController', ResourceController::class);
 
 Route::get('/RH/collaborateurs', [CollaborateurController::class, 'dashboard'])

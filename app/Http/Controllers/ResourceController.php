@@ -8,36 +8,36 @@ use Illuminate\Http\Request;
 
 class ResourceController extends Controller
 {
-public function index(Request $request)
-{
-    $query = ressource::query();
+// public function index(Request $request)
+// {
+//     $query = ressource::query();
 
-    if ($request->filled('filtertype')) {
-        $query->where('type', $request->filtertype);
-    }
+//     if ($request->filled('filtertype')) {
+//         $query->where('type', $request->filtertype);
+//     }
 
-    if ($request->filled('etat')) {
-        $query->where('etat', $request->etat);
-    }
+//     if ($request->filled('etat')) {
+//         $query->where('etat', $request->etat);
+//     }
 
-    if ($request->filled('utilisateur_affecte')) {
-        $query->where('utilisateur_affecte', 'like', '%' . $request->utilisateur_affecte . '%');
-    }
-    if ($request->filled('designation')) {
-        $query->where('designation', 'like', '%' . $request->designation . '%');
-    }
-    $rec = $query->paginate(8);
-    $bon=0;$Usage=0;$hors=0;$all=0;
+//     if ($request->filled('utilisateur_affecte')) {
+//         $query->where('utilisateur_affecte', 'like', '%' . $request->utilisateur_affecte . '%');
+//     }
+//     if ($request->filled('designation')) {
+//         $query->where('designation', 'like', '%' . $request->designation . '%');
+//     }
+//     $rec = $query->paginate(8);
+//     $bon=0;$Usage=0;$hors=0;$all=0;
 
-    foreach($rec as $resource){
-        if ($resource->etat=='Bon') $bon++;
-        if ($resource->etat=='Usagé')$Usage++;
-        if ($resource->etat=='Hors Service') $hors++;
-        $all++;
-    }
+//     foreach($rec as $resource){
+//         if ($resource->etat=='Bon') $bon++;
+//         if ($resource->etat=='Usagé')$Usage++;
+//         if ($resource->etat=='Hors Service') $hors++;
+//         $all++;
+//     }
 
-    return view('resource.rhview', compact('rec','all','hors','bon','Usage'));
-}
+//     return view('resource.rhview', compact('rec','all','hors','bon','Usage'));
+// }
 
 
     public function create() {
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $resource=new ressource($request->all());
     $resource->save();
 
-return redirect()->route('ResourceController.index')->with('success', 'Ressource ajoutée avec succès !');
+return redirect()->route('raView')->with('success', 'Ressource ajoutée avec succès !');
 } else return view("resource.AjouterResourse");
     }
     public function update(Request $request) {

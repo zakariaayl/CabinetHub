@@ -6,7 +6,7 @@
     <title>Fiche Ressource</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-   
+
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
 
@@ -276,7 +276,7 @@
             </div>
         </div>
         <div class="mt-8 flex justify-end">
-            <a href="{{ url('/RH/seeAllresources') }}" class="px-6 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 transition-all duration-300 flex items-center group">
+            <a href="{{ url('/raView') }}" class="px-6 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 transition-all duration-300 flex items-center group">
                 <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
                 Retour à la liste
             </a>
