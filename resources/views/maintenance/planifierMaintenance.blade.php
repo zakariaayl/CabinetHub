@@ -17,7 +17,7 @@
 }
 </style>
 <body class="bg-gray-50 min-h-screen py-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-    @include('shared.navbar_resource')
+    @include('components.navbar_resource')
     <div class="max-w-2xl mx-auto  px-4 ">
         <!-- Header -->
         <div class="text-center m-8">

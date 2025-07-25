@@ -26,6 +26,7 @@
                     <h1 class="text-4xl font-bold text-gray-800 mb-2">
                         Fiche de <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{{ $resource->designation }}</span>
                     </h1>
+                    @if($check !=null)
                     <p class="text-gray-600 flex items-center">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         @if ($der_date<date('Y'))
@@ -35,6 +36,7 @@
                         @endif
 
                     </p>
+                    @endif
                 </div>
                 <div class="flex items-center space-x-3">
                     @if ($resource->etat=="Hors Service")

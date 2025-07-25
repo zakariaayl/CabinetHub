@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\RH;
 
+use App\Helpers\AuditEventHelper;
 use App\Models\ressource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,6 +19,7 @@ class resourceviewcontroller extends Controller
     }
      public function update(Request $request,$id) {
         $resource=ressource::find( $id );
+
         $dataToUpdate = array_filter(
         $request->only([
             'type',
@@ -32,11 +34,15 @@ class resourceviewcontroller extends Controller
             return !is_null($value) && $value !== '';
         }
     );
+    $oldData=ressource::find( $id );
     $resource->update($dataToUpdate);
+    AuditEventHelper::log("modification d'un ressource ".$resource['designation'],"modification d'un ressource",$resource,$oldData,$resource,$id);
+
         return redirect()->route('raView')->with('success',' modification a ete effectue');
     }
      public function destroy($id) {
         $resource=ressource::find($id);
+        AuditEventHelper::log("suppression d'un ressource","suppression d'un resource est effectuee a ".$resource->designation,$resource,$resource,null,$id);
         $resource->delete();
       return redirect()->route('raView')->with('success','suppression avec succes');
     }
@@ -47,7 +53,9 @@ class resourceviewcontroller extends Controller
     public function storeplanif(Request $request,$id) {
         $maintenance=new maintenance($request->all());
         $maintenance->resource_id=$id;
+        $resource=ressource::find($id);
         $maintenance->save();
+        AuditEventHelper::log("creation du maintenance","creation effectuee pour le ressource ".$resource->designation,$maintenance,null,null,$id);
         return redirect()->route('ResourceController.edit',$id)->with('success','planification a ete efectue');
         // return $request->all();
     }
@@ -59,9 +67,12 @@ class resourceviewcontroller extends Controller
     }
     public function updateplanif(Request $request,$id) {
         $maintenance=maintenance::find($id);
+        $resource=ressource::find($maintenance->resource_id);
         if($request!=null){
+            $oldData=maintenance::find($id);
+            $maintenance->update($request->all());
+         AuditEventHelper::log("modification d'une maintenance","modification d'une maintenance effectuee pour le ressource ".$resource->designation,$maintenance,$oldData,$maintenance,$id);
 
-        $maintenance->update($request->all());
         }
 
         return redirect()->route('ResourceController.edit',['ResourceController'=>$maintenance['resource_id']])->with('success','maintenance updated succesifuly ');
@@ -69,7 +80,9 @@ class resourceviewcontroller extends Controller
 
     public function deleteplanif($id) {
          $maintenance=maintenance::find($id);
+         $resource=ressource::find($maintenance->resource_id);
          $resource_id=$maintenance['resource_id'];
+         AuditEventHelper::log("suppression d'une maintenance","suppressioin d'une maintenance effectuee pour le ressource ".$resource->designation,$maintenance,null,null,$id);
          $maintenance->delete();
          return redirect()->route('ResourceController.edit',['ResourceController'=>$resource_id])->with('success','maintenance deleted succesifuly ');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AuditEventHelper;
 use App\Models\inventaire;
 use App\Models\ressource;
 use Illuminate\Http\Request;
@@ -16,8 +17,10 @@ class inventaireController extends Controller
         'faite_par' => $request->faite_par,
 'remarques'=>'j ai fais cet inventaire'
     ]);
-
+$designation='';
     foreach ($request->ressources as $res) {
+        $designation .= $res['designation'] . ', ';
+
         if (!empty($res['etat_releve'])) {
             $inventaire->ressources()->attach($res['id'], [
                 'etat_releve' => $res['etat_releve'],
@@ -26,7 +29,7 @@ class inventaireController extends Controller
             ]);
         }
     }
-
+   AuditEventHelper::log("creation d'un inventaire'","creation d'inventaire effectuee pour les ressources ".$designation,$inventaire,null,null,$inventaire->id);
     return redirect()->route('raInventaire')->with('success', 'Inventaire créé avec succès.');
 }
 
@@ -64,8 +67,11 @@ public function edit($id) {
 public function update(Request $request,$id)
 {
     $inventaire = Inventaire::find($id);
-
+    $designation='';
     foreach ($request->ressources as $res) {
+       $designation .= $res['designation'] . ', ';
+// dd($request->ressources);
+
         if (!empty($res['etat_releve'])) {
             $inventaire->ressources()->updateExistingPivot($res['id'], [
                 'etat_releve' => $res['etat_releve'],
@@ -80,12 +86,13 @@ public function update(Request $request,$id)
                 ]);
             }
     }
-
+AuditEventHelper::log("modification d'inventaire'","modification d'inventaire effectuee pour les ressources ".$designation,$inventaire,null,null,$id);
     return redirect()->route('raInventaire')->with('success', 'Inventaire edité avec succès.');
 }
 public function destroy($id) {
    $inventaire=Inventaire::find($id);
    $inventaire->ressources()->detach();
+   AuditEventHelper::log("suppression d'un inventaire","suppression d'un inventaire ". $inventaire,$inventaire,null,null,$id);
    $inventaire->delete();
     return redirect()->route('raInventaire')->with('success', 'Inventaire supprimé avec succès.');
 }

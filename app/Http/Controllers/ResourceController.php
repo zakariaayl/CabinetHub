@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AuditEventHelper;
 use App\Models\maintenance;
 use App\Models\ressource;
 use Illuminate\Http\Request;
@@ -45,21 +46,24 @@ class ResourceController extends Controller
     }
     public function edit($id) {
         $resource=ressource::find($id);
-         $maintenance=maintenance::where('resource_id',$id)->get()->sortByDesc('date_maintenance');
-         $date_maintenance=$maintenance->first()['date_maintenance'];
-        return view('resource.viewresource', ['resource'=> $resource,'maintenance'=>$maintenance,'der_date'=>$date_maintenance]);
+         $maintenances=maintenance::where('resource_id',$id)->get()->sortByDesc('date_maintenance');
+         $check=maintenance::where('resource_id',$id)->get()->sortByDesc('date_maintenance')->first();
+         if($check!=null) {
+            $date_maintenance=$check['date_maintenance'];
+            return view('resource.viewresource', ['resource'=> $resource,'check'=>$check,'der_date'=>$date_maintenance,'maintenance'=>$maintenances]);
+        }
+         return view('resource.viewresource', ['resource'=> $resource,'maintenance'=>$maintenances,'check'=>$check]);
     }
 
     public function store(Request $request) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $resource=new ressource($request->all());
+    AuditEventHelper::log("creation d'un resource'","creation effectuee pour le ressource ".$resource['designation'],$resource,null,null,$resource->id);
     $resource->save();
 
 return redirect()->route('raView')->with('success', 'Ressource ajoutée avec succès !');
 } else return view("resource.AjouterResourse");
     }
-    public function update(Request $request) {
-        return $request->all();
-    }
+
 }
