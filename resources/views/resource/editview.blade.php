@@ -28,9 +28,10 @@
                         <select name="type"
                                 id="type"
                                 class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <option value="">Sélectionner</option>
-                            <option value="Materiel" {{ $resource['type'] == 'Materiel' ? 'Logiciel' : '' }} >Materiel</option>
-                            <option value="Logiciel" {{ $resource['type'] == 'Logiciel' ? 'Materiel' : '' }}>Logiciel</option>
+                                <option value="">Sélectionner</option>
+                                <option value="Materiel" {{ $resource['type'] == 'Materiel' ? 'selected' : '' }}>Materiel</option>
+                                <option value="Logiciel" {{ $resource['type'] == 'Logiciel' ? 'selected' : '' }}>Logiciel</option>
+
                         </select>
                     </div>
 

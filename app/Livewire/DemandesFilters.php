@@ -36,7 +36,7 @@ class DemandesFilters extends Component
     }
     $demandes= $query->paginate(8);
 
-    foreach ($dem as $demand) {
+    foreach ($demandes as $demand) {
         if ($demand->statut === 'livrée') {
     $livre++;
 } elseif ($demand->statut === 'approuvée') {

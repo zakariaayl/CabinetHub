@@ -22,6 +22,7 @@
       <div class="bg-white border border-gray-200 hover:shadow-2xl hover:scale-105 transition rounded-xl p-6">
 
         <input type="hidden" name="ressources[{{ $index }}][id]" value="{{ $ressource->id }}">
+         <input type="hidden" name="ressources[{{ $index }}][designation]" value="{{ $ressource->designation }}">
 
         <div class="mb-3">
           <h2 class="text-lg font-semibold text-gray-800">{{ $ressource->designation }}</h2>
