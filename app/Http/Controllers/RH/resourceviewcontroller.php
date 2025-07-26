@@ -20,22 +20,9 @@ class resourceviewcontroller extends Controller
      public function update(Request $request,$id) {
         $resource=ressource::find( $id );
 
-        $dataToUpdate = array_filter(
-        $request->only([
-            'type',
-            'designation',
-            'marque',
-            'modele',
-            'etat',
-            'localisation',
-            'utilisateur_affecte'
-        ]),
-        function ($value) {
-            return !is_null($value) && $value !== '';
-        }
-    );
+
     $oldData=ressource::find( $id );
-    $resource->update($dataToUpdate);
+    $resource->update($request->all());
     AuditEventHelper::log("modification d'un ressource ".$resource['designation'],"modification d'un ressource",$resource,$oldData,$resource,$id);
 
         return redirect()->route('raView')->with('success',' modification a ete effectue');

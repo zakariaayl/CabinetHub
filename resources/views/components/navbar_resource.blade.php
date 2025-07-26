@@ -117,6 +117,40 @@
       <a href="{{route('demande_achat.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter demande achat</a>
     </div>
   </div>
+
+</div>
+ <div class="relative inline-block text-left group">
+  <button
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+    id="menu-button"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    Collaborateurs
+  </button>
+
+  <div
+    class="origin-top-right absolute w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
+    opacity-0 scale-95 invisible group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+    transition duration-400 ease-in-out"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    id="dropdown-menu"
+  >
+    <div class="py-1" role="none">
+      <a href="{{route('collaborateurs.index')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Tous les Collaborateurs</a>
+      <a href="{{route('collaborateurs.create')}}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Ajouter Collaborateur</a>
+    </div>
+  </div>
+
+</div>
+ <div class="relative inline-block text-left group">
+  <a href="/audit_events"
+    class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-black hover:bg-black hover:text-white"
+  >
+    Event audits
+ </a>
 </div>
              {{-- <a href="#" class="rounded-md px-3 py-2 text-sm text-black font-semibold hover:bg-black hover:scale-110  transition bg-white hover:text-white">Calendar</a>
               <a href="#" class="rounded-md px-3 py-2 text-sm text-black font-semibold hover:bg-black hover:scale-110  transition bg-white hover:text-white">Calendar</a> --}}
