@@ -9,10 +9,7 @@ use Livewire\WithPagination;
 class FilterRessources extends Component
 {
     use WithPagination;
-public static function layout(): ?string
-    {
-        return null;
-    }
+
     public $filtertype = '';
     public $etat = '';
     public $utilisateur_affecte = '';

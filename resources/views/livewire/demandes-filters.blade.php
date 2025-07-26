@@ -53,6 +53,7 @@
         </div>
 
 <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6">
+    <i class="fa-solid fa-folder text-gray-500 text-3xl"></i>
     <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
     <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
 </div>
@@ -60,14 +61,17 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
     <div class="bg-yellow-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-lg transition">
+        <i class="fa-solid  fa-hourglass-half text-yellow-500 text-3xl"></i>
         <h4 class="text-md font-semibold text-yellow-700 mb-1">En attente</h4>
         <p class="text-xl font-bold text-yellow-600">{{ $attente }}</p>
     </div>
     <div class="bg-green-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition">
+        <i class="fa-solid fa-check-circle text-green-500 text-3xl"></i>
         <h4 class="text-md font-semibold text-green-700 mb-1">Approuvée</h4>
         <p class="text-xl font-bold text-green-600">{{ $aprouv }}</p>
     </div>
     <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition">
+        <i class="fa-solid fa-times-circle text-red-500 text-3xl"></i>
         <h4 class="text-md font-semibold text-red-700 mb-1">Refusée</h4>
         <p class="text-xl font-bold text-red-600">{{ $refus }}</p>
     </div>

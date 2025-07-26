@@ -11,6 +11,7 @@ use App\Http\Controllers\RH\PosteController;
 use App\Livewire\FilterRessources;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RH\PresenceController;
+use App\Livewire\EventsFilter;
 use App\Models\EventAudit;
 
 Route::get('/', function () {
@@ -110,20 +111,7 @@ Route::get('/collaborateur/{id}/conges/historique',
     ]);
 
 
-Route::get('audit_events', function () {
-    $eventAudits = EventAudit::latest()->paginate(20);
-     $modelTypes = EventAudit::whereNotNull('model_type')
-            ->distinct()
-            ->pluck('model_type')
-            ->sort();
-            $today=EventAudit::whereDate('date_event', today())->count();
-            $thisweek=EventAudit::whereBetween('date_event', [
-                now()->startOfWeek(),
-                now()->endOfWeek()
-            ])->count();
-            $activeusers=EventAudit::whereDate('date_event', today())
-            ->distinct('user_id')
-            ->count();
-    return view('auditEvents', compact('eventAudits','modelTypes','today','thisweek','activeusers'));
+Route::get('audit_events', function(){
+    return view('auditEvents');
 });
 
