@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 class FilterRessources extends Component
 {
     use WithPagination;
-
     public $filtertype = '';
     public $etat = '';
     public $utilisateur_affecte = '';
