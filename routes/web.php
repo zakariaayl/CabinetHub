@@ -11,12 +11,8 @@ use App\Http\Controllers\RH\PosteController;
 use App\Livewire\FilterRessources;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RH\PresenceController;
-<<<<<<< HEAD
 use App\Livewire\EventsFilter;
 use App\Models\EventAudit;
-=======
-
->>>>>>> 0c15f3a6a34864b231d100670416d3d437554035
 
 Route::get('/', function () {
     return view('login');
