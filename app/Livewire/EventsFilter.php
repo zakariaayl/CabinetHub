@@ -21,7 +21,7 @@ class EventsFilter extends Component
     {
         $query=EventAudit::query();
         if(!empty($this->search)) $query->where('description','like','%' . $this->search . '%');
-        $eventAudits = $query->latest()->paginate(20);
+        $eventAudits = $query->latest()->paginate(8);
         $modelTypes = EventAudit::whereNotNull('model_type')
             ->distinct()
             ->pluck('model_type')

@@ -1,5 +1,7 @@
 <div>
+
     <div class="grid grid-cols-12 gap-2 mt-20">
+          
     @if(session('success'))
         <div id="success-message"
              class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white font-bold text-lg px-6 py-3 rounded shadow-lg transition-opacity duration-1000 z-50">
@@ -102,13 +104,13 @@
                                 valider
                             </button>
                         </form> --}}
-                        <div action="{{route('demande_achat.update',$demande->id)}}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
+                        {{-- <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" onsubmit="return confirm('Confirmer la suppression ?');" class="w-full">
                             @csrf
                             @method('PUT')
                             <button class="w-full bg-white text-red-400 border border-red-400 py-2 rounded hover:bg-red-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="refuser">
                                 refuser
                             </button>
-                        </div>
+                        </form> --}}
                     </div>
                 </div>
                 @elseif ($demande['statut']=="refusée")
@@ -125,13 +127,13 @@
                                 Voir
                             </button>
                         </form>
-                        <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" class="w-full">
+                        {{-- <form action="{{route('demande_achat.update',$demande->id)}}" method="POST" class="w-full">
                              @csrf
                             @method('PUT')
                             <button class="w-full bg-white text-blue-400 border border-blue-400 py-2 rounded hover:bg-blue-400  hover:scale-110  hover:text-white transition text-sm font-semibold" name="action" value="valider">
                                 valider
                             </button>
-                        </form>
+                        </form> --}}
                         {{-- <form action="{{route('demande_achat.update',$demande->id)}}" method="POST"  class="w-full">
                             @csrf
                             @method('PUT')
@@ -369,6 +371,8 @@
   @endforeach
   </div>
     </div>
+
 </div>
 </div>
+
 </div>

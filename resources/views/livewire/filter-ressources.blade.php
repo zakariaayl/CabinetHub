@@ -88,9 +88,9 @@
                             <th class="p-4">Marque</th>
                             <th class="p-4">Modèle</th>
                             <th class="p-4">État</th>
-
                             <th class="p-4">Utilisateur Affecté</th>
                             <th class="p-4">Durée de vie (mois)</th>
+                            <th class="p-4">Durée resté (mois)</th>
                             <th class="p-4">Quantité</th>
                             <th class="p-4">Action</th>
                         </tr>
@@ -106,7 +106,17 @@
 
                             <td class="p-4 border-b border-gray-300">{{ $resource['utilisateur_affecte'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['duree_vie_mois'] }}</td>
-                            <td class="p-4 border-b border-gray-300">{{ $resource['quantite'] }}</td>
+
+                            @php
+                                $moirest = $resource['duree_vie_mois'] - \Carbon\Carbon::parse($resource['created_at'])->floatDiffInMonths(now());
+                                $moirest = round($moirest, 2);
+                            @endphp
+
+                            <td class="p-4 border-b border-gray-300 {{ $moirest <= 0 ? 'text-red-500 font-bold' : '' }}">
+                                {{ $moirest > 0 ? $moirest . ' months left' : 'Expired' }}
+                            </td>
+
+                                <td class="p-4 border-b border-gray-300">{{ $resource['quantite'] }}</td>
                             <td class="p-4 border-b border-gray-300">
                                 <div class="flex justify-center items-center gap-2">
                                     <form action="{{ route('ResourceController.edit',['ResourceController'=> $resource['id']]) }}" method="GET">

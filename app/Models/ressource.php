@@ -22,7 +22,7 @@ class ressource extends Model
     'prochaine_maintenance',
     'duree_vie_mois',
     'est_amortie',
-     'quantite',
+    'quantite',
     'remarque',
 ];
 public function inventaires() {

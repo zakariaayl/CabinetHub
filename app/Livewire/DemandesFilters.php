@@ -34,6 +34,7 @@ class DemandesFilters extends Component
     if (!empty($this->responsabl_demande)) {
         $query->where('responsabl_demande', 'like', '%' . $this->responsabl_demande . '%');
     }
+    $query->orderByRaw("CASE WHEN statut = 'en attente' THEN 0 ELSE 1 END");
     $demandes= $query->paginate(8);
 
     foreach ($demandes as $demand) {

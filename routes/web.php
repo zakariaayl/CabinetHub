@@ -8,15 +8,10 @@ use App\Http\Controllers\RH\CollaborateurController;
 use App\Http\Controllers\RH\CongeController;
 use App\Http\Controllers\RH\EvolutionController;
 use App\Http\Controllers\RH\PosteController;
-use App\Livewire\FilterRessources;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RH\PresenceController;
-<<<<<<< HEAD
-use App\Livewire\EventsFilter;
-use App\Models\EventAudit;
-=======
 
->>>>>>> 0c15f3a6a34864b231d100670416d3d437554035
 
 Route::get('/', function () {
     return view('login');
@@ -116,6 +111,7 @@ Route::get('/collaborateur/{id}/conges/historique',
 
 
 Route::get('audit_events', function(){
+    
     return view('auditEvents');
 });
 
