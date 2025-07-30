@@ -20,7 +20,7 @@
 
                 @if ($dejaPointe)
                     <p class="text-green-700 font-medium text-lg">
-                        ✅ Vous avez déjà pointé aujourd’hui.
+                         Vous avez déjà pointé aujourd’hui.
                     </p>
 
                     {{-- Bouton Départ --}}

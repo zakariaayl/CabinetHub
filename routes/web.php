@@ -12,7 +12,6 @@ use App\Http\Controllers\RH\PosteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RH\PresenceController;
 
-
 Route::get('/', function () {
     return view('login');
 });
@@ -111,7 +110,7 @@ Route::get('/collaborateur/{id}/conges/historique',
 
 
 Route::get('audit_events', function(){
-    
+
     return view('auditEvents');
 });
 

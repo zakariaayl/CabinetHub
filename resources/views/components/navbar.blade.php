@@ -50,7 +50,7 @@
            class="flex items-center justify-center gap-2 h-10 px-5 rounded-lg {{ navActive('rh.conges.*') }}">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
                viewBox="0 0 24 24"><path d="M8 7h8m-8 4h8m-8 4h8M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
-          <span>Absences / Congés</span>
+          <span>Absences et Congés</span>
         </a>
       </li>
 
@@ -77,8 +77,8 @@
   <!-- Mobile drawer -->
   <div id="drawer" class="md:hidden hidden bg-blue-800/95 backdrop-blur p-4 space-y-2">
     <a href="{{ route('collaborateurs.index') }}" class="block {{ navActive('collaborateurs.index') }}">Tableau de bord</a>
-    <a href="{{ route('postes.index') }}"           class="block {{ navActive('postes.*') }}">Fiches de poste</a>
-    <a href="#"   class="block {{ navActive('absences.*') }}">Absences / Congés</a>
+    <a href="{{ route('postes.index') }}" class="block {{ navActive('postes.*') }}">Fiches de poste</a>
+    <a href="{{ route('rh.conges.index') }}" class="block {{ navActive('rh.conges.*') }}">Absences et Congés</a>
     <a href="#"   class="block {{ navActive('documents.*') }}">Documents RH</a>
     <a href="#"   class="block {{ navActive('formations.*') }}">Formations et Évaluations</a>
   </div>

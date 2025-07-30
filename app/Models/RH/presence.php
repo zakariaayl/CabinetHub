@@ -22,3 +22,4 @@ class Presence extends Model
         return $this->belongsTo(Collaborateur::class, 'id_collaborateur');
     }
 }
+    
