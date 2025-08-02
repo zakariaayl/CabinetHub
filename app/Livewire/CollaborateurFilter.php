@@ -64,10 +64,10 @@ class CollaborateurFilter extends Component
 
         // fetch distinct for dropdowns
         $postes = Collaborateur::select('poste')->distinct()->pluck('poste');
-        $depts  = Collaborateur::select('departement')->distinct()->pluck('departement');
+        $departements = Collaborateur::select('departement')->distinct()->pluck('departement');
 
         return view('livewire.collaborateur-filter', compact(
-            'collaborateurs','postes','depts'
+            'collaborateurs','postes','departements'
         ));
     }
 }
