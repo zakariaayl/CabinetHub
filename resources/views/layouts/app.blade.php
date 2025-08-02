@@ -7,6 +7,7 @@
 
     {{-- Tailwind + JS compilés --}}
     @vite(['resources/css/app.css','resources/js/app.js'])
+    @livewireStyles
 </head>
 <body class="bg-gray-50 min-h-screen">
     {{-- Navbar partout --}}
@@ -16,5 +17,7 @@
     <main class="max-w-7xl mx-auto px-4 py-6">
         @yield('content')
     </main>
+
+    @livewireScripts
 </body>
 </html>
