@@ -16,7 +16,7 @@ class DemandeAchatSeeder extends Seeder
     {
         $faker = \Faker\Factory::create('fr_FR');
 
-        $statuts = ['en attente', 'approuvée', 'refusée', 'en cours de traitement', 'livrée'];
+        $statuts = ['en attente', 'approuvée', 'refusée'];
         $categories = ['Informatique', 'Bureautique', 'Électronique', 'Mobilier', 'Autres'];
         $departements = ['IT', 'RH', 'Finance', 'Logistique', 'Maintenance'];
         $emplacements = ['Casablanca', 'Marrakech', 'Rabat', 'Tanger', 'Fès'];

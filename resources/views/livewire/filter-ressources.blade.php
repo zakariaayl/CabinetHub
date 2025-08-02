@@ -218,7 +218,90 @@
             </div>
 
             </div>
+<div class="bg-white rounded-lg shadow-lg p-6 mb-8 mt-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700 text-center">Cartes de Statut</h2>
+            <div class="space-y-4">
+                <!-- Approved -->
+                <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-green-700">Bon etat</span>
+                        <span class="text-2xl font-bold text-green-600">{{$bon}}</span>
+                    </div>
+                    <div class="w-full bg-green-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 45%"></div>
+                    </div>
+                    <div class="text-sm text-green-600 mt-1">{{ $all != 0 ? number_format($bon * 100 / $all, 2) : '0' }}%
+% du total</div>
+                </div>
+                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-yellow-700">Usage</span>
+                        <span class="text-2xl font-bold text-yellow-600">{{$Usage}}</span>
+                    </div>
+                    <div class="w-full bg-yellow-200 rounded-full h-2">
+                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 36%"></div>
+                    </div>
+                    <div class="text-sm text-yellow-600 mt-1">{{ $all != 0 ? number_format($Usage * 100 / $all, 2) : '0' }}%
+ du total</div>
+                </div>
+                <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-red-700">Hors Service</span>
+                        <span class="text-2xl font-bold text-red-600">{{$hors}}</span>
+                    </div>
+                    <div class="w-full bg-red-200 rounded-full h-2">
+                        <div class="bg-red-500 h-2 rounded-full" style="width: 18%"></div>
+                    </div>
+                    <div class="text-sm text-red-600 mt-1">{{ $all != 0 ? number_format($hors * 100 / $all, 2) : '0' }}%
+% du total</div>
+                </div>
+            </div>
 
+        </div>
+         <script>
+            const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Bon', 'Usagé', 'Hors Service'],
+                datasets: [{
+                    label: 'Nombre de demandes',
+                    data: [{{$bon}}, {{$Usage}}, {{$hors}}],
+                    backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
+                    borderRadius: 6,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Statut des Demandes d\'Achat',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+         </script>
             <div class=" bg-white text-center text-amber-300 text-2xl shadow-xl w-full  mt-5 border border-gray-100 rounded-xl h-full grid grid-cols-1 mb-10 p-4">
     <h1 class="font-bold text-xl text-black text-center items-center mb-2  ">Liste des resources Hors Service</h1>
     <div class="overflow-y-scroll overflow-x-hidden gap-2">

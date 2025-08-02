@@ -25,32 +25,32 @@
         <div
               class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-8">
             <h2 class="text-xl font-semibold mb-4">Filtres de recherche</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                    <div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mb-6">
+                    <div class="mx-auto w-full">
                         <label for="date_besoin" class="block text-sm font-medium text-gray-600 mb-1">date du besoin</label>
                         <input type="date" name="date_besoin" id="date_besoin"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-        wire:model.live.debounce.500ms="date_besoin">
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        wire:model.live.debounce.500ms="date_besoin">
                     </div>
-                    <div>
+                    <div class="mx-auto w-full">
                         <label for="date_demande" class="block text-sm font-medium text-gray-600 mb-1">date du demande</label>
                         <input type="date" name="date_demande" id="date_demande"
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-        wire:model.live.debounce.500ms="date_demande">
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        wire:model.live.debounce.500ms="date_demande">
                     </div>
-                    <div>
+                    <div class="mx-auto w-full">
                         <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-600 mb-1">responsabl du demande</label>
                         <input type="text" name="utilisateur_affecte" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="responsabl_demande">
                         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
-                    <div>
+                    <div class="mx-auto w-full">
                         <label for="designation" class="block text-sm font-medium text-gray-600 mb-1">resource du demande</label>
                         <input type="text" name="designation" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"wire:model.live.debounce.500m="resource_demande">
                         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                 </div>
-            </div>
+
 
         </div>
 
@@ -222,13 +222,13 @@
                         labels: {
                             padding: 20,
                             usePointStyle: true,
-                            font: { size: 14 }
+                            font: { size: 10 }
                         }
                     },
                     title: {
                         display: true,
                         text: 'Répartition des Ressources',
-                        font: { size: 16, weight: 'bold' }
+                        font: { size: 12, weight: 'bold' }
                     }
                 },
                 elements: {
@@ -244,7 +244,7 @@
                           ctx = chart.ctx;
 
                     ctx.restore();
-                    const fontSize = (height / 114).toFixed(2);
+                    const fontSize = (height / 150).toFixed(2);
                     ctx.font = fontSize + "em sans-serif";
                     ctx.textBaseline = "middle";
                     ctx.fillStyle = "#374151";
@@ -256,7 +256,7 @@
 
                     ctx.fillText(text, textX, textY - 10);
                     ctx.font = (fontSize * 0.6) + "em sans-serif";
-                    ctx.fillText("Total", textX + 5, textY + 20);
+                    ctx.fillText("Total", textX-5, textY + 20);
                     ctx.save();
                 }
             }]
