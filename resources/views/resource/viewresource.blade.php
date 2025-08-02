@@ -68,6 +68,7 @@
 
 
             <div class="lg:col-span-2 space-y-6">
+                <img class="w-82 mx-auto h-82 rounded-xl shadow-xl hover:shadow-2xl  transition duration-500 " src="{{ asset($resource->imageRc) }}" alt="il n y a pas une image disponible" />
                 <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up">
                     <div class="flex items-center mb-6">
                         <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mr-4">
@@ -163,7 +164,9 @@
                             {{ $resource->remarque }}
                         </p>
                     </div>
+
                 </div>
+
             </div>
 
             <div class="space-y-6">
@@ -212,6 +215,10 @@
                             <span class="font-bold text-sm text-orange-600">À programmer</span>
                         </div>
                     </div>
+                </div>
+                <div class="bg-white shadow-xl p-10 rounded-xl hover:shadow-2xl transition duration-300">
+                    <h1 class="text-xl font-semibold text-center mb-2">facture</h1>
+                <img class="w-full rounded-xl shadow-xl hover:shadow-2xl  transition duration-500 " src="{{ asset($resource->facture) }}" alt="il n y a pas une facture disponible" />
                 </div>
             </div>
         </div>

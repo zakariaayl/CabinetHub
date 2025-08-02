@@ -58,7 +58,20 @@ class ResourceController extends Controller
     public function store(Request $request) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $resource=new ressource($request->all());
+    $data = $request->all();
+    if ($request->hasFile('imageRc')) {
+            $file = $request->file('imageRc');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('assets/image_ressource'), $filename);
+            $data['imageRc'] = 'assets/image_ressource/' . $filename; // Save path
+    }
+    if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('assets/facture'), $filename);
+            $data['facture'] = 'assets/facture/' . $filename; // Save path
+    }
+    $resource=new ressource($data);
     AuditEventHelper::log("creation d'un resource'","creation effectuee pour le ressource ".$resource['designation'],$resource,null,null,$resource->id);
     $resource->save();
 

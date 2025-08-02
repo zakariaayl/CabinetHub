@@ -17,7 +17,7 @@
         </div>
 
         <div class="bg-white hover:shadow-none transition duration-500 rounded-lg  p-8    shadow-2xl">
-            <form action="{{ route('ResourceController.store') }}" method="POST" class="space-y-6">
+            <form action="{{ route('ResourceController.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
 
                 @csrf
 
@@ -36,7 +36,8 @@
                     </div>
 
                 <!-- Designation -->
-                <div>
+                <div class="grid grid-cols-12 ">
+                <div class="col-span-12 md:col-span-10">
                     <label for="designation" class="block text-sm font-medium text-gray-700 mb-2">
                         Désignation <span class="text-red-500">*</span>
                     </label>
@@ -47,7 +48,23 @@
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
                            placeholder="Ordinateur, Imprimante...">
                 </div>
+                <div class="mb-2 ml-5 md:col-span-2 col-span-12">
+                    <label for="file" class="block text-sm font-medium text-gray-700 mb-2">
+                        image du ressource
+                    </label>
 
+                    <label for="imageRc" class="custom-file-upload w-10 h-10 max-w-sm mx-auto" role="button" tabindex="0">
+                        <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" class="h-10 fill-gray-600">
+                            <path d="M10 1C9.73 1 9.48 1.11 9.29 1.29L3.29 7.29C3.11 7.48 3 7.73 3 8V20C3 21.66 4.34 23 6 23H7C7.55 23 8 22.55 8 22C8 21.45 7.55 21 7 21H6C5.45 21 5 20.55 5 20V9H10C10.55 9 11 8.55 11 8V3H18C18.55 3 19 3.45 19 4V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 2.34 19.66 1 18 1H10Z"></path>
+                            <path d="M14 15.5C14 14.12 15.12 13 16.5 13C17.88 13 19 14.12 19 15.5V17H20C21.1 17 22 17.9 22 19C22 20.1 21.1 21 20 21H13C11.9 21 11 20.1 11 19C11 17.9 11.9 17 13 17H14V15.5Z"></path>
+                            <path d="M16.5 11C14.14 11 12.21 12.81 12.02 15.12C10.28 15.56 9 17.13 9 19C9 21.21 10.79 23 13 23H20C22.21 23 24 21.21 24 19C24 17.13 22.72 15.56 20.98 15.12C20.79 12.81 18.86 11 16.5 11Z"></path>
+                        </svg>
+                        </div>
+                        <input type="file" id="imageRc" name="imageRc" accept="image/*" style="display: none;">
+                    </label>
+                    </div>
+                </div>
                 <!-- Row: Brand and Model -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -95,7 +112,8 @@
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                            placeholder="entrez la version du logiciel comme v1.2.5..">
                 </div>
-               <div>
+               <div class="grid grid-cols-12  gap-2">
+                  <div class="md:col-span-10 col-span-12">
                     <label for="quantite" class="block text-sm font-medium text-gray-700 mb-2">
                         quantite
                     </label>
@@ -105,6 +123,24 @@
                            class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                            placeholder="entrez la quantite du ressource"
                            min="1">
+                    </div>
+                    <div class="mb-2 ml-5 md:col-span-2 col-span-12">
+  <label for="file" class="block text-sm font-medium text-gray-700 mb-2">
+    Facture
+  </label>
+
+  <label for="file" class="custom-file-upload w-10 h-10 max-w-sm mx-auto" role="button" tabindex="0">
+    <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24" class="h-10 fill-gray-600">
+        <path d="M10 1C9.73 1 9.48 1.11 9.29 1.29L3.29 7.29C3.11 7.48 3 7.73 3 8V20C3 21.66 4.34 23 6 23H7C7.55 23 8 22.55 8 22C8 21.45 7.55 21 7 21H6C5.45 21 5 20.55 5 20V9H10C10.55 9 11 8.55 11 8V3H18C18.55 3 19 3.45 19 4V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 2.34 19.66 1 18 1H10Z"></path>
+        <path d="M14 15.5C14 14.12 15.12 13 16.5 13C17.88 13 19 14.12 19 15.5V17H20C21.1 17 22 17.9 22 19C22 20.1 21.1 21 20 21H13C11.9 21 11 20.1 11 19C11 17.9 11.9 17 13 17H14V15.5Z"></path>
+        <path d="M16.5 11C14.14 11 12.21 12.81 12.02 15.12C10.28 15.56 9 17.13 9 19C9 21.21 10.79 23 13 23H20C22.21 23 24 21.21 24 19C24 17.13 22.72 15.56 20.98 15.12C20.79 12.81 18.86 11 16.5 11Z"></path>
+      </svg>
+    </div>
+    <input type="file" id="file" name="file" accept="image/*" style="display: none;">
+  </label>
+</div>
+
                 </div>
                 <div>
                     <label for="duree_vie_mois" class="block text-sm font-medium text-gray-700 mb-2">
@@ -136,7 +172,6 @@
                                 id="etat"
                                 class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             <option value="">Sélectionner</option>
-                            <option value="Neuf">Neuf</option>
                             <option value="Bon">Bon</option>
                             <option value="Usagé">Usagé</option>
                             <option value="Hors Service">Hors Service</option>
