@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(PosteSeeder::class);
         $this->call(ressourceseeder::class);
+         $this->call(InventaireSeeder::class);
+         $this->call(DemandeAchatSeeder::class);
     }
 }

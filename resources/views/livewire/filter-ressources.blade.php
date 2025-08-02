@@ -6,7 +6,7 @@
         <div class="container p-4  border-gray-200   col-span-12 lg:col-span-8 ">
 
             @if(session('success'))
-            <div id="success-message" class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-300 border-l-[6px]  border-green-500  text-white text-2xl font-bold p-4 rounded-xl text-center transition-opacity duration-1000 ease-in-out z-50 w-fit max-w-md">
+            <div id="success-message" class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-xl shadow-xl border border-green-300 opacity-100 transition-all duration-500 z-50 max-w-md">
                 {{ session('success') }}
             </div>
             <script>
@@ -83,6 +83,7 @@
                 <table class="table-auto w-full border-collapse">
                     <thead class="bg-gradient-to-r from-indigo-300 to-purple-300  border border-gray-100 rounded-t-2xl  shadow-xl">
                         <tr>
+                            <th class="p-4">image</th>
                             <th class="p-4">Type</th>
                             <th class="p-4">Désignation</th>
                             <th class="p-4">Marque</th>
@@ -98,6 +99,7 @@
                     <tbody class="bg-white/60  ">
                         @foreach($rec as $resource)
                         <tr class="text-center hover:bg-blue-50 hover:shadow-md hover:border hover:border-gray-500">
+                            <td class="p-4 border-b border-gray-300"><img class="w-10 mx-2 h-10 rounded-md shadow-xl hover:shadow-2xl  transition duration-500 " src="{{ asset($resource->imageRc) }}" alt="il n y a pas une image disponible" /></td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['type'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['designation'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['marque'] ?? '---' }}</td>

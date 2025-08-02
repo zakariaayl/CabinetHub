@@ -23,6 +23,8 @@ class ressource extends Model
     'duree_vie_mois',
     'est_amortie',
     'quantite',
+    'facture',
+    'imageRc',
     'remarque',
 ];
 public function inventaires() {

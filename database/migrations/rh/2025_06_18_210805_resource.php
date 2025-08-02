@@ -15,6 +15,7 @@ return new class extends Migration
                 $table->string('marque')->nullable();
                 $table->string('modele')->nullable();
                 $table->string('numero_serie')->nullable();
+                $table->string('imageRc')->nullable();
                 $table->string('version_logiciel')->nullable();
                 $table->date('date_achat')->nullable();
                 $table->string('etat')->default('Nouveau');
@@ -25,6 +26,7 @@ return new class extends Migration
                 $table->integer('duree_vie_mois')->nullable();
                 $table->boolean('est_amortie')->default(false);
                 $table->integer('quantite')->default(1);
+                $table->string('facture')->nullable();
                 $table->text('remarque')->nullable();
                 $table->timestamps();
 

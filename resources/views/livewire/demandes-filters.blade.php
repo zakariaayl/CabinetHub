@@ -1,10 +1,10 @@
 <div>
 
     <div class="grid grid-cols-12 gap-2 mt-20">
-          
+
     @if(session('success'))
         <div id="success-message"
-             class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white font-bold text-lg px-6 py-3 rounded shadow-lg transition-opacity duration-1000 z-50">
+             class="fixed top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-xl shadow-xl border border-green-300 opacity-100 transition-all duration-500 z-50 max-w-md">
             {{ session('success') }}
         </div>
 
