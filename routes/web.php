@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RH\PresenceController;
 
 Route::get('/', function () {
-    return view('login');
+    return view('login.login');
 });
 Route::get('/raView', function () {
     return view('resource.index');
