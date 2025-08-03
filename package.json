@@ -17,5 +17,8 @@
         "tailwind-scrollbar": "^4.0.2",
         "tailwindcss": "^4.1.10",
         "vite": "^6.2.4"
+    },
+    "dependencies": {
+        "alpinejs": "^3.14.9"
     }
 }

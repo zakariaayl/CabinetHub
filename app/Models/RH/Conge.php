@@ -14,6 +14,8 @@ class Conge extends Model
         'type',
         'statut',
         'justificatif',
+        'motif',
+        'response_message',
     ];
     protected $casts = [
         'date_debut' => 'date',

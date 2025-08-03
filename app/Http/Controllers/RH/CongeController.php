@@ -59,6 +59,7 @@ class CongeController extends Controller
             'date_fin' => 'required|date|after_or_equal:date_debut',
             'type_conge' => 'required|string|max:255',
             'justificatif' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'motif' => 'nullable|string',
         ]);
 
         $collaborateur = Collaborateur::findOrFail($id);
@@ -71,12 +72,13 @@ class CongeController extends Controller
 
         Conge::create([
             'collaborateur_id' => $collaborateur->id,
-            'demande_effectuee_a' => now(),              // timestamp actuel
+            'demande_effectuee_a' => now(),
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
-            'type' => $request->type_conge,              // correction ici
+            'type' => $request->type_conge,
             'statut' => 'en attente',
-            'justificatif' => $justificatifPath,         // correction ici
+            'justificatif' => $justificatifPath,
+            'motif'      => $request->motif,
         ]);
 
         return redirect()->route('collaborateur.home', ['id' => $collaborateur->id, 'vue' => 'conges'])
