@@ -98,22 +98,50 @@
                   —
                 @endif
               </td>
-              <td class="px-4 py-2 text-center">
-                <!-- Ici on remettra plus tard les formulaires POST pour valider/refuser -->
+              <td class="px-4 py-2 text-center" x-data="{ openReject: false, selectedId: null }">
+                {{-- Valider tout de suite --}}
                 <form action="{{ route('rh.conges.update', $conge->id) }}" method="POST" class="inline-block">
                   @csrf @method('PUT')
                   <input type="hidden" name="statut" value="accepté">
-                  <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">
+                  <button type="submit"
+                          class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded">
                     Valider
                   </button>
                 </form>
-                <form action="{{ route('rh.conges.update', $conge->id) }}" method="POST" class="inline-block ml-2">
-                  @csrf @method('PUT')
-                  <input type="hidden" name="statut" value="refusé">
-                  <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
-                    Refuser
-                  </button>
-                </form>
+
+                {{-- Ouvrir le modal pour Refuser --}}
+                <button @click="selectedId = {{ $conge->id }}; openReject = true"
+                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded ml-2">
+                  Refuser
+                </button>
+
+                {{-- Modal de refus --}}
+                <div x-show="openReject && selectedId==={{ $conge->id }}"
+                     x-transition
+                     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+                  <div @click.away="openReject = false" class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+                    <h2 class="text-lg font-bold mb-4">Motif du refus</h2>
+                    <form :action="`{{ url('rh/conges') }}/${selectedId}/refuser`" method="POST">
+                      @csrf @method('PATCH')
+                      <textarea name="response_message"
+                                class="w-full border-gray-300 rounded-md p-2 mb-4"
+                                rows="4"
+                                placeholder="Expliquez la raison du refus…" required></textarea>
+
+                      <div class="flex justify-end space-x-2">
+                        <button type="button"
+                                @click="openReject = false"
+                                class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
+                          Annuler
+                        </button>
+                        <button type="submit"
+                                class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                          Envoyer le refus
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </td>
             </tr>
           @empty

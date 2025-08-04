@@ -125,4 +125,20 @@ class CongeController extends Controller
     {
         //
     }
+    public function refuser(Request $request, $id)
+{
+    $request->validate([
+        'response_message' => 'required|string|max:1000',
+    ]);
+
+    $conge = Conge::findOrFail($id);
+    $conge->update([
+        'statut'           => 'refusé',
+        'response_message' => $request->response_message,
+    ]);
+
+    return redirect()->back()
+                     ->with('success', 'Demande refusée et message envoyé au collaborateur.');
+}
+
 }

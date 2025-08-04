@@ -115,6 +115,7 @@
                                 <th class="px-4 py-2 border-b">Type de congé</th>
                                 <th class="px-4 py-2 border-b">Statut</th>
                                 <th class="px-4 py-2 border-b">Justificatif</th>
+                                <th class="px-4 py-2 border-b">Message RH</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,6 +140,15 @@
                                             —
                                         @endif
                                     </td>
+                                    <td class="px-4 py-2 border-b">
+                                        @if($conge->statut==='refusé' && $conge->response_message)
+                                          <div class="text-sm italic text-red-600">
+                                            {{ $conge->response_message }}
+                                          </div>
+                                        @else
+                                          —
+                                        @endif
+                                      </td>
                                 </tr>
                             @endforeach
                         </tbody>
