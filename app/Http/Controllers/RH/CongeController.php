@@ -15,7 +15,11 @@ class CongeController extends Controller
      */
     public function index(Request $request )
     {
-        $query = Conge::with('collaborateur')->latest();
+        $query = Conge::with('collaborateur')
+        ->orderByRaw("FIELD(statut, 'en attente', 'accepté', 'refusé')")
+        ->latest('demande_effectuee_a');$query = Conge::with('collaborateur')
+        ->orderByRaw("FIELD(statut, 'en attente', 'accepté', 'refusé')")
+        ->latest('demande_effectuee_a');
 
     if ($request->filled('collaborateur')) {
         $query->whereHas('collaborateur', function ($q) use ($request) {
@@ -130,15 +134,13 @@ class CongeController extends Controller
     $request->validate([
         'response_message' => 'required|string|max:1000',
     ]);
-
     $conge = Conge::findOrFail($id);
     $conge->update([
         'statut'           => 'refusé',
         'response_message' => $request->response_message,
     ]);
-
-    return redirect()->back()
-                     ->with('success', 'Demande refusée et message envoyé au collaborateur.');
+    return redirect()->route('rh.conges.index')
+                     ->with('success','Demande refusée.');
 }
 
 }

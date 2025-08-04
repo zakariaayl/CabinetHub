@@ -19,6 +19,5 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
-        "alpinejs": "^3.14.9"
-    }
+    "alpinejs": "^3.x"}
 }
