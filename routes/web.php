@@ -60,7 +60,6 @@ Route::get('/resourceview/view/{id}/{designation}', [resourceviewcontroller::cla
     ->name('resourceview.view');
 Route::post('/resourceview/store/{id}/', [resourceviewcontroller::class, 'storeplanif'])
     ->name('resourceview.storeplanif');
-Route::resource('postes', App\Http\Controllers\RH\PosteController::class);
 
 Route::prefix('RH')->group(function () {
     Route::resource('postes', PosteController::class)->names([
