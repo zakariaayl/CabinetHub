@@ -15,7 +15,7 @@ class inventaireController extends Controller
     $inventaire = Inventaire::create([
         'date_inventaire' => now(),
         'faite_par' => $request->faite_par,
-'remarques'=>'j ai fais cet inventaire'
+'remarques'=>"j'ai fais cet inventaire"
     ]);
 $designation='';
     foreach ($request->ressources as $res) {
@@ -33,28 +33,7 @@ $designation='';
     return redirect()->route('raInventaire')->with('success', 'Inventaire créé avec succès.');
 }
 
- public function show($id,Request $request){
-    $inventaire=inventaire::find($id);
-    $ressources=$inventaire->ressources;
-   if ($request->filled('search')) {
-    $search=$request->search;
-        $ressources = $inventaire->ressources()
-    ->where('designation', 'like', '%' . $search . '%')
-    ->get();
-    }
 
-    $active=0;
-    $neartoend=0;
-    $expired=0;
-    $all=0;
-    foreach($ressources as $ressource){
-        $all++;
-        if($ressource->pivot->etat_releve=="Usagé") $neartoend++;
-        if($ressource->pivot->etat_releve=="Hors Service") $expired++;
-        if($ressource->pivot->etat_releve=="Bon") $active++;
-    }
-    return view ("inventaire.view_one_inventaire",compact("ressources","active","neartoend","all","expired"));
- }
 public function create() {
     $ressources=ressource::all();
     return view('inventaire.add_inventaire',compact('ressources'));
@@ -70,8 +49,6 @@ public function update(Request $request,$id)
     $designation='';
     foreach ($request->ressources as $res) {
        $designation .= $res['designation'] . ', ';
-// dd($request->ressources);
-
         if (!empty($res['etat_releve'])) {
             $inventaire->ressources()->updateExistingPivot($res['id'], [
                 'etat_releve' => $res['etat_releve'],

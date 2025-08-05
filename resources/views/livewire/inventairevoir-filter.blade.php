@@ -12,10 +12,52 @@
         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
       </div>
       <div class="flex gap-2 flex-wrap shadow-lg  border border-gray-100 bg-white rounded-lg  ">
-        <button class="filter-btn  my-2 ml-2 active px-5 py-2 rounded-full font-semibold text-white bg-gray-400 hover:bg-white hover:text-gray-400 hover:border-gray-400 border border-white shadow-md hover:scale-105 transition" data-filter="all">Tous les ressources</button>
-        <button class="filter-btn my-2 px-5 py-2 rounded-full font-semibold text-white bg-green-400 hover:bg-white hover:text-green-400 hover:border-green-400 border shadow-md border-white hover:scale-105 transition " data-filter="active">Actif</button>
-        <button class="filter-btn my-2  px-5 py-2 rounded-full font-semibold text-white bg-orange-400 hover:bg-white hover:text-orange-400 hover:border-orange-400 shadow-md border border-white hover:scale-105 transition" data-filter="warning">Attention</button>
-        <button class="filter-btn my-2 mr-2 px-5 py-2 rounded-full font-semibold text-white bg-red-400 hover:bg-white hover:text-red-400 hover:border-red-400 border shadow-md border-white hover:scale-105 transition" data-filter="expired">Expiré</button>
+       <div class="flex flex-wrap gap-2 my-2">
+    <label class="cursor-pointer">
+        <input type="radio" wire:model.live.debounce.50ms="filter" value="all" class="hidden peer" />
+        <span class="filter-btn px-5 py-2 rounded-full font-semibold
+                     bg-indigo-500 text-white peer-checked:bg-indigo-400
+                     peer-checked:text-white border shadow-md
+                     transition hover:bg-white hover:text-indigo-500
+                     hover:border-gray-400">
+            Tous les ressources
+        </span>
+    </label>
+
+    <label class="cursor-pointer">
+        <input type="radio" wire:model.live.debounce.50ms="filter" value="actif" class="hidden peer" />
+        <span class="filter-btn px-5 py-2 rounded-full font-semibold
+                     bg-green-400 text-white peer-checked:bg-green-400
+                     peer-checked:text-white border shadow-md
+                     transition hover:bg-white hover:text-green-400
+                     hover:border-green-400">
+            Actif
+        </span>
+    </label>
+
+    <label class="cursor-pointer">
+        <input type="radio" wire:model.live.debounce.50ms="filter" value="warning" class="hidden peer" />
+        <span class="filter-btn px-5 py-2 rounded-full font-semibold
+                     bg-orange-400 text-white peer-checked:bg-orange-400
+                     peer-checked:text-white border shadow-md
+                     transition hover:bg-white hover:text-orange-400
+                     hover:border-orange-400">
+            Attention
+        </span>
+    </label>
+
+    <label class="cursor-pointer">
+        <input type="radio" wire:model.live.debounce.50ms="filter" value="expired" class="hidden peer" />
+        <span class="filter-btn px-5 py-2 rounded-full font-semibold
+                     bg-red-400 text-white peer-checked:bg-red-400
+                     peer-checked:text-white border shadow-md
+                     transition hover:bg-white hover:text-red-400
+                     hover:border-red-400">
+            Expiré
+        </span>
+    </label>
+</div>
+
       </div>
     </div>
 
@@ -26,7 +68,8 @@
         <p class="text-sm text-gray-600">Ressources actives</p>
       </div>
       <div class="text-center p-6 bg-white rounded-2xl hover:shadow-xl transition shadow-md  border border-gray-100">
-        <i class="ti ti-alert-triangle text-3xl text-yellow-500 mb-3"></i>
+<i class="fas fa-hourglass-end" style="color: #fffb00; font-size: 1.2em;" title="En fin de vie"></i>
+
         <h3 id="warningCount" class="text-2xl font-bold">{{ $neartoend}}</h3>
         <p class="text-sm text-gray-600">En fin de vie</p>
       </div>
@@ -36,7 +79,8 @@
         <p class="text-sm text-gray-600">Ressources Expiré</p>
       </div>
       <div class="text-center p-6 bg-white rounded-2xl hover:shadow-xl transition shadow-md  border border-gray-100">
-        <i class="ti ti-database text-3xl text-indigo-500 mb-3"></i>
+        <i class="fas fa-database text-indigo-500 text-3xl mb-3"></i>
+
         <h3 id="totalCount" class="text-2xl font-bold">{{$all}}</h3>
         <p class="text-sm text-gray-600">Nombre total d’éléments</p>
       </div>
@@ -127,7 +171,7 @@
         data: [{{ $active }}, {{ $neartoend }}, {{ $expired }}],
         backgroundColor: ['#22c55e', '#facc15', '#ef4444'],
         borderColor: ['#16a34a', '#eab308', '#dc2626'],
-        borderWidth: 1
+        borderWidth: 0
       }]
     },
     options: {

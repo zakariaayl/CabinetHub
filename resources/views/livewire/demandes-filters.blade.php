@@ -209,7 +209,7 @@
                 datasets: [{
             data: [{{$aprouv}}, {{$refus}}, {{$attente}}],
                     backgroundColor: ['#10B981', '#EF4444', '#F59E0B'],
-                    borderWidth: 4,
+                    borderWidth: 0,
                     borderColor: '#fff'
                 }]
             },

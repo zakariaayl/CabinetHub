@@ -162,11 +162,13 @@
                 datasets: [{
             data: [{{$totalBon}},{{$totalUsage}},{{$totalHors}}],
                     backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
-                    borderWidth: 4,
-                    borderColor: '#fff'
+
+                    borderColor: '#fff',
+                    borderWidth: 0,
                 }]
             },
             options: {
+                // cutout: '70%',
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
