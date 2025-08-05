@@ -15,6 +15,8 @@ class CollaborateurFilter extends Component
     public $poste  = '';
     public $departement = '';
 
+    public $presence = '';
+
     protected $updatesQueryString = [
         'search'     => ['except' => ''],
         'poste'      => ['except' => ''],
@@ -32,42 +34,41 @@ class CollaborateurFilter extends Component
     }
 
     public function render()
-    {
-        $today = Carbon::today();
+{
+    $today = now()->toDateString();
 
-        $query = Collaborateur::query();
+    $collaborateurs = Collaborateur::query()
+        ->when($this->search, fn($q) =>
+            $q->where(function ($query) {
+                $query->where('nom', 'like', '%' . $this->search . '%')
+                      ->orWhere('prenom', 'like', '%' . $this->search . '%');
+            })
+        )
+        ->when($this->poste, fn($q) =>
+            $q->where('poste', $this->poste)
+        )
+        ->when($this->departement, fn($q) =>
+            $q->where('departement', $this->departement)
+        )
+        ->when($this->presence !== '', function ($q) use ($today) {
+            if ($this->presence === 'present') {
+                $q->whereHas('presences', fn($sub) => $sub->where('date_jour', $today));
+            } elseif ($this->presence === 'absent') {
+                $q->whereDoesntHave('presences', fn($sub) => $sub->where('date_jour', $today));
+            }
+        })
+        ->with(['presences' => fn($q) => $q->whereDate('date_jour', $today)])
+        ->paginate(7);
 
-        if ($this->search) {
-            $s = $this->search;
-            $query->where(function($q) use ($s) {
-                $q->whereRaw("CONCAT(nom,' ',prenom) LIKE ?", ["%{$s}%"])
-                  ->orWhereRaw("CONCAT(prenom,' ',nom) LIKE ?", ["%{$s}%"]);
-            });
-        }
+    // Ajouter la propriété isPresentToday
+    $collaborateurs->each(function ($collab) {
+        $collab->isPresentToday = $collab->presences->isNotEmpty();
+    });
 
-        if ($this->poste) {
-            $query->where('poste', $this->poste);
-        }
-
-        if ($this->departement) {
-            $query->where('departement', $this->departement);
-        }
-
-        // eager-load presences today
-        $collaborateurs = $query
-            ->with(['presences' => fn($q) => $q->whereDate('date_jour',$today)])
-            ->paginate(7);
-
-        foreach ($collaborateurs as $c) {
-            $c->isPresentToday = $c->presences->isNotEmpty();
-        }
-
-        // fetch distinct for dropdowns
-        $postes = Collaborateur::select('poste')->distinct()->pluck('poste');
-        $departements = Collaborateur::select('departement')->distinct()->pluck('departement');
-
-        return view('livewire.collaborateur-filter', compact(
-            'collaborateurs','postes','departements'
-        ));
-    }
+    return view('livewire.collaborateur-filter', [
+        'collaborateurs' => $collaborateurs,
+        'postes' => Collaborateur::distinct()->pluck('poste'),
+        'departements' => Collaborateur::distinct()->pluck('departement'),
+    ]);
+}
 }
