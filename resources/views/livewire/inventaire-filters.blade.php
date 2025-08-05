@@ -118,21 +118,20 @@
 
             <div class="bg-white border border-gray-100 rounded-xl shadow-xl" wire:ignore>
             <div class="mb-6 text-center">
-                <h3 class="text-xl font-bold text-gray-800">Statistiques des resources</h3>
+                <h3 class="text-xl font-bold text-gray-800">Statistiques des inventaires</h3>
             </div>
             <div class="h-80 mb-6">
     <canvas id="statusChart" class="w-full h-full"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script>
-        const ctx = document.getElementById('statusChart').getContext('2d');
+        const ctxd = document.getElementById('statusChart').getContext('2d');
 
-        const statusChart = new Chart(ctx, {
+        const statusChart = new Chart(ctxd, {
             type: 'bar',
             data: {
-                labels: ['Bon', 'Usagé', 'Hors Service'],
+                labels: ['{{$topUsers[0]->faite_par}}',' {{$topUsers[1]->faite_par}}','{{$topUsers[2]->faite_par}}'],
                 datasets: [{
-                    label: 'Nombre de ressources',
-                    data: [15, 8, 3], // Replace with {{1}},{{1}},{{1}}
+                    label: 'Nombre de inventaires',
+                    data: [{{$topUsers[0]->total_inventaires}}, {{$topUsers[1]->total_inventaires}}, {{$topUsers[2]->total_inventaires}}],
                     backgroundColor: [
                         'rgba(16, 185, 129, 0.8)',
                         'rgba(245, 158, 11, 0.8)',
@@ -157,7 +156,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Répartition des Ressources',
+                        text: 'Répartition des inventaires',
                         font: {
                             size: 18,
                             weight: 'bold',
@@ -242,7 +241,7 @@
                     mode: 'index'
                 }
             },
-             barPercentage: 0.5,       
+             barPercentage: 0.5,
     categoryPercentage: 0.6 ,
             plugins: [{
                 afterDatasetsDraw: function(chart) {
@@ -267,7 +266,165 @@
                 }
             }]
         });
+
     </script>
+</div>
+            </div>
+             <div class="bg-white border border-gray-100 rounded-xl shadow-xl mt-6" wire:ignore>
+            <div class="mb-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Statistiques des ressources</h3>
+            </div>
+            <div class="h-80 mb-6">
+    <canvas id="ressourcechart" class="w-full h-full"></canvas>
+<script>
+
+    const ctx2 = document.getElementById('ressourcechart').getContext('2d');
+
+    const ressourceChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['{{$resourceChartData[0]["name"]}}',
+    '{{$resourceChartData[1]["name"]}}',
+    '{{$resourceChartData[2]["name"]}}'],
+            datasets: [{
+                label: 'Nombre de inventaires par ressource',
+                data: [{{$resourceChartData[0]["count"]}}, {{$resourceChartData[1]["count"]}}, {{$resourceChartData[2]["count"]}}],
+                backgroundColor: [
+                    '#66c2a5',
+  '#fc8d62',
+  '#8da0cb'
+                ],
+                borderColor: [
+                    '#10B981',
+                    '#F59E0B',
+                    '#EF4444'
+                ],
+                borderWidth: 2,
+                borderRadius: 8,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            cutout: '70%',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Répartition des inventaires',
+                    font: {
+                        size: 18,
+                        weight: 'bold',
+                        family: 'Inter, system-ui, sans-serif'
+                    },
+                    color: '#1F2937',
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(17, 24, 39, 0.95)',
+                    titleColor: '#F9FAFB',
+                    bodyColor: '#F9FAFB',
+                    borderColor: '#374151',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((context.parsed.y / total) * 100).toFixed(1);
+                            return `${context.parsed.y} ressources (${percentage}%)`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(156, 163, 175, 0.3)',
+                        drawBorder: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 12,
+                            family: 'Inter, system-ui, sans-serif'
+                        },
+                        color: '#6B7280',
+                        stepSize: 1
+                    },
+                    title: {
+                        display: true,
+                        text: 'Nombre de ressources',
+                        font: {
+                            size: 13,
+                            weight: '500',
+                            family: 'Inter, system-ui, sans-serif'
+                        },
+                        color: '#374151',
+                        padding: 15
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 14,
+                            weight: '500',
+                            family: 'Inter, system-ui, sans-serif'
+                        },
+                        color: '#374151',
+                        maxRotation: 0
+                    }
+                }
+            },
+            elements: {
+                bar: {
+                    borderWidth: 2
+                }
+            },
+            animation: {
+                duration: 1200,
+                easing: 'easeOutQuart'
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            }
+        },
+        barPercentage: 0.5,
+        categoryPercentage: 0.6,
+        plugins: [{
+            afterDatasetsDraw: function(chart) {
+                const ctx = chart.ctx;
+                chart.data.datasets.forEach((dataset, i) => {
+                    const meta = chart.getDatasetMeta(i);
+                    meta.data.forEach((bar, index) => {
+                        const data = dataset.data[index];
+                        if (data > 0) {
+                            ctx.fillStyle = '#1F2937';
+                            ctx.font = 'bold 13px Inter, system-ui, sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            const x = bar.x;
+                            const y = bar.y - 5;
+
+                            ctx.fillText(data, x, y);
+                        }
+                    });
+                });
+            }
+        }]
+    });
+</script>
 </div>
             </div>
     </div>
