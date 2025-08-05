@@ -8,7 +8,7 @@
             {{ session('success') }}
         </div>
 
-        <script>
+        <script> 
             setTimeout(() => {
                 const msg = document.getElementById('success-message');
                 if (msg) {
