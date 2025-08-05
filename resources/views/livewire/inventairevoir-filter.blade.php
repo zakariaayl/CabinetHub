@@ -1,33 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tailwind Inventory Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css" rel="stylesheet">
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-
-</head>
-<style>
-
-</style>
-
-<body class=" min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100  text-gray-800 font-sans ">
-@include('components.navbar_resource')
-  <div class="max-w-7xl mx-auto p-6 mt-12">
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100  text-gray-800 font-sans">
+ <div class="max-w-7xl mx-auto p-6 mt-12">
     <div class="text-center text-white mb-10">
       <h1 class="text-4xl font-bold text-gray-800 drop-shadow">Gestion Avancée des Inventaires</h1>
       <p class="text-lg text-gray-800 opacity-90">Suivi en temps réel et analyses de vos ressources</p>
     </div>
 
     <div class="flex flex-wrap gap-4 mb-8 items-center">
-      <form method="GET"{{route('inventaire.show',['inventaire'])}}" class="relative flex-1">
-        <input name="search" id="searchInput" type="text" value="{{request('search')}}" placeholder="Search inventory items..."
+      <div class="relative flex-1">
+        <input name="search" id="searchInput" type="text" wire:model.live.debounce.500ms="search" placeholder="Search inventory items..."
                class="  border border-gray-100 w-full p-4 pl-5 pr-12 rounded-xl bg-white shadow-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-      </form>
+      </div>
       <div class="flex gap-2 flex-wrap shadow-lg  border border-gray-100 bg-white rounded-lg  ">
         <button class="filter-btn  my-2 ml-2 active px-5 py-2 rounded-full font-semibold text-white bg-gray-400 hover:bg-white hover:text-gray-400 hover:border-gray-400 border border-white shadow-md hover:scale-105 transition" data-filter="all">Tous les ressources</button>
         <button class="filter-btn my-2 px-5 py-2 rounded-full font-semibold text-white bg-green-400 hover:bg-white hover:text-green-400 hover:border-green-400 border shadow-md border-white hover:scale-105 transition " data-filter="active">Actif</button>
@@ -200,6 +183,4 @@
       </div>
     </div>
   </div>
-
-</body>
-</html>
+</div>

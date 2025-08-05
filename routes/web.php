@@ -27,6 +27,10 @@ Route::get('/raDemandes', function () {
 Route::get('/RH/seeAllresources', function(){
     return view('resource.index');
 });
+  Route::get('/inventaire/{id}', function ($id) {
+    return view('inventaire.index-inventaire-voir', compact('id'));
+});
+
 Route::resource('ResourceController', ResourceController::class);
 
 Route::get('/RH/collaborateurs', [CollaborateurController::class, 'dashboard'])
