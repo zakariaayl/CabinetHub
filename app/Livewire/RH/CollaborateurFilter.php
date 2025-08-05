@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\RH;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,6 +21,7 @@ class CollaborateurFilter extends Component
         'search'     => ['except' => ''],
         'poste'      => ['except' => ''],
         'departement'=> ['except' => ''],
+        'presence'   => ['except' => ''],
     ];
 
     public function updating($field)
@@ -30,7 +31,7 @@ class CollaborateurFilter extends Component
     }
     public function resetFilters()
     {
-        $this->reset(['search', 'poste', 'departement']);
+        $this->reset(['search', 'poste', 'departement', 'presence']);
     }
 
     public function render()
@@ -65,7 +66,7 @@ class CollaborateurFilter extends Component
         $collab->isPresentToday = $collab->presences->isNotEmpty();
     });
 
-    return view('livewire.collaborateur-filter', [
+    return view('livewire.rh.collaborateur-filter', [
         'collaborateurs' => $collaborateurs,
         'postes' => Collaborateur::distinct()->pluck('poste'),
         'departements' => Collaborateur::distinct()->pluck('departement'),

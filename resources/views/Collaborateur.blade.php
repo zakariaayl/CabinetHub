@@ -14,8 +14,7 @@
                 <a href="#" class="hover:underline"> Formations et Évaluations</a>
             </--nav-->
         </div>
-
-        <livewire:collaborateur-filter />
+        <livewire:rh.collaborateur-filter />
 
         <!-- Pagination -->
         <div class="mt-4 flex justify-center">
