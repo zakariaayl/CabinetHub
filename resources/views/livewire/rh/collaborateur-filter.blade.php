@@ -42,6 +42,20 @@
             </select>
         </div>
 
+        <!-- Présence -->
+        <div class="flex flex-col">
+            <label for="presence" class="text-sm font-semibold text-gray-700 mb-1">Présence</label>
+            <select
+                id="presence"
+                wire:model.live="presence"
+                class="w-52 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            >
+                <option value="">Tous</option>
+                <option value="present">Présent</option>
+                <option value="absent">Absent</option>
+            </select>
+        </div>
+        
         <!-- Bouton Réinitialiser -->
         <div>
             <button

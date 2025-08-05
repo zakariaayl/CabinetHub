@@ -78,7 +78,7 @@
         <p class="text-xl font-bold text-red-600">{{ $refus }}</p>
     </div>
 </div>
-
+ 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @forelse($demandes as $demande)
             @if ($demande['statut']=="approuvée")
