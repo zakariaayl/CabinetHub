@@ -86,7 +86,7 @@ class InventaireFilters extends Component
             if ($topResource->ressource_id) {
                 $resource = $ressources->where('id', $topResource->ressource_id)->first();
                 $resourceChartData[] = [
-                    'name' => $resource ? $resource->nom : 'Resource inconnue',
+                    'name' => $resource ? $resource->designation : 'Resource inconnue',
                     'count' => $topResource->total_appearances
                 ];
             } else {

@@ -21,7 +21,7 @@
 @endif
 </div>
 
-        <h1 class="text-3xl font-bold mb-4 text-center">Tous les Inventaires </h1>
+        <h1 class="text-3xl font-bold mb-4 text-start ml-4">Tous les Inventaires </h1>
 
         <div  class="bg-white p-6 rounded-xl shadow-xl border border-gray-100 mb-6">
   <div class="mb-6">
@@ -314,7 +314,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Répartition des inventaires',
+                    text: 'Répartition des ressources',
                     font: {
                         size: 18,
                         weight: 'bold',
@@ -360,7 +360,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Nombre de ressources',
+                        text: 'Nombre de inventaires',
                         font: {
                             size: 13,
                             weight: '500',
