@@ -118,3 +118,9 @@ Route::get('audit_events', function(){
     return view('auditEvents');
 });
 
+// Validation
+Route::put('rh/conges/{id}', [CongeController::class, 'update'])
+     ->name('rh.conges.update');
+// Refus avec message
+Route::patch('rh/conges/{id}/refuser', [CongeController::class, 'refuser'])
+     ->name('rh.conges.refuser');

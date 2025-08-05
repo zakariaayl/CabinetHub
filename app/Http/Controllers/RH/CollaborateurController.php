@@ -131,7 +131,7 @@ class CollaborateurController extends Controller
                            ->get();
         }
 
-        return view('collaborateur_home', [
+        return view('conges.collaborateur_home', [
             'collaborateur' => $collaborateur,
             'dejaPointe'    => $a_deja_pointe,
             'vue'           => $vue,         // ← on envoie l’info à la vue

@@ -15,7 +15,11 @@ class CongeController extends Controller
      */
     public function index(Request $request )
     {
-        $query = Conge::with('collaborateur')->latest();
+        $query = Conge::with('collaborateur')
+        ->orderByRaw("FIELD(statut, 'en attente', 'accepté', 'refusé')")
+        ->latest('demande_effectuee_a');$query = Conge::with('collaborateur')
+        ->orderByRaw("FIELD(statut, 'en attente', 'accepté', 'refusé')")
+        ->latest('demande_effectuee_a');
 
     if ($request->filled('collaborateur')) {
         $query->whereHas('collaborateur', function ($q) use ($request) {
@@ -59,6 +63,7 @@ class CongeController extends Controller
             'date_fin' => 'required|date|after_or_equal:date_debut',
             'type_conge' => 'required|string|max:255',
             'justificatif' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'motif' => 'nullable|string',
         ]);
 
         $collaborateur = Collaborateur::findOrFail($id);
@@ -71,12 +76,13 @@ class CongeController extends Controller
 
         Conge::create([
             'collaborateur_id' => $collaborateur->id,
-            'demande_effectuee_a' => now(),              // timestamp actuel
+            'demande_effectuee_a' => now(),
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
-            'type' => $request->type_conge,              // correction ici
+            'type' => $request->type_conge,
             'statut' => 'en attente',
-            'justificatif' => $justificatifPath,         // correction ici
+            'justificatif' => $justificatifPath,
+            'motif'      => $request->motif,
         ]);
 
         return redirect()->route('collaborateur.home', ['id' => $collaborateur->id, 'vue' => 'conges'])
@@ -123,4 +129,18 @@ class CongeController extends Controller
     {
         //
     }
+    public function refuser(Request $request, $id)
+{
+    $request->validate([
+        'response_message' => 'required|string|max:1000',
+    ]);
+    $conge = Conge::findOrFail($id);
+    $conge->update([
+        'statut'           => 'refusé',
+        'response_message' => $request->response_message,
+    ]);
+    return redirect()->route('rh.conges.index')
+                     ->with('success','Demande refusée.');
+}
+
 }
