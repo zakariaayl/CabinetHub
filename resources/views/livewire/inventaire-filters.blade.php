@@ -47,6 +47,13 @@
 
 
 </div>
+<div class="bg-white  rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6 hover:shadow-xl transition duration-500 shadow-md">
+    <i class="fa-solid fa-folder text-gray-500 text-3xl"></i>
+    <h3 class="text-lg font-semibold text-gray-800 mb-1">nombres des inventaires</h3>
+    {{-- fa-folder --}}
+
+    <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
+</div>
 
 
 

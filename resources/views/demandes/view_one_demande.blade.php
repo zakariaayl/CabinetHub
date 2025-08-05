@@ -178,7 +178,7 @@
                             class="group relative px-8 py-4 bg-gradient-to-r from-red-500 to-rose-600 text-black font-bold rounded-2xl shadow-xl hover:shadow-red-500/25 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div class="relative flex items-center">
-                            <i class="fas fa-times-circle mr-3 text-xl"></i>
+                            
                             <span>Refuser</span>
                         </div>
                     </button>

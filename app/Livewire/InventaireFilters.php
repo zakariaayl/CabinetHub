@@ -61,6 +61,25 @@ class InventaireFilters extends Component
 
         return $topRessources;
     }
+    public function getBottomRessources()
+    {
+        $topRessources = DB::table('inventaire_ressource')
+            ->select('ressource_id', DB::raw('COUNT(*) as total_appearances'))
+            ->groupBy('ressource_id')
+            ->orderBy('total_appearances', 'asc')
+            ->limit(3)
+            ->get();
+
+
+        while ($topRessources->count() < 3) {
+            $topRessources->push((object)[
+                'ressource_id' => null,
+                'total_appearances' => 0
+            ]);
+        }
+
+        return $topRessources;
+    }
 
     public function render()
     {
@@ -102,7 +121,32 @@ class InventaireFilters extends Component
                 'count' => 0
             ];
         }
+        $all=inventaire::count();
+        $BottomRessources = $this->getBottomRessources();
+        $ids = $BottomRessources->pluck('ressource_id')->filter()->toArray();
+        $ressources = Ressource::whereIn('id', $ids)->get();
 
-        return view('livewire.inventaire-filters', compact('inventaires', 'topUsers', 'resourceChartData'));
+        $resourceChartDataBottom = [];
+        foreach ($BottomRessources as $BottomResource) {
+            if ($BottomResource->ressource_id) {
+                $resource = $ressources->where('id', $BottomResource->ressource_id)->first();
+                $resourceChartData[] = [
+                    'name' => $resource ? $resource->designation : 'Resource inconnue',
+                    'count' => $BottomResource->total_appearances
+                ];
+            } else {
+                $resourceChartData[] = [
+                    'name' => 'Aucune donnée',
+                    'count' => 0
+                ];
+            }
+        }
+        while (count($resourceChartData) < 3) {
+            $resourceChartData[] = [
+                'name' => 'Aucune donnée',
+                'count' => 0
+            ];
+        }
+        return view('livewire.inventaire-filters', compact('inventaires', 'topUsers', 'resourceChartData','all','resourceChartDataBottom'));
     }
 }

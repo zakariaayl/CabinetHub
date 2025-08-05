@@ -35,7 +35,6 @@
                         </select>
                     </div>
 
-                <!-- Designation -->
                 <div>
                     <label for="designation" class="block text-sm font-medium text-gray-700 mb-2">
                         Désignation <span class="text-red-500">*</span>
@@ -49,7 +48,6 @@
                            placeholder="imprimante,ordinateur..">
                 </div>
 
-                <!-- Row: Brand and Model -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="marque" class="block text-sm font-medium text-gray-700 mb-2">
@@ -129,7 +127,6 @@
                 </div>
                 @endif
 
-                <!-- Row: Purchase Date and Status -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     <div>
@@ -161,7 +158,6 @@
                            placeholder="entrez quel departement">
                 </div>
 
-                <!-- Assigned User -->
                 <div>
                     <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-700 mb-2">
                         Utilisateur Affecté
@@ -174,7 +170,6 @@
                            placeholder="entrez l'utilisateur Affecté">
                 </div>
 
-                <!-- Row: Warranty and Maintenance -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="date_fin_garantie" class="block text-sm font-medium text-gray-700 mb-2">
@@ -198,7 +193,6 @@
                     </div>
                 </div>
 
-                <!-- Remarks -->
                 <div>
                     <label for="remarque" class="block text-sm font-medium text-gray-700 mb-2">
                         Remarques
