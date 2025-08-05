@@ -1,4 +1,6 @@
 <div class="flex items-top justify-center min-h-screen relative  bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+ <div class="grid grid-cols-12  items-start justify-center w-full px-4">
+    <div class="col-span-12 md:col-span-8 w-full">
     <div
    class=" container  p-4     items-center justify-center mt-20  ">
         @if(session('success'))
@@ -17,6 +19,8 @@
         }, 4000);
     </script>
 @endif
+</div>
+
         <h1 class="text-3xl font-bold mb-4 text-center">Tous les Inventaires </h1>
 
         <div  class="bg-white p-6 rounded-xl shadow-xl border border-gray-100 mb-6">
@@ -108,6 +112,165 @@
    class="block w-full bg-green-400 border border-white hover:bg-white hover:text-green-400 hover:border-green-400 text-white  hover:scale-105 font-bold rounded-lg shadow-xl text-center mx-auto mt-6 py-2 hover:scale-[1.01] transition-colors">
     + Ajouter
 </a>
+
+ </div>
+    <div class="flex flex-col   col-span-12 md:col-span-4 mt-32 p-6  ">
+
+            <div class="bg-white border border-gray-100 rounded-xl shadow-xl" wire:ignore>
+            <div class="mb-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Statistiques des resources</h3>
+            </div>
+            <div class="h-80 mb-6">
+    <canvas id="statusChart" class="w-full h-full"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        const ctx = document.getElementById('statusChart').getContext('2d');
+
+        const statusChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Bon', 'Usagé', 'Hors Service'],
+                datasets: [{
+                    label: 'Nombre de ressources',
+                    data: [15, 8, 3], // Replace with {{1}},{{1}},{{1}}
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(239, 68, 68, 0.8)'
+                    ],
+                    borderColor: [
+                        '#10B981',
+                        '#F59E0B',
+                        '#EF4444'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Répartition des Ressources',
+                        font: {
+                            size: 18,
+                            weight: 'bold',
+                            family: 'Inter, system-ui, sans-serif'
+                        },
+                        color: '#1F2937',
+                        padding: {
+                            top: 10,
+                            bottom: 30
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+                        titleColor: '#F9FAFB',
+                        bodyColor: '#F9FAFB',
+                        borderColor: '#374151',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((context.parsed.y / total) * 100).toFixed(1);
+                                return `${context.parsed.y} ressources (${percentage}%)`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(156, 163, 175, 0.3)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 12,
+                                family: 'Inter, system-ui, sans-serif'
+                            },
+                            color: '#6B7280',
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'Nombre de ressources',
+                            font: {
+                                size: 13,
+                                weight: '500',
+                                family: 'Inter, system-ui, sans-serif'
+                            },
+                            color: '#374151',
+                            padding: 15
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 14,
+                                weight: '500',
+                                family: 'Inter, system-ui, sans-serif'
+                            },
+                            color: '#374151',
+                            maxRotation: 0
+                        }
+                    }
+                },
+                elements: {
+                    bar: {
+                        borderWidth: 2
+                    }
+                },
+                animation: {
+                    duration: 1200,
+                    easing: 'easeOutQuart'
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            },
+             barPercentage: 0.5,       
+    categoryPercentage: 0.6 ,
+            plugins: [{
+                afterDatasetsDraw: function(chart) {
+                    const ctx = chart.ctx;
+                    chart.data.datasets.forEach((dataset, i) => {
+                        const meta = chart.getDatasetMeta(i);
+                        meta.data.forEach((bar, index) => {
+                            const data = dataset.data[index];
+                            if (data > 0) {
+                                ctx.fillStyle = '#1F2937';
+                                ctx.font = 'bold 13px Inter, system-ui, sans-serif';
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'bottom';
+
+                                const x = bar.x;
+                                const y = bar.y - 5;
+
+                                ctx.fillText(data, x, y);
+                            }
+                        });
+                    });
+                }
+            }]
+        });
+    </script>
+</div>
+            </div>
+    </div>
 
     </div>
 </div>
