@@ -14,7 +14,7 @@ class PosteController extends Controller
     public function index()
     {
         $postes = Poste::all(); // récupérer tous les postes
-        return view('index', compact('postes'));
+        return view('postes.index', compact('postes'));
     }
 
     /**
@@ -22,7 +22,7 @@ class PosteController extends Controller
      */
     public function create()
     {
-        return view('createposte');
+        return view('postes.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class PosteController extends Controller
      */
     public function show(poste $poste)
     {
-        return view('showposte', compact('poste'));
+        return view('postes.show', compact('poste'));
     }
 
     /**
@@ -58,7 +58,7 @@ class PosteController extends Controller
      */
     public function edit(poste $poste)
     {
-        return view('editposte', compact('poste'));
+        return view('postes.edit', compact('poste'));
     }
 
     /**
