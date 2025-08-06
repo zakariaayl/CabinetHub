@@ -63,7 +63,7 @@ class InventaireFilters extends Component
     }
     public function getBottomRessources()
     {
-        $topRessources = DB::table('inventaire_ressource')
+        $BottomRessources = DB::table('inventaire_ressource')
             ->select('ressource_id', DB::raw('COUNT(*) as total_appearances'))
             ->groupBy('ressource_id')
             ->orderBy('total_appearances', 'asc')
@@ -71,14 +71,14 @@ class InventaireFilters extends Component
             ->get();
 
 
-        while ($topRessources->count() < 3) {
-            $topRessources->push((object)[
+        while ($BottomRessources->count() < 3) {
+            $BottomRessources->push((object)[
                 'ressource_id' => null,
                 'total_appearances' => 0
             ]);
         }
 
-        return $topRessources;
+        return $BottomRessources;
     }
 
     public function render()
@@ -130,19 +130,19 @@ class InventaireFilters extends Component
         foreach ($BottomRessources as $BottomResource) {
             if ($BottomResource->ressource_id) {
                 $resource = $ressources->where('id', $BottomResource->ressource_id)->first();
-                $resourceChartData[] = [
+                $resourceChartDataBottom[] = [
                     'name' => $resource ? $resource->designation : 'Resource inconnue',
                     'count' => $BottomResource->total_appearances
                 ];
             } else {
-                $resourceChartData[] = [
+                $resourceChartDataBottom[] = [
                     'name' => 'Aucune donnée',
                     'count' => 0
                 ];
             }
         }
-        while (count($resourceChartData) < 3) {
-            $resourceChartData[] = [
+        while (count($resourceChartDataBottom) < 3) {
+            $resourceChartDataBottom[] = [
                 'name' => 'Aucune donnée',
                 'count' => 0
             ];
