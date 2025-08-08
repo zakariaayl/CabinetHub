@@ -1,6 +1,6 @@
 <div class="flex items-top justify-center min-h-screen relative  bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
  <div class="grid grid-cols-12  items-start justify-center w-full px-4">
-    <div class="col-span-12 md:col-span-8 w-full">
+    <div class="col-span-12 md:col-span-8 w-full ">
     <div
    class=" container  p-4     items-center justify-center mt-20  ">
         @if(session('success'))
@@ -596,6 +596,29 @@
 </div>
             </div>
     </div>
+   <div class="bg-white rounded-2xl shadow-xl p-6 w-full md:col-span-8 col-span-12">
+    <div class="bg-gradient-to-r from-emerald-400 via-blue-400 to-violet-500 rounded-xl p-4 text-center shadow-md">
+        <div class="flex items-center justify-center">
+       <i class="fa-solid fa-clipboard text-2xl mr-2 text-gray-500"></i>
+        <h1 class="text-2xl font-bold text-white tracking-wide">Ressources sans inventaire</h1>
+        </div>
+    </div>
+
+    <ul class="mt-4 space-y-3">
+        @forelse ($ressourcesNotInInventaire as $res)
+            <li class="flex items-center bg-gray-50 hover:bg-gray-100 transition rounded-lg px-4 py-2 shadow-sm">
+                <i class="fa-solid fa-bell mr-2 text-emerald-400"></i>
+                <span class="text-gray-700 font-medium"> {{ $res->designation }}</span>
+            </li>
+        @empty
+            <li class="text-gray-500 text-center py-4 italic">Toutes les ressources ont été inventoriées</li>
+        @endforelse
+    </ul>
+
+
+</div>
+
 
     </div>
+
 </div>

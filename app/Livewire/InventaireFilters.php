@@ -147,6 +147,14 @@ class InventaireFilters extends Component
                 'count' => 0
             ];
         }
-        return view('livewire.inventaire-filters', compact('inventaires', 'topUsers', 'resourceChartData','all','resourceChartDataBottom'));
+        $ressourcesNotInInventaire = DB::table('resource')
+    ->whereNotIn('id', function ($query) {
+        $query->select('ressource_id')->from('inventaire_ressource');
+    })
+    ->select('id', 'designation')
+    ->limit(10)
+    ->get();
+
+        return view('livewire.inventaire-filters', compact('inventaires', 'topUsers', 'resourceChartData','all','resourceChartDataBottom','ressourcesNotInInventaire'));
     }
 }
