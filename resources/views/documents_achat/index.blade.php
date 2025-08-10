@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="px-4 sm:px-6 lg:px-8 py-8 mt-10">
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-2xl font-semibold text-gray-900">Documents d'achat</h1>
     <div class="flex items-center gap-3">
@@ -20,80 +20,46 @@
     </div>
   </div>
 
-  <!-- Table / List -->
-  <div class="bg-white shadow rounded-lg overflow-hidden">
-    <div class="hidden md:block">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Référence</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fournisseur</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date émission</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date échéance</th>
-            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Montant HT</th>
-            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">TVA</th>
-            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">TTC</th>
-            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Fichier</th>
-            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-            <th class="px-6 py-3"></th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+
+  <div class="w-full ">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+
           @forelse($documents as $doc)
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $doc->reference }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $doc->type }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $doc->fournisseur }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ optional($doc->date_emission)->format('d/m/Y') }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ optional($doc->date_echeance)->format('d/m/Y') }}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-right font-mono">{{ number_format($doc->montant_ht, 2, ',', ' ') }} MAD</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-right font-mono">{{ number_format($doc->montant_tva, 2, ',', ' ') }} MAD</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-right font-mono">{{ number_format($doc->montant_ttc, 2, ',', ' ') }} MAD</td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
+         <div class="bg-white shadow-lg hover:shadow-xl hover:scale-105 transition rounded-lg w-full ">
+
+
+            <div class="w-full relative group overflow-hidden">
+    <div class="absolute rounded-t-lg bg-black bg-opacity-40 px-6 py-4 text-sm text-white mr-7 w-full
+        transform -translate-y-full transition-transform duration-200 ease-in-out group-hover:translate-y-0">
+        {{ $doc->type }}
+    </div>
+
+    <img class="w-full h-64 rounded-md" src="{{ asset($doc->fichier_pdf).'.png'}}" alt="il n y a pas une image disponible" />
+</div>
+
+            <div class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex ">
+
               @if($doc->fichier_pdf)
-                <a href="{{ asset('storage/'.$doc->fichier_pdf) }}" target="_blank" class="inline-flex items-center gap-2 px-3 py-1 border rounded-md text-sm">Voir PDF</a>
+                <a href="{{ asset($doc->fichier_pdf).'.pdf' }}" target="_blank" class="inline-flex items-center gap-2 px-3 py-1 border rounded-md text-sm text-blue-500">Voir PDF</a>
               @else
                 <span class="text-sm text-gray-400">—</span>
               @endif
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-center">
-              @php
-                $status = strtolower($doc->status);
-              @endphp
-              @if($status === 'payé' || $status === 'paye' || $status === 'paid')
-                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">Payé</span>
-              @elseif($status === 'en attente' || $status === 'pending')
-                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">En attente</span>
-              @elseif($status === 'annulé' || $status === 'echoue' || $status === 'échoué')
-                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">Annulé</span>
-              @else
-                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">{{ ucfirst($doc->status) }}</span>
-              @endif
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <a href="" class="text-indigo-600 hover:text-indigo-900 mr-3">Voir</a>
-              <a href="" class="text-yellow-600 hover:text-yellow-900 mr-3">Éditer</a>
-              <form action="" method="POST" class="inline-block" onsubmit="return confirm('Supprimer ce document ?');">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="text-red-600 hover:text-red-900">Supprimer</button>
-              </form>
-            </td>
-          </tr>
+              <a href="{{route('Document_achat.create')}}" class="text-yellow-600 hover:text-yellow-900 mr-3">utiliser</a>
+
+            </div>
+          </div>
           @empty
           <tr>
-            <td colspan="11" class="px-6 py-12 text-center text-gray-500">Aucun document trouvé.</td>
+            <div colspan="11" class="px-6 py-12 text-center text-gray-500">Aucun document trouvé.</div>
           </tr>
+          </div>
           @endforelse
-        </tbody>
-      </table>
+
     </div>
 
-    <!-- Mobile list -->
-    <div class="md:hidden p-4">
+    {{-- <div class="md:hidden p-4">
       @forelse($documents as $doc)
-        <div class="border rounded-lg p-3 mb-3 bg-white">
+        <div class="border rounded-lg p-3 mb-3 md:hidden bg-white">
           <div class="flex items-start justify-between">
             <div>
               <div class="text-sm font-semibold">{{ $doc->reference }}</div>
@@ -120,14 +86,14 @@
       @empty
         <div class="text-center text-gray-500">Aucun document trouvé.</div>
       @endforelse
-    </div>
+    </div> --}}
 
-    <div class="px-4 py-3 bg-gray-50 border-t flex items-center justify-between">
+    {{-- <div class="px-4 py-3 bg-gray-50 border-t flex items-center justify-between">
       {{-- <div class="text-sm text-gray-600">Affichage de {{ $documents->firstItem() ?? 0 }} à {{ $documents->lastItem() ?? 0 }} sur {{ $documents->total() ?? 0 }}</div>
       <div>
         {{ $documents->appends(request()->query())->links() }}
-      </div> --}}
-    </div>
+      </div>
+    </div> --}}
   </div>
 </div>
 @endsection
