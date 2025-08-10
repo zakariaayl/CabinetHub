@@ -35,7 +35,7 @@ Route::get('/inventaire/{id}', function ($id) {
 
 Route::resource('ResourceController', ResourceController::class);
 
-Route::resource('DocumentAchatController', DocumentAchatController::class);
+Route::resource('Document_achat', DocumentAchatController::class);
 Route::get('/RH/collaborateurs', [CollaborateurController::class, 'dashboard'])
     ->name('collaborateurs.index');
 
