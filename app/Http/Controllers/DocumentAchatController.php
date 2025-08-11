@@ -11,8 +11,10 @@ class DocumentAchatController extends Controller
         $documents=document_Achat::all();
         return view('documents_achat.index',compact('documents'));
     }
-    public function create() {
-        $documents=document_Achat::all();
-        return view('documents_achat.createDocument',compact('documents'));
+    public function edit($id) {
+        if($id==1)
+        return view('documents_achat.createDocument_Bon_commande');
+    if($id==4)
+        return view('documents_achat.createDocument_Facture');
     }
 }
