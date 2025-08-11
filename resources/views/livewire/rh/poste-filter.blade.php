@@ -83,6 +83,13 @@
             </tbody>
         </table>
     </div>
+    <!-- BOUTON AJOUT -->
+    <div class="mt-6 flex justify-center">
+        <a href="{{ route('postes.create') }}"
+           class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700 transition">
+            + Ajouter une fiche de poste
+        </a>
+    </div>
 
     {{-- PAGINATION --}}
     <div class="mt-4 flex justify-center">
