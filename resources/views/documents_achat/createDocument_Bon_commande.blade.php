@@ -303,16 +303,51 @@
             const doc = new jsPDF();
 
 
-            doc.setFont('helvetica');
+            doc.setFillColor(76, 85, 58);
+            doc.rect(0, 0, 210, 25, 'F');
 
 
-            doc.setFontSize(20);
-            doc.setTextColor(0, 0, 0);
-            doc.text('FORMULAIRE DE COMMANDE', 105, 20, { align: 'center' });
+            doc.setTextColor(255, 255, 255);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(16);
 
 
+            doc.setDrawColor(255, 255, 255);
+            doc.setLineWidth(0.8);
+            doc.circle(25, 12, 4, 'S');
+
+
+            const centerX = 25, centerY = 12, radius = 4;
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * Math.PI) / 4;
+                const x1 = centerX + (radius - 1) * Math.cos(angle);
+                const y1 = centerY + (radius - 1) * Math.sin(angle);
+                const x2 = centerX + radius * Math.cos(angle);
+                const y2 = centerY + radius * Math.sin(angle);
+                doc.line(x1, y1, x2, y2);
+            }
+
+
+            doc.text('CABINETHUB', 32, 16);
+
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.text('@REALLYGREATSITE', 210 - 20, 10, { align: 'right' });
+            doc.text(`${data.phone}`, 210 - 20, 18, { align: 'right' });
+
+            doc.setFillColor(240, 240, 240);
+            doc.rect(0, 25, 210, 25, 'F');
+
+
+            doc.setTextColor(118, 138, 93); image
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(28);
+            doc.text('BON DE COMMANDE', 105, 42, { align: 'center' });
+doc.setTextColor(0, 0, 0);
+            doc.setFont('helvetica', 'normal');
             doc.setFontSize(12);
-            let y = 40;
+            let y = 65;
 
             doc.text(`Numéro de commande: ${data.orderNumber}`, 20, y);
             doc.text(`Date: ${data.date.formatted}`, 120, y);
