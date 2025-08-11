@@ -13,12 +13,12 @@ class CongeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request )
-    {
-        $query = Conge::with('collaborateur')
-        ->orderByRaw("FIELD(statut, 'en attente', 'accepté', 'refusé')")
-        ->latest('demande_effectuee_a');$query = Conge::with('collaborateur')
-        ->orderByRaw("FIELD(statut, 'en attente', 'accepté', 'refusé')")
+    // app/Http/Controllers/RH/CongeController.php
+
+public function index(Request $request)
+{
+    $query = Conge::with('collaborateur')
+        ->orderByRaw("FIELD(statut,'en attente','accepté','refusé')")
         ->latest('demande_effectuee_a');
 
     if ($request->filled('collaborateur')) {
@@ -39,7 +39,7 @@ class CongeController extends Controller
     $conges = $query->paginate(10);
 
     return view('conges.index', compact('conges'));
-    }
+}
 
     /**
      * Show the form for creating a new resource.
