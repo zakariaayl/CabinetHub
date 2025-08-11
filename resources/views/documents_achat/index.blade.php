@@ -27,8 +27,7 @@
           @forelse($documents as $doc)
          <div class="bg-white shadow-lg hover:shadow-xl hover:scale-105 transition rounded-lg w-full ">
 
-
-            <div class="w-full relative group overflow-hidden">
+            <div class="w-full relative group overflow-hidden rounded-t-lg">
     <div class="absolute rounded-t-lg bg-black bg-opacity-40 px-6 py-4 text-sm text-white mr-7 w-full
         transform -translate-y-full transition-transform duration-200 ease-in-out group-hover:translate-y-0">
         {{ $doc->type }}
@@ -44,8 +43,7 @@
               @else
                 <span class="text-sm text-gray-400">—</span>
               @endif
-              <a href="{{route('Document_achat.create')}}" class="text-yellow-600 hover:text-yellow-900 mr-3">utiliser</a>
-
+              <a href="{{route('Document_achat.edit',$doc->id)}}" class=" ml-3 inline-flex items-center gap-2 px-3 py-1 border rounded-md text-sm text-emerald-400">utiliser</a>
             </div>
           </div>
           @empty
