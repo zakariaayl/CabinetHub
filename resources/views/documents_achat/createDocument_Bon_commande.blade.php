@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Commande</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-</head>
-<body class="bg-gray-50 p-8">
+@extends('layouts.app2')
+@section('content')
+
+<div class="mt-14">
+
     <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
         <h1 class="text-2xl font-bold text-gray-800 mb-8 text-center">FORMULAIRE DE COMMANDE</h1>
 
@@ -340,7 +334,7 @@
             doc.rect(0, 25, 210, 25, 'F');
 
 
-            doc.setTextColor(118, 138, 93); image
+            doc.setTextColor(118, 138, 93); 
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(28);
             doc.text('BON DE COMMANDE', 105, 42, { align: 'center' });
@@ -393,7 +387,7 @@ doc.setTextColor(0, 0, 0);
             doc.setFont('helvetica', 'bold');
             doc.text(`Total: €${data.financial.total.toFixed(2)}`, 120, y);
 
-            
+
             doc.setFontSize(12);
             doc.setFont('helvetica', 'normal');
             y += 20;
@@ -472,5 +466,7 @@ doc.setTextColor(0, 0, 0);
             alert('Données du formulaire extraites! Consultez la console pour voir les données.');
         });
     </script>
-</body>
-</html>
+</div>
+
+
+@endsection
