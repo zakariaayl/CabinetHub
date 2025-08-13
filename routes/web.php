@@ -7,6 +7,7 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\RH\resourceviewcontroller;
 use App\Http\Controllers\RH\CollaborateurController;
 use App\Http\Controllers\RH\CongeController;
+use App\Http\Controllers\RH\DocumentController;
 use App\Http\Controllers\RH\EvolutionController;
 use App\Http\Controllers\RH\PosteController;
 
@@ -126,3 +127,11 @@ Route::put('rh/conges/{id}', [CongeController::class, 'update'])
 // Refus avec message
 Route::patch('rh/conges/{id}/refuser', [CongeController::class, 'refuser'])
      ->name('rh.conges.refuser');
+
+
+Route::get('/documents-rh', [DocumentController::class, 'index'])->name('documents-rh.index');
+
+
+Route::get('/templates/{slug}/preview', [DocumentController::class, 'preview']);
+Route::match(['GET', 'POST'], '/templates/{type}/generate', [DocumentController::class, 'generate']);
+

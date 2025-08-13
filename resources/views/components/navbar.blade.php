@@ -55,13 +55,13 @@
       </li>
 
       <li>
-        <a href="#"   {{-- remplace par route('documents.index') --}}
-           class="flex items-center justify-center gap-2 h-10 px-5 rounded-lg {{ navActive('documents.*') }}">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-               viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-          <span>Documents RH</span>
+        <a href="{{ route('documents-rh.index') }}"
+           class="flex items-center justify-center gap-2 h-10 px-5 rounded-lg {{ navActive('documents-rh.index') }}">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+            <span>Documents RH</span>
         </a>
-      </li>
+    </li>
 
       <li>
         <a href="#"   {{-- remplace par route('formations.index') --}}
@@ -79,7 +79,7 @@
     <a href="{{ route('collaborateurs.index') }}" class="block {{ navActive('collaborateurs.index') }}">Tableau de bord</a>
     <a href="{{ route('postes.index') }}" class="block {{ navActive('postes.*') }}">Fiches de poste</a>
     <a href="{{ route('rh.conges.index') }}" class="block {{ navActive('rh.conges.*') }}">Absences et Congés</a>
-    <a href="#"   class="block {{ navActive('documents.*') }}">Documents RH</a>
+    <a href="{{ route('documents-rh.index') }}" class="block {{ navActive('documents-rh.index') }}">Documents RH</a>
     <a href="#"   class="block {{ navActive('formations.*') }}">Formations et Évaluations</a>
   </div>
 </nav>
