@@ -29,10 +29,7 @@ class CollaborateurFilter extends Component
         // reset pagination when filter changes
         $this->resetPage();
     }
-    public function resetFilters()
-    {
-        $this->reset(['search', 'poste', 'departement', 'presence']);
-    }
+
 
     public function render()
 {

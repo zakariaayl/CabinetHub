@@ -1,5 +1,5 @@
 <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100  text-gray-800 font-sans">
- <div class="max-w-7xl mx-auto p-6 mt-12">
+ <div class="  p-6 mt-12">
     <div class="text-center text-white mb-10">
       <h1 class="text-4xl font-bold text-gray-800 drop-shadow">Gestion Avancée des Inventaires</h1>
       <p class="text-lg text-gray-800 opacity-90">Suivi en temps réel et analyses de vos ressources</p>

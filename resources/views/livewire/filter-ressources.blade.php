@@ -312,8 +312,8 @@
 @endphp
 @if($horsService->isEmpty())
     <div class="flex flex-col  p-5 border-l-[6px] border-green-500 bg-green-50 rounded-xl shadow-sm hover:shadow-lg transition-all duration-500 m-3">
-    <p class="text-md font-bold text-gray-600 leading-relaxed text-start">
-        aucune ressource est Hors service
+    <p class="text-sm font-semibold text-gray-600 leading-relaxed text-start">
+        Aucune ressource est Hors service
     </p>
 </div>
 @else

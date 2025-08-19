@@ -11,6 +11,7 @@ class DemandesFilters extends Component
     public $date_demande='';
     public $resource_demande='';
     public $responsabl_demande='';
+    public $type='';
     public function render()
     { $livre=0;
     $aprouv=0;
@@ -33,6 +34,9 @@ class DemandesFilters extends Component
 
     if (!empty($this->responsabl_demande)) {
         $query->where('responsabl_demande', 'like', '%' . $this->responsabl_demande . '%');
+    }
+    if (!empty($this->type)) {
+        $query->where('statut', 'like', '%' . $this->type . '%');
     }
     $query->orderByRaw("CASE WHEN statut = 'en attente' THEN 0 ELSE 1 END");
     $demandes= $query->paginate(8);

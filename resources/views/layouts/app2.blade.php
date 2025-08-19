@@ -12,7 +12,7 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
 
-
+{{--  --}}
 <x-navbar_resource/>
 
     <div class="p-4">

@@ -26,7 +26,7 @@
               class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-8">
             <h2 class="text-xl font-semibold mb-4">Filtres de recherche</h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-2 mb-6">
                     <div class="mx-auto w-full">
                         <label for="date_besoin" class="block text-sm font-medium text-gray-600 mb-1">date du besoin</label>
                         <input type="date" name="date_besoin" id="date_besoin"
@@ -46,8 +46,17 @@
                     </div>
                     <div class="mx-auto w-full">
                         <label for="designation" class="block text-sm font-medium text-gray-600 mb-1">resource du demande</label>
-                        <input type="text" name="designation" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"wire:model.live.debounce.500m="resource_demande">
+                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"wire:model.live.debounce.500m="resource_demande">
                         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <div>
+                        <label for="filtertype" class="block text-sm font-medium text-gray-600 mb-1">Type</label>
+                        <select class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="type">
+                            <option value="">Sélectionner</option>
+                            <option value="refusée" >refusée</option>
+                            <option value="approuvée" >approuvée</option>
+                            <option value="en attente" >en attente</option>
+                        </select>
                     </div>
                 </div>
 
@@ -78,12 +87,12 @@
         <p class="text-xl font-bold text-red-600">{{ $refus }}</p>
     </div>
 </div>
- 
+
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @forelse($demandes as $demande)
             @if ($demande['statut']=="approuvée")
 
-                <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-green-500">
+                <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl hover:scale-105 transition-transform  border-green-500 duration-500">
                     <div>
                         <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
                         <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
@@ -114,7 +123,7 @@
                     </div>
                 </div>
                 @elseif ($demande['statut']=="refusée")
-                     <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-red-400 duration-300">
+                     <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition-transform border-red-400 duration-500 hover:scale-105">
                     <div>
                         <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
                         <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>
@@ -144,7 +153,7 @@
                     </div>
                 </div>
                  @elseif(trim($demande['statut']) == "en cours de traitement" || trim($demande['statut']) == "en attente")
-                      <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition border-yellow-500">
+                      <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col justify-between border-t-4  hover:shadow-2xl transition-transform border-yellow-500 hover:scale-105 duration-500">
                     <div>
                         <h3 class="text-xl font-semibold text-black mb-2">{{ $demande['responsabl_demande'] }}</h3>
                         <p class="text-sm text-gray-500 mb-1"> {{ $demande['date_demande'] }}</p>

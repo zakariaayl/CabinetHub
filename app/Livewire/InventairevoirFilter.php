@@ -46,7 +46,7 @@ class InventairevoirFilter extends Component
     if (!empty($this->search)) {
         $query->where('designation', 'like', '%' . $this->search . '%');
     }
-
+    $query->orderBy("created_at","asc");
     $ressources = $query->get();
 
     // your stats logic here...

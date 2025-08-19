@@ -47,7 +47,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
                 <div class="space-y-6">
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-user-tie text-blue-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Responsable</span>
@@ -55,7 +55,7 @@
                         <p class="text-black text-lg font-semibold">{{ $demande->responsabl_demande ?? 'Non spécifié' }}</p>
                     </div>
 
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-calendar-alt text-green-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Date de Demande</span>
@@ -63,7 +63,7 @@
                         <p class="text-black text-lg font-semibold">{{ $demande->date_demande ?? 'Non spécifiée' }}</p>
                     </div>
 
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-clock text-yellow-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Date de Besoin</span>
@@ -71,7 +71,7 @@
                         <p class="text-black text-lg font-semibold">{{ $demande->date_besoin ?? 'Non spécifiée' }}</p>
                     </div>
 
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-box text-purple-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Ressource Demandée</span>
@@ -79,7 +79,7 @@
                         <p class="text-black text-lg font-semibold">{{ $demande->resource_demande ?? 'Non spécifiée' }}</p>
                     </div>
 
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-tags text-pink-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Catégorie</span>
@@ -87,7 +87,7 @@
                         <p class="text-black text-lg font-semibold">{{ $demande->categorie ?? 'Non spécifiée' }}</p>
                     </div>
 
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-building text-indigo-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Département</span>
@@ -98,7 +98,7 @@
 
 
                 <div class="space-y-6">
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-map-marker-alt text-red-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Emplacement</span>
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div class="info-card p-4 bg-gradient-to-br from-emerald-500 to-emerald-600/20 rounded-2xl backdrop-blur-sm border border-emerald-400/30">
+                        <div class="info-card p-4 bg-gradient-to-br from-emerald-500 to-emerald-600/20 rounded-2xl backdrop-blur-sm border border-emerald-400/30 hover:shadow-xl transition duration-500">
                             <div class="text-center">
                                 <i class="fas fa-sort-numeric-up text-emerald-800 text-2xl mb-2"></i>
                                 <p class="text-gray-300 text-sm">Quantité</p>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div class="info-card p-4 bg-gradient-to-br from-blue-500 to-blue-600/20 rounded-2xl backdrop-blur-sm border border-blue-400/30">
+                        <div class="info-card p-4 bg-gradient-to-br from-blue-500 to-blue-600/20 rounded-2xl backdrop-blur-sm border border-blue-400/30 hover:shadow-xl transition duration-500">
                             <div class="text-center">
                                 <i class="fas fa-dollar-sign text-blue-800 text-2xl mb-2"></i>
                                 <p class="text-gray-300 text-sm">Prix Unit.</p>
@@ -123,7 +123,7 @@
                             </div>
                         </div>
 
-                        <div class="info-card p-4 bg-gradient-to-br from-yellow-500 to-yellow-600/20 rounded-2xl backdrop-blur-sm border border-yellow-400/30">
+                        <div class="info-card p-4 bg-gradient-to-br from-yellow-500 to-yellow-600/20 rounded-2xl backdrop-blur-sm border border-yellow-400/30 hover:shadow-xl transition duration-500">
                             <div class="text-center">
                                 <i class="fas fa-calculator text-yellow-800 text-2xl mb-2"></i>
                                 <p class="text-gray-300 text-sm">Total</p>
@@ -132,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-align-left text-cyan-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Description</span>
@@ -142,7 +142,7 @@
                         </div>
                     </div>
 
-                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-white/20  hover:shadow-xl transition-all duration-300">
+                    <div class="info-card p-6 bg-white rounded-2xl backdrop-blur-sm border border-gray-200  hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center mb-3">
                             <i class="fas fa-comment text-orange-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Commentaire</span>
@@ -161,24 +161,38 @@
                 <form action="{{route('demande_achat.update',$demande->id ?? 1)}}" method="POST">
                     @csrf
                     @method('PUT')
-                    <button type="submit" name="action" value="valider"
-                            class="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-black font-bold rounded-2xl shadow-xl hover:shadow-emerald-500/25 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative flex items-center">
+                    <button type="submit" name="action" value="refuser"
+                            class="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-black font-bold rounded-2xl shadow-xl  hover:shadow-2xl transform   border border-emerald-300 hover:bg-white hover:border-emerald-500 transition-all duration-300 overflow-hidden group flex ">
+
+                        <div class="relative flex items-center transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center rounded-lg">
                             <i class="fas fa-check-circle mr-3 text-xl"></i>
+                        </div>
                             <span>Valider</span>
                         </div>
                     </button>
+                    {{-- <button type="submit" name="action" value="valider"
+                            class="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-black font-bold rounded-2xl shadow-l hover:shadow-emerald-500/25 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
+
+                        <div class=" flex items-center">
+                            <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 group ">
+                            <i class="fas fa-check-circle mr-3 text-xl"></i>
+                        </div>
+                            <h1>Valider</h1>
+                        </div>
+                    </button> --}}
                 </form>
 
                 <form action="{{route('demande_achat.update',$demande->id ?? 1)}}" method="POST">
                     @csrf
                     @method('PUT')
                     <button type="submit" name="action" value="refuser"
-                            class="group relative px-8 py-4 bg-gradient-to-r from-red-500 to-rose-600 text-black font-bold rounded-2xl shadow-xl hover:shadow-red-500/25 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="relative flex items-center">
-                            
+                            class="group relative px-8 py-4 bg-gradient-to-r from-red-500 to-rose-600 text-black font-bold rounded-2xl shadow-xl hover:shadow-red-500/25 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden group ">
+
+                        <div class="relative flex items-center transition-transform duration-400">
+                             <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg ">
+                            <i class="fas fa-xmark-circle mr-3 text-xl"></i>
+                        </div>
                             <span>Refuser</span>
                         </div>
                     </button>
@@ -186,7 +200,7 @@
             </div>
 
             <a href="{{ url('/raDemandes') }}"
-               class="group flex items-center px-6 py-3 bg-white backdrop-blur-sm border border-white/20 text-black rounded-2xl  hover:shadow-xl transition-all duration-300 shadow-lg">
+               class="group flex items-center px-6 py-3 bg-white backdrop-blur-sm border border-gray-200 text-black rounded-2xl  hover:shadow-xl transition-all duration-300 shadow-lg">
                 <i class="fas fa-arrow-left mr-2 transform group-hover:-translate-x-1 transition-transform duration-300"></i>
                 <span class="font-medium">Retour</span>
             </a>

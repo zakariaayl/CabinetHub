@@ -597,10 +597,10 @@
             </div>
     </div>
    <div class="bg-white rounded-2xl shadow-xl p-6 w-full md:col-span-8 col-span-12">
-    <div class="bg-gradient-to-r from-emerald-400 via-blue-400 to-violet-500 rounded-xl p-4 text-center shadow-md">
+    <div class="bg-gradient-to-r from-indigo-300 to-purple-300 shadow-lg border border-gray-100 rounded-xl p-4 text-center ">
         <div class="flex items-center justify-center">
-       <i class="fa-solid fa-clipboard text-2xl mr-2 text-gray-500"></i>
-        <h1 class="text-2xl font-bold text-white tracking-wide">Ressources sans inventaire</h1>
+       <i class="fa-solid fa-clipboard text-2xl mr-2 text-gray-900"></i>
+        <h1 class="text-2xl font-bold text-black tracking-wide">Ressources sans inventaire</h1>
         </div>
     </div>
 

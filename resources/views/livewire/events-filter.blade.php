@@ -237,7 +237,7 @@
                     <!-- Changes Preview (if available) -->
                     @if($audit->old_values || $audit->new_values)
                         <div class="mt-4 pt-4 border-t border-slate-200/50">
-                            <div class="text-xs text-slate-500 mb-2">Changes detected</div>
+                            <div class="text-xs text-slate-500 mb-2">Changements detectees</div>
                             <div class="flex gap-2">
                                 @if($audit->old_values)
                                 @php
@@ -260,17 +260,23 @@
                                 @endif
                                 @if(!empty($changes))
     <p class="text-xl font-bold text-blue-600">{{ count($changes) }}</p>
-    <ul>
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-3">
         @foreach($changes as $key => $change)
-            <li>
-                <strong>{{ $key }}</strong> :
+            <li class="bg-indigo-100 opacity-65 p-1 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-indigo-800 ">
+                champ modifie : <span class="inline-flex items-center px-2 py-1 rounded text-xs bg-red-50 text-indigo-700 border border-indigo-200">
+
+                          "{{ $key }}"
+
+                                    </span>
+                anciene valeur :
                 <span class="inline-flex items-center px-2 py-1 rounded text-xs bg-red-50 text-red-700 border border-red-200">
                                         <i class="fas fa-minus mr-1"></i>
 
-"{{ $change['old'] }}"
+                          "{{ $change['old'] }}"
 
                                     </span>
      @if($audit->new_values)
+     nouvelle valeur :
                                     <span class="inline-flex items-center px-2 py-1 rounded text-xs bg-green-50 text-green-700 border border-green-200">
                                         <i class="fas fa-plus mr-1"></i>
                                         "{{ $change['new'] }}"
