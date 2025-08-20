@@ -37,7 +37,7 @@
 
                 <div class="bg-gradient-to-br from-purple-50 to-purple-100 h-32 rounded-2xl p-6 flex flex-col items-center justify-center border border-purple-200 hover:shadow-2xl transition-all duration-500 shadow-lg hover:-translate-y-1">
                     <div class="bg-purple-200 p-3 rounded-full mb-2">
-                        <i class="fa-solid fa-shield-check text-purple-600 text-xl"></i>
+                        <i class="fa-solid fa-square-check text-purple-600 text-xl"></i>
                     </div>
                     <h3 class="text-sm font-semibold text-gray-700 mb-1 text-center">Validés</h3>
                     <p class="text-2xl font-bold text-purple-600">18</p>

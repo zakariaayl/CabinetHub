@@ -3,7 +3,7 @@
    <div class="ml-7 bg-indigo-100 p-2 rounded-full mt-20">
                     <i class="fa-solid fa-warehouse text-indigo-600 text-xl"></i>
     </div>
-   <h1 class="ml-7 text-4xl font-bold  text-start mx-auto block mt-20 mb-6">Tableau du Bord du Ressources</h1>
+   <h1 class="ml-7 text-4xl font-semibold  text-start mx-auto block mt-20 mb-6">Tableau du Bord du Ressources</h1>
 </div>
     <div class="grid grid-cols-12  items-start justify-center w-full px-4">
         <div class="container p-4  border-gray-200   col-span-12 lg:col-span-8 ">
@@ -52,9 +52,9 @@
         </div>
         <div class="flex">
 
-        
 
-        <h1 class="text-2xl font-bold text-gray-800">Filtres des Ressources</h1>
+
+        <h1 class="text-2xl font-sans text-gray-800">Filtres des Ressources</h1>
         </div>
     </div>
 

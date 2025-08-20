@@ -147,8 +147,8 @@
                             <i class="fas fa-comment text-orange-400 text-xl mr-3"></i>
                             <span class="text-gray-300 font-medium">Commentaire</span>
                         </div>
-                        <div class="bg-black/20 rounded-lg p-4 max-h-32 overflow-y-auto">
-                            <p class="text-gray-200 whitespace-pre-line">{{ $demande->commentaire ?? 'Aucun commentaire' }}</p>
+                        <div class="bg-gray-300 rounded-lg p-4 max-h-32 overflow-y-auto">
+                            <p class="text-black text-xs whitespace-pre-line">{{ $demande->commentaire ?? 'Aucun commentaire' }}</p>
                         </div>
                     </div>
                 </div>

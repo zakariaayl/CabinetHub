@@ -50,17 +50,33 @@ public function update(Request $request,$id)
     foreach ($request->ressources as $res) {
        $designation .= $res['designation'] . ', ';
         if (!empty($res['etat_releve'])) {
+            if($res['quantite']>=0){
             $inventaire->ressources()->updateExistingPivot($res['id'], [
                 'etat_releve' => $res['etat_releve'],
                 'quantite' => $res['quantite'],
                 'commentaire' => $res['commentaire'],
             ]);
+            }else{
+                $inventaire->ressources()->updateExistingPivot($res['id'], [
+                'etat_releve' => $res['etat_releve'],
+                'quantite' => 0,
+                'commentaire' => $res['commentaire'],
+            ]);
+            }
         }else {
+            if($res['quantite']>=0){
                 $inventaire->ressources()->attach($res['id'], [
                     'etat_releve' => $res['etat_releve'],
                     'quantite' => $res['quantite'],
                     'commentaire' => $res['commentaire'],
                 ]);
+            }else {
+                $inventaire->ressources()->attach($res['id'], [
+                    'etat_releve' => $res['etat_releve'],
+                    'quantite' => 1,
+                    'commentaire' => $res['commentaire'],
+                ]);
+            }
             }
     }
 AuditEventHelper::log("modification d'inventaire'","modification d'inventaire effectuee pour les ressources ".$designation,$inventaire,null,null,$id);

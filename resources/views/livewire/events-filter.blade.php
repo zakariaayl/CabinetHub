@@ -8,7 +8,7 @@
                 <p class="text-slate-600 mt-2">Monitor and track all system activities</p>
             </div>
             <div class="flex gap-3">
-                <button class="px-4 py-2 bg-white/70 backdrop-blur-sm border border-white/20 rounded-xl text-slate-700 hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <button onsubmit="exportToExcel()" class="px-4 py-2 bg-white/70 backdrop-blur-sm border border-white/20 rounded-xl text-slate-700 hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl">
                     <i class="fas fa-download mr-2"></i>Export
                 </button>
                 <button id="filterToggle" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl">
@@ -332,6 +332,249 @@
     </div>
 </div>
 </div>
+<script>
+
+function exportToExcel() {
+
+    const auditData = [];
+
+    document.querySelectorAll('.space-y-4 > div').forEach((card, index) => {
+        try {
+
+            if (card.querySelector('.fas.fa-inbox') || card.querySelector('.bg-white\\/70.backdrop-blur-sm.rounded-2xl.border.border-white\\/20.shadow-lg.p-4')) {
+                return;
+            }
+
+            const eventTypeElement = card.querySelector('.inline-flex.items-center.px-3.py-1.rounded-full');
+            const eventType = eventTypeElement ? eventTypeElement.textContent.trim() : '';
+
+            const descriptionElement = card.querySelector('.text-lg.font-semibold');
+            const description = descriptionElement ? descriptionElement.textContent.trim() : '';
+
+            const userElement = card.querySelector('.flex.items-center.gap-2 span');
+            const user = userElement ? userElement.textContent.trim() : '';
+
+            const ipElement = card.querySelector('code');
+            const ipAddress = ipElement ? ipElement.textContent.trim() : '';
+
+            const timeElement = card.querySelector('.fas.fa-clock').parentElement.querySelector('span');
+            const timeAgo = timeElement ? timeElement.textContent.trim() : '';
+
+            const dateElement = card.querySelector('.text-right.text-sm .font-semibold');
+            const date = dateElement ? dateElement.textContent.trim() : '';
+
+            const clockElement = card.querySelector('.text-right.text-sm .text-slate-500');
+            const time = clockElement ? clockElement.textContent.trim() : '';
+
+            // Extract model type and ID
+            const modelElement = card.querySelector('.bg-slate-100');
+            const model = modelElement ? modelElement.textContent.trim() : '';
+
+            // Extract changes count
+            const changesElement = card.querySelector('.text-xl.font-bold.text-blue-600');
+            const changesCount = changesElement ? changesElement.textContent.trim() : '0';
+
+            // Extract audit ID
+            const auditIdElement = card.querySelector('.text-xs.text-slate-500');
+            const auditId = auditIdElement ? auditIdElement.textContent.replace('#', '').trim() : '';
+
+            auditData.push({
+                'Audit ID': auditId,
+                'Event Type': eventType,
+                'Description': description,
+                'Model': model,
+                'User': user,
+                'IP Address': ipAddress,
+                'Date': date,
+                'Time': time,
+                'Time Ago': timeAgo,
+                'Changes Count': changesCount
+            });
+        } catch (error) {
+            console.warn(`Error processing audit card ${index}:`, error);
+        }
+    });
+    if (auditData.length === 0) {
+        alert('No audit data found to export');
+        return;
+    }
+    const worksheet = XLSX.utils.json_to_sheet(auditData);
+
+    const columnWidths = [
+        { wch: 10 },
+        { wch: 15 },
+        { wch: 40 },
+        { wch: 20 },
+        { wch: 20 },
+        { wch: 15 },
+        { wch: 12 },
+        { wch: 10 },
+        { wch: 15 },
+        { wch: 12 }
+    ];
+    worksheet['!cols'] = columnWidths;
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Audit Logs');
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
+    const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-');
+    const filename = `audit_logs_${dateStr}_${timeStr}.xlsx`;
+    XLSX.writeFile(workbook, filename);
+    console.log(`Exported ${auditData.length} audit records to ${filename}`);
+}
+function exportDetailedToExcel() {
+    const auditData = [];
+
+    document.querySelectorAll('.space-y-4 > div').forEach((card, index) => {
+        try {
+            if (card.querySelector('.fas.fa-inbox')) return;
+
+            const auditRow = {
+                'ID': '',
+                'Event Type': '',
+                'Description': '',
+                'Model Type': '',
+                'Model ID': '',
+                'User': '',
+                'IP Address': '',
+                'Date': '',
+                'Time': '',
+                'Changes': '',
+                'Field Changes': ''
+            };
+            const idElement = card.querySelector('.text-xs.text-slate-500');
+            if (idElement) {
+                auditRow['ID'] = idElement.textContent.replace('#', '').trim();
+            }
+            const eventBadge = card.querySelector('.inline-flex.items-center.px-3.py-1.rounded-full');
+            if (eventBadge) {
+                auditRow['Event Type'] = eventBadge.textContent.trim();
+            }
+            const descElement = card.querySelector('.text-lg.font-semibold');
+            if (descElement) {
+                auditRow['Description'] = descElement.textContent.trim();
+            }
+            const modelBadge = card.querySelector('.bg-slate-100');
+            if (modelBadge) {
+                const modelText = modelBadge.textContent.trim();
+                const parts = modelText.split('#');
+                auditRow['Model Type'] = parts[0].trim();
+                if (parts.length > 1) {
+                    auditRow['Model ID'] = parts[1].trim();
+                }
+            }
+            const userSpan = card.querySelector('.flex.items-center.gap-2 span');
+            if (userSpan) {
+                auditRow['User'] = userSpan.textContent.trim();
+            }
+            const ipCode = card.querySelector('code');
+            if (ipCode) {
+                auditRow['IP Address'] = ipCode.textContent.trim();
+            }
+            const dateElement = card.querySelector('.text-right .font-semibold');
+            const timeElement = card.querySelector('.text-right .text-slate-500');
+            if (dateElement) auditRow['Date'] = dateElement.textContent.trim();
+            if (timeElement) auditRow['Time'] = timeElement.textContent.trim();
+            const changesCountElement = card.querySelector('.text-xl.font-bold.text-blue-600');
+            if (changesCountElement) {
+                auditRow['Changes'] = changesCountElement.textContent.trim();
+            }
+            const changesElements = card.querySelectorAll('.bg-indigo-100 span');
+            const fieldChanges = [];
+            changesElements.forEach(el => {
+                const text = el.textContent.trim();
+                if (text && text !== '"' && !text.includes('champ modifie') && !text.includes('anciene valeur') && !text.includes('nouvelle valeur')) {
+                    fieldChanges.push(text.replace(/"/g, ''));
+                }
+            });
+            auditRow['Field Changes'] = fieldChanges.join('; ');
+
+            auditData.push(auditRow);
+        } catch (error) {
+            console.warn(`Error processing detailed audit card ${index}:`, error);
+        }
+    });
+
+    if (auditData.length === 0) {
+        alert('No audit data found to export');
+        return;
+    }
+
+    // Create and download Excel file
+    const worksheet = XLSX.utils.json_to_sheet(auditData);
+
+    // Enhanced column widths
+    worksheet['!cols'] = [
+        { wch: 8 },
+        { wch: 12 },
+        { wch: 35 },
+        { wch: 15 },
+        { wch: 10 },
+        { wch: 18 },
+        { wch: 15 },
+        { wch: 12 },
+        { wch: 10 },
+        { wch: 8 },
+        { wch: 50 }
+    ];
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Detailed Audit Logs');
+
+    const now = new Date();
+    const filename = `detailed_audit_logs_${now.toISOString().split('T')[0]}.xlsx`;
+
+    XLSX.writeFile(workbook, filename);
+    console.log(`Exported ${auditData.length} detailed audit records`);
+}
+function exportFilteredData() {
+    const filters = {
+        eventType: document.querySelector('select[name="event_type"]')?.value || '',
+        modelType: document.querySelector('select[name="model_type"]')?.value || '',
+        userId: document.querySelector('input[name="user_id"]')?.value || '',
+        dateFrom: document.querySelector('input[name="date_from"]')?.value || '',
+        dateTo: document.querySelector('input[name="date_to"]')?.value || '',
+        search: document.querySelector('input[name="search"]')?.value || ''
+    };
+    const filterInfo = [];
+    if (filters.eventType) filterInfo.push(`Event Type: ${filters.eventType}`);
+    if (filters.modelType) filterInfo.push(`Model Type: ${filters.modelType}`);
+    if (filters.userId) filterInfo.push(`User ID: ${filters.userId}`);
+    if (filters.dateFrom) filterInfo.push(`Date From: ${filters.dateFrom}`);
+    if (filters.dateTo) filterInfo.push(`Date To: ${filters.dateTo}`);
+    if (filters.search) filterInfo.push(`Search: ${filters.search}`);
+    exportDetailedToExcel();
+    if (filterInfo.length > 0) {
+        console.log('Exported with filters:', filterInfo.join(', '));
+    }
+}
+function loadSheetJS() {
+    if (typeof XLSX === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+        script.onload = function() {
+            console.log('SheetJS library loaded successfully');
+        };
+        document.head.appendChild(script);
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    loadSheetJS();
+    const exportButton = document.querySelector('button:has(.fa-download)');
+    if (exportButton) {
+        exportButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (typeof XLSX === 'undefined') {
+                alert('Excel export library is loading. Please try again in a moment.');
+                loadSheetJS();
+                return;
+            }
+            exportFilteredData();
+        });
+    }
+});
+</script>
 
 
 
