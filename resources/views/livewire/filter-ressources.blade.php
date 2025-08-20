@@ -1,7 +1,10 @@
 <div>
-
-
-   <h1 class="text-4xl font-bold  text-start mx-auto block mt-20">Tableau du Bord du Ressources</h1>
+ <div class="flex">
+   <div class="ml-7 bg-indigo-100 p-2 rounded-full mt-20">
+                    <i class="fa-solid fa-warehouse text-indigo-600 text-xl"></i>
+    </div>
+   <h1 class="ml-7 text-4xl font-bold  text-start mx-auto block mt-20 mb-6">Tableau du Bord du Ressources</h1>
+</div>
     <div class="grid grid-cols-12  items-start justify-center w-full px-4">
         <div class="container p-4  border-gray-200   col-span-12 lg:col-span-8 ">
 
@@ -19,86 +22,131 @@
                 }, 4000);
             </script>
             @endif
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="bg-gradient-to-br from-purple-100 to-indigo-50 h-32 rounded-2xl p-6 flex flex-col items-center justify-center border border-purple-200 hover:shadow-xl transition-all duration-500 shadow-lg hover:-translate-y-1 ">
+    <i class="fa-solid fa-folder text-indigo-700 text-3xl"></i>
+    <h3 class="text-lg font-medium text-indigo-700 mb-1">Toutes les Ressourcess</h3>
+    <p class="text-2xl font-medium text-indigo-700">{{ $all }}</p>
+</div>
+    <div class="bg-yellow-100 shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-yellow-300 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
+        <i class="fa-solid fa-recycle text-yellow-700 text-3xl"></i>
+        <h4 class="text-md font-medium text-yellow-700 mb-1">Usagé</h4>
+        <p class="text-xl font-medium text-yellow-700">{{ $Usage }}</p>
+    </div>
+    <div class="bg-gradient-to-br from-green-400/20 to-emerald-400/20 shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-emerald-300 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
+        <i class="fa-solid fa-bolt text-green-700 text-3xl"></i>
+        <h4 class="text-md font-medium text-green-700 mb-1">Bon</h4>
+        <p class="text-xl font-medium text-green-700">{{ $bon }}</p>
+    </div>
+    <div class="bg-gradient-to-br from-red-400/25 to-rose-400/25  shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-red-300 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
+         <i class="fa-solid fa-trash text-red-700 text-center text-3xl"></i>
+        <h4 class="text-md font-medium text-red-700 mb-1">Hors Service</h4>
 
-            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mb-6">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                    <div>
-                        <label for="filtertype" class="block text-sm font-medium text-gray-600 mb-1">Type</label>
-                        <select name="filtertype" id="filtertype" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="filtertype">
-                            <option value="">Sélectionner</option>
-                            <option value="Materiel" >Materiel</option>
-                            <option value="Logiciel" >Logiciel</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="etat" class="block text-sm font-medium text-gray-600 mb-1">État</label>
-                        <select name="etat" id="etat" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="etat">
-                            <option value="">Sélectionner</option>
-                            <option value="Neuf">Neuf</option>
-                            <option value="Bon" >Bon</option>
-                            <option value="Usagé" >Usagé</option>
-                            <option value="Hors Service">Hors Service</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-600 mb-1">Utilisateur affecté</label>
-                        <input type="text" name="utilisateur_affecte" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="utilisateur_affecte">
-                        <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    </div>
-                    <div>
-                        <label for="designation" class="block text-sm font-medium text-gray-600 mb-1">Désignation</label>
-                        <input type="text" name="designation" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"wire:model.live.debounce.500m="designation">
-                        <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    </div>
+        <p class="text-xl font-medium text-red-700">{{ $hors }}</p>
+    </div>
+</div>
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 mb-6">
+    <div class="flex items-center mb-6">
+        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+            <i class="fas fa-filter text-white"></i>
+        </div>
+        <div class="flex">
+
+        
+
+        <h1 class="text-2xl font-bold text-gray-800">Filtres des Ressources</h1>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="space-y-2">
+            <label for="filtertype" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <i class="fas fa-layer-group text-blue-500 mr-2"></i>
+                Type
+            </label>
+            <div class="relative">
+                <select name="filtertype" id="filtertype" class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-white appearance-none cursor-pointer" wire:model.live.debounce.500ms="filtertype">
+                    <option value="">Sélectionner un type</option>
+                    <option value="Materiel">Matériel</option>
+                    <option value="Logiciel">Logiciel</option>
+                </select>
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-layer-group absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                 </div>
+                <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
             </div>
-<div class="bg-white  rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6 hover:shadow-xl transition duration-500 shadow-md">
-    <i class="fa-solid fa-folder text-gray-500 text-3xl"></i>
-    <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les Ressourcess</h3>
-    {{-- fa-folder --}}
+        </div>
 
-    <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
+        <div class="space-y-2">
+            <label for="etat" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <i class="fas fa-heartbeat text-green-500 mr-2"></i>
+                État
+            </label>
+            <div class="relative">
+                <select name="etat" id="etat" class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all duration-200 bg-white appearance-none cursor-pointer" wire:model.live.debounce.500ms="etat">
+                    <option value="">Sélectionner un état</option>
+                    <option value="Bon">Bon</option>
+                    <option value="Usagé">Usagé</option>
+                    <option value="Hors Service">Hors Service</option>
+                </select>
+                <i class="fas fa-heartbeat absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+            </div>
+        </div>
+
+        <div class="space-y-2">
+            <label for="utilisateur_affecte" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <i class="fas fa-user text-purple-500 mr-2"></i>
+                Utilisateur affecté
+            </label>
+            <div class="relative">
+                <input type="text" name="utilisateur_affecte" class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-100 focus:border-purple-500 transition-all duration-200 bg-white" wire:model.live.debounce.500ms="utilisateur_affecte" placeholder="Nom de l'utilisateur...">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-user text-gray-400"></i>
+                            </div>
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-user text-gray-400"></i>
+                            </div>
+            </div>
+        </div>
+
+        <div class="space-y-2">
+            <label for="designation" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <i class="fas fa-tag text-orange-500 mr-2"></i>
+                Désignation
+            </label>
+            <div class="relative">
+                <input type="text" name="designation" class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-orange-500 transition-all duration-200 bg-white" wire:model.live.debounce.500ms="designation" placeholder="Nom du produit...">
+                <i class="fas fa-tag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-    <div class="bg-yellow-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-xl transition duration-500">
-        <i class="fa-solid fa-recycle text-yellow-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-yellow-700 mb-1">Usagé</h4>
-        <p class="text-xl font-bold text-yellow-600">{{ $Usage }}</p>
-    </div>
-    <div class="bg-green-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-xl transition duration-500">
-        <i class="fa-solid fa-bolt text-green-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-green-700 mb-1">Bon</h4>
-        <p class="text-xl font-bold text-green-600">{{ $bon }}</p>
-    </div>
-    <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-xl transition duration-500">
-         <i class="fa-solid fa-trash text-red-500 text-center text-3xl"></i>
-        <h4 class="text-md font-semibold text-red-700 mb-1">Hors Service</h4>
 
-        <p class="text-xl font-bold text-red-600">{{ $hors }}</p>
-    </div>
-</div>
+
             <div class="overflow-x-scroll rounded-2xl shadow-2xl">
                 <table class="table-auto w-full border-collapse">
-                    <thead class="bg-gradient-to-r from-indigo-300 to-purple-300  border border-gray-100 rounded-t-2xl  shadow-xl">
+                    <thead class="bg-gradient-to-r from-indigo-300 to-blue-300   rounded-t-2xl  shadow-xl">
                         <tr>
-                            <th class="p-4">image</th>
-                            <th class="p-4">Type</th>
-                            <th class="p-4">Désignation</th>
-                            <th class="p-4">Marque</th>
-                            <th class="p-4">Modèle</th>
-                            <th class="p-4">État</th>
-                            <th class="p-4">Utilisateur Affecté</th>
-                            <th class="p-4">Durée de vie (mois)</th>
-                            <th class="p-4">Durée resté (mois)</th>
-                            <th class="p-4">Quantité</th>
-                            <th class="p-4">Action</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">image</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Type</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Désignation</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Marque</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Modèle</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">État</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Utilisateur Affecté</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Durée vie(moi)</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Durée resté(moi)</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Quantité</th>
+                            <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white/60  ">
+                    <tbody class="bg-indido-100/15  ">
                         @foreach($rec as $resource)
-                        <tr class="text-center hover:bg-blue-50 hover:shadow-md hover:border hover:border-gray-500">
+                        <tr class="text-center hover:bg-blue-200/50 hover:shadow-md hover:border hover:border-blue-400">
                             <td class="p-4 border-b border-gray-300"><img class="w-10 mx-2 h-10 rounded-md shadow-xl hover:shadow-2xl  transition duration-500 " src="{{ asset($resource->imageRc) }}" alt="il n y a pas une image disponible" /></td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['type'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['designation'] }}</td>
@@ -115,11 +163,11 @@
                             @endphp
 
                             <td class="p-4 border-b border-gray-300 {{ $moirest <= 0 ? 'text-red-500 font-bold' : '' }}">
-                                {{ $moirest > 0 ? $moirest . ' months left' : 'Expired' }}
+                                {{ $moirest > 0 ? $moirest  : 'Expired' }}
                             </td>
 
                                 <td class="p-4 border-b border-gray-300">{{ $resource['quantite'] }}</td>
-                            <td class="p-4 border-b border-gray-300">
+                            <td class="p-3 border-b border-gray-300">
                                 <div class="flex justify-center items-center gap-2">
                                     <form action="{{ route('ResourceController.edit',['ResourceController'=> $resource['id']]) }}" method="GET">
                                         <button type="submit" class="w-20 h-8 bg-white border border-blue-400 hover:bg-blue-400 hover:text-white text-blue-400 rounded hover:scale-110 transition">
@@ -161,7 +209,7 @@
                 labels: ['Bon', 'Usagé', 'Hors Service'],
                 datasets: [{
             data: [{{$totalBon}},{{$totalUsage}},{{$totalHors}}],
-                    backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
+                    backgroundColor: ['#34D399', '#F7D23D', '#F46A6B'],
 
                     borderColor: '#fff',
                     borderWidth: 0,
@@ -223,8 +271,7 @@
 <div class="bg-white rounded-lg shadow-lg p-6 mb-8 mt-8">
             <h2 class="text-xl font-semibold mb-4 text-gray-700 text-center">Cartes de Statut</h2>
             <div class="space-y-4">
-                <!-- Approved -->
-                <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                <div class="border-l-4 border-green-500 rounded-md  bg-green-50 p-4 rounded-r-lg">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold text-green-700">Bon etat</span>
                         <span class="text-2xl font-bold text-green-600">{{$bon}}</span>
@@ -235,18 +282,18 @@
                     <div class="text-sm text-green-600 mt-1">{{ $all != 0 ? number_format($bon * 100 / $all, 2) : '0' }}%
 % du total</div>
                 </div>
-                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                <div class="border-l-4 border-yellow-500 rounded-md bg-yellow-50 p-4 rounded-r-lg">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold text-yellow-700">Usage</span>
                         <span class="text-2xl font-bold text-yellow-600">{{$Usage}}</span>
                     </div>
-                    <div class="w-full bg-yellow-200 rounded-full h-2">
+                    <div class="w-full bg-yellow-200  rounded-full h-2">
                         <div class="bg-yellow-500 h-2 rounded-full" style="width: 36%"></div>
                     </div>
                     <div class="text-sm text-yellow-600 mt-1">{{ $all != 0 ? number_format($Usage * 100 / $all, 2) : '0' }}%
  du total</div>
                 </div>
-                <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                <div class="border-l-4 border-red-500 rounded-md bg-red-50 p-4 rounded-r-lg">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold text-red-700">Hors Service</span>
                         <span class="text-2xl font-bold text-red-600">{{$hors}}</span>
@@ -311,7 +358,7 @@
     $horsService = $rec->where('etat', 'Hors Service');
 @endphp
 @if($horsService->isEmpty())
-    <div class="flex flex-col  p-5 border-l-[6px] border-green-500 bg-green-50 rounded-xl shadow-sm hover:shadow-lg transition-all duration-500 m-3">
+    <div class="flex flex-col  p-5 border-l-[6px] border-green-500 bg-green-50 rounded-md shadow-sm hover:shadow-lg transition-all duration-500 m-3">
     <p class="text-sm font-semibold text-gray-600 leading-relaxed text-start">
         Aucune ressource est Hors service
     </p>

@@ -63,10 +63,20 @@ class CollaborateurFilter extends Component
         $collab->isPresentToday = $collab->presences->isNotEmpty();
     });
 
+$all=$collaborateurs->count();
+$pres = Collaborateur::whereHas('presences', function ($q) use ($today) {
+    $q->where('date_jour', $today);
+})->count();
+$abs = $all- Collaborateur::whereHas('presences', function ($q) use ($today) {
+    $q->where('date_jour', $today);
+})->count();
     return view('livewire.rh.collaborateur-filter', [
         'collaborateurs' => $collaborateurs,
         'postes' => Collaborateur::distinct()->pluck('poste'),
         'departements' => Collaborateur::distinct()->pluck('departement'),
+        'all'=>$all,
+        'pres'=>$pres,
+        'abs'=>$abs
     ]);
 }
 }

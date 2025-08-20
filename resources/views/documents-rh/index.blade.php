@@ -3,7 +3,7 @@
 @section('title', 'Documents RH')
 
 @section('content')
-<div class="bg-white border border-gray-200 rounded-lg shadow p-6">
+<div class="bg-white border col-span-12 mx-auto border-gray-200 rounded-lg shadow p-6">
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-900 mb-4 md:mb-0">Documents RH</h1>

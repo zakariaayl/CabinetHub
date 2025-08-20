@@ -65,7 +65,7 @@
         {{-- <i class="fa-solid  fa-hourglass-half text-gray-200 text-3xl"></i> --}}
         <i class="fa-regular fa-user text-indigo-300 text-3xl"></i>
         <h4 class="text-md font-semibold text-indifo-700 mb-1">total d'employee</h4>
-        <p class="text-xl font-bold text-gray-600">1</p>
+        <p class="text-xl font-bold text-gray-600">{{$all}}</p>
     </div>
     <div class="bg-indigo-100/30 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-indigo-200 hover:shadow-lg transition">
         <i class="fa-solid  fa-hourglass-half text-indigo-200 text-3xl"></i>
@@ -76,12 +76,12 @@
         {{-- <i class="fa-solid fa-check-circle "></i> --}}
         <i class="fa-regular fa-square-check text-green-500 text-3xl"></i>
         <h4 class="text-md font-semibold text-green-700 mb-1">present aujourd hui</h4>
-        <p class="text-xl font-bold text-green-600">1</p>
+        <p class="text-xl font-bold text-green-600">{{$pres}}</p>
     </div>
-    <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition">
-        <i class="fa-regular fa-times-circle text-red-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-red-700 mb-1">absent aujourd hui </h4>
-        <p class="text-xl font-bold text-red-600">1</p>
+    <div class="bg-gradient-to-br from-red-400 to-rose-400 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition">
+        <i class="fa-regular fa-times-circle text-white text-3xl"></i>
+        <h4 class="text-md font-semibold text-white mb-1">absent aujourd hui </h4>
+        <p class="text-xl font-bold text-white">{{$abs}}</p>
     </div>
 </div>
 

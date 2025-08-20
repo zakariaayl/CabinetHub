@@ -19,38 +19,86 @@
         </script>
     @endif
 
-    <div class="max-w-7xl mx-auto lg:col-span-8  col-span-12 sm:col-span-12">
-        <h1 class="text-3xl font-bold mb-6">Tableau de bord des demandes</h1>
+    <div class=" lg:col-span-8  col-span-12 sm:col-span-12">
+        <div class="flex mb-6">
+   <div class="ml-7 bg-indigo-100 p-2 rounded-full mt-10">
+                <i class="fa-solid fa-warehouse text-indigo-600 text-xl"></i>
+    </div>
+   <h1 class="ml-7 text-4xl font-semibold  text-start mx-auto block mt-10 mb-6">Tableau du Bord des Demandes</h1>
+</div>
+         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="bg-white shadow-md duration-400 rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 hover:shadow-lg transition scale-[1.01]">
+    <i class="fa-solid fa-folder text-gray-500 text-3xl"></i>
+    <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
+    <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
+</div>
+    <div class="bg-yellow-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-lg transition duration-400 scale-[1.01]">
+        <i class="fa-solid  fa-hourglass-half text-yellow-500 text-3xl"></i>
+        <h4 class="text-md font-semibold text-yellow-700 mb-1">En attente</h4>
+        <p class="text-xl font-bold text-yellow-600">{{ $attente }}</p>
+    </div>
+    <div class="bg-green-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition duration-400 scale-[1.01]">
+        <i class="fa-solid fa-check-circle text-green-500 text-3xl"></i>
+        <h4 class="text-md font-semibold text-green-700 mb-1">Approuvée</h4>
+        <p class="text-xl font-bold text-green-600">{{ $aprouv }}</p>
+    </div>
+    <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition duration-400 scale-[1.01]">
+        <i class="fa-solid fa-times-circle text-red-500 text-3xl"></i>
+        <h4 class="text-md font-semibold text-red-700 mb-1">Refusée</h4>
+        <p class="text-xl font-bold text-red-600">{{ $refus }}</p>
+    </div>
+</div>
 
         <div
-              class="bg-white p-6 rounded-xl shadow border border-gray-100 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Filtres de recherche</h2>
+              class="bg-white p-3 rounded-xl shadow border border-gray-100 mb-8">
+              <div class="flex mb-3">
+              <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-2">
+            <i class="fas fa-filter text-white"></i>
+
+        </div>
+        <h1 class="text-2xl font-sans text-gray-800">Filtres des Recherches</h1>
+        </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-2 mb-6">
                     <div class="mx-auto w-full">
+                        <div class="flex gap-2">
+                        <i class="fa-regular text-indigo-400 fa-calendar"></i>
                         <label for="date_besoin" class="block text-sm font-medium text-gray-600 mb-1">date du besoin</label>
+                        </div>
                         <input type="date" name="date_besoin" id="date_besoin"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                         wire:model.live.debounce.500ms="date_besoin">
                     </div>
                     <div class="mx-auto w-full">
+                        <div class="flex gap-2">
+                        <i class="fa-regular text-indigo-400 fa-calendar"></i>
                         <label for="date_demande" class="block text-sm font-medium text-gray-600 mb-1">date du demande</label>
+                        </div>
                         <input type="date" name="date_demande" id="date_demande"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                         wire:model.live.debounce.500ms="date_demande">
                     </div>
                     <div class="mx-auto w-full">
+                        <div class="flex gap-2">
+                        <i class="fas fa-user text-purple-500 mr-2"></i>
                         <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-600 mb-1">responsabl du demande</label>
+                        </div>
                         <input type="text" name="utilisateur_affecte" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="responsabl_demande">
                         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                     <div class="mx-auto w-full">
+                        <div class="flex">
+                        <i class="fa-solid text-orange-400 fa-tags mr-2"></i>
                         <label for="designation" class="block text-sm font-medium text-gray-600 mb-1">resource du demande</label>
+                        </div>
                         <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"wire:model.live.debounce.500m="resource_demande">
                         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                     <div>
+                        <div class="flex ">
+                        <i class="fa-solid text-emerald-400 fa-layer-group mr-2"></i>
                         <label for="filtertype" class="block text-sm font-medium text-gray-600 mb-1">Type</label>
+                        </div>
                         <select class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="type">
                             <option value="">Sélectionner</option>
                             <option value="refusée" >refusée</option>
@@ -63,30 +111,9 @@
 
         </div>
 
-<div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 mb-6">
-    <i class="fa-solid fa-folder text-gray-500 text-3xl"></i>
-    <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
-    <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
-</div>
 
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-    <div class="bg-yellow-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-lg transition">
-        <i class="fa-solid  fa-hourglass-half text-yellow-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-yellow-700 mb-1">En attente</h4>
-        <p class="text-xl font-bold text-yellow-600">{{ $attente }}</p>
-    </div>
-    <div class="bg-green-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition">
-        <i class="fa-solid fa-check-circle text-green-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-green-700 mb-1">Approuvée</h4>
-        <p class="text-xl font-bold text-green-600">{{ $aprouv }}</p>
-    </div>
-    <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition">
-        <i class="fa-solid fa-times-circle text-red-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-red-700 mb-1">Refusée</h4>
-        <p class="text-xl font-bold text-red-600">{{ $refus }}</p>
-    </div>
-</div>
+
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @forelse($demandes as $demande)
@@ -204,7 +231,7 @@
         </a> --}}
     </div>
     <div class="flex flex-col  col-span-12 lg:col-span-4 lg:h-1/3">
-    <div class="bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-14 rounded-lg grid grid-cols-1 mb-10">
+    <div class="bg-white text-center text-amber-300 text-2xl shadow-md w-full  mt-14 rounded-lg grid grid-cols-1 mb-6">
 
     <div class="h-80" wire:ignore>
          <canvas id="statusChart" class="w-full h-full"></canvas>
@@ -278,36 +305,35 @@
 <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <h2 class="text-xl font-semibold mb-4 text-gray-700 text-center">Cartes de Statut</h2>
             <div class="space-y-4">
-                <!-- Approved -->
-                <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-r-lg">
+                <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-lg">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold text-green-700">Approuvées</span>
                         <span class="text-2xl font-bold text-green-600">{{$aprouv}}</span>
                     </div>
                     <div class="w-full bg-green-200 rounded-full h-2">
-                        <div class="bg-green-500 h-2 rounded-full" style="width: 45%"></div>
+                        <div class="bg-green-500 h-2 rounded-full" style="width: {{ $all != 0 ? number_format($aprouv * 100 / $all, 2) : '0' }}%"></div>
                     </div>
                     <div class="text-sm text-green-600 mt-1">{{ $all != 0 ? number_format($aprouv * 100 / $all, 2) : '0' }}%
 % du total</div>
                 </div>
-                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-lg">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold text-yellow-700">En attente</span>
                         <span class="text-2xl font-bold text-yellow-600">{{$attente}}</span>
                     </div>
                     <div class="w-full bg-yellow-200 rounded-full h-2">
-                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 36%"></div>
+                        <div class="bg-yellow-500 h-2 rounded-full" style="width: {{ $all != 0 ? number_format($attente * 100 / $all, 2) : '0' }}%"></div>
                     </div>
                     <div class="text-sm text-yellow-600 mt-1">{{ $all != 0 ? number_format($attente * 100 / $all, 2) : '0' }}%
  du total</div>
                 </div>
-                <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-lg">
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-semibold text-red-700">Refusées</span>
                         <span class="text-2xl font-bold text-red-600">{{$refus}}</span>
                     </div>
                     <div class="w-full bg-red-200 rounded-full h-2">
-                        <div class="bg-red-500 h-2 rounded-full" style="width: 18%"></div>
+                        <div class="bg-red-500 h-2 rounded-full" style="width:{{ $all != 0 ? number_format($refus * 100 / $all, 2) : '0' }}%"></div>
                     </div>
                     <div class="text-sm text-red-600 mt-1">{{ $all != 0 ? number_format($refus * 100 / $all, 2) : '0' }}%
 % du total</div>
@@ -359,7 +385,7 @@
             }
         });
          </script>
-<div class=" bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-5 rounded-lg h-full grid grid-cols-1 mb-10 p-4">
+<div class=" bg-white text-center text-amber-300 text-2xl shadow-lg w-full  mt-5 rounded-lg h-80 grid grid-cols-1 mb-10 p-4">
     <h1 class="font-bold text-xl text-black text-center items-center mb-2  ">Liste des demandes en attentes</h1>
     <div class="overflow-y-scroll overflow-x-hidden gap-2">
 
