@@ -61,27 +61,28 @@
         </div>
     </form>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-    <div class="bg-gray-100/30 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 hover:shadow-lg transition">
+    <div class="bg-gradient-to-br from-blue-400 to-indigo-400 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 hover:shadow-lg transition">
         {{-- <i class="fa-solid  fa-hourglass-half text-gray-200 text-3xl"></i> --}}
-        <i class="fa-regular fa-user text-indigo-300 text-3xl"></i>
-        <h4 class="text-md font-semibold text-indifo-700 mb-1">total d'employee</h4>
-        <p class="text-xl font-bold text-gray-600">{{$all}}</p>
+        <i class="fa-regular fa-user text-purple-700 text-3xl"></i>
+        <h4 class="text-md font-snas text-purple-700 mb-1">total d'employee</h4>
+        <p class="text-xl font-bold text-purple-700">{{$all}}</p>
     </div>
-    <div class="bg-indigo-100/30 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-indigo-200 hover:shadow-lg transition">
-        <i class="fa-solid  fa-hourglass-half text-indigo-200 text-3xl"></i>
-        <h4 class="text-md font-semibold text-indifo-700 mb-1">besoin actuel d'employe</h4>
-        <p class="text-xl font-bold text-indigo-600">1</p>
-    </div>
-    <div class="bg-green-100/40 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition">
+     <div class="bg-gradient-to-br from-green-400 to-emerald-400 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition">
         {{-- <i class="fa-solid fa-check-circle "></i> --}}
-        <i class="fa-regular fa-square-check text-green-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-green-700 mb-1">present aujourd hui</h4>
-        <p class="text-xl font-bold text-green-600">{{$pres}}</p>
+        <i class="fa-regular fa-square-check text-emerald-700 text-3xl"></i>
+        <h4 class="text-md font-snas text-emerald-700  mb-1">present aujourd hui</h4>
+        <p class="text-xl font-bold  text-emerald-700">{{$pres}}</p>
     </div>
+    <div class="bg-gradient-to-br from-blue-400 to-indigo-400 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-indigo-200 hover:shadow-lg transition">
+        <i class="fa-solid  fa-hourglass-half  text-indigo-700 text-3xl"></i>
+        <h4 class="text-md font-snas text-indigo-700 text-indifo-700 mb-1">besoin actuel d'employe</h4>
+        <p class="text-xl font-bold text-indigo-700">1</p>
+    </div>
+
     <div class="bg-gradient-to-br from-red-400 to-rose-400 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition">
-        <i class="fa-regular fa-times-circle text-white text-3xl"></i>
-        <h4 class="text-md font-semibold text-white mb-1">absent aujourd hui </h4>
-        <p class="text-xl font-bold text-white">{{$abs}}</p>
+        <i class="fa-regular fa-times-circle text-red-900 text-3xl"></i>
+        <h4 class="text-md font-semibold text-red-900 mb-1">absent aujourd hui </h4>
+        <p class="text-xl font-bold text-red-900">{{$abs}}</p>
     </div>
 </div>
 

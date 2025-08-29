@@ -216,10 +216,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white shadow-xl p-10 rounded-xl hover:shadow-2xl transition duration-300">
-                    <h1 class="text-xl font-semibold text-center mb-2">facture</h1>
-                <img class="w-full rounded-xl shadow-xl hover:shadow-2xl  transition duration-500 " src="{{ asset($resource->facture) }}" alt="il n y a pas une facture disponible" />
-                </div>
+                <div class="bg-white shadow-xl p-10 rounded-xl hover:shadow-2xl transition duration-300 w-full">
+    <h1 class="text-xl font-semibold text-center mb-2">facture</h1>
+
+    <img class="w-full rounded-xl shadow-xl hover:shadow-2xl transition duration-500"
+         src="{{ asset($resource->facture) }}"
+         alt="il n y a pas une facture disponible" />
+
+    <a href=""
+       class="block bg-indigo-500 w-full text-white mt-6 py-3 text-center rounded-xl hover:bg-white hover:text-indigo-500 border border-indigo-400 transition">
+       Extractez les infos
+    </a>
+</div>
+
             </div>
         </div>
 

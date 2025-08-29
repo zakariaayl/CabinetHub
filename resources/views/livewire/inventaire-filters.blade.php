@@ -187,8 +187,8 @@
             </a>
         </div>
 
-        <div class="flex flex-col col-span-12 md:col-span-4 mt-32 p-6 space-y-6">
-            <div class="bg-white/90 backdrop-blur-sm border border-white/50 rounded-2xl shadow-xl p-6" wire:ignore>
+        <div class="flex flex-col col-span-12 md:col-span-4 mt-[170px] p-6 space-y-6">
+            <div class="bg-white/90 backdrop-blur-sm border border-white/50 rounded-2xl shadow-md p-6" wire:ignore>
                 <div class="mb-6 text-center">
                     <h3 class="text-xl font-bold text-gray-800 flex items-center justify-center gap-2">
                         <div class="bg-indigo-100 p-2 rounded-lg">
@@ -213,6 +213,7 @@
                                     borderWidth: 2,
                                     borderRadius: 12,
                                     borderSkipped: false,
+                                    barPercentage: 0.7,
                                 }]
                             },
                             options: {
@@ -239,7 +240,7 @@
                 </div>
             </div>
 
-            <div class="bg-white/90 backdrop-blur-sm border border-white/50 rounded-2xl shadow-xl p-6" wire:ignore>
+            <div class="bg-white/90 backdrop-blur-sm border border-white/50 rounded-2xl shadow-md p-6" wire:ignore>
                 <div class="mb-6 text-center">
                     <h3 class="text-xl font-bold text-gray-800 flex items-center justify-center gap-2">
                         <div class="bg-green-100 p-2 rounded-lg">
@@ -264,6 +265,7 @@
                                     borderWidth: 2,
                                     borderRadius: 12,
                                     borderSkipped: false,
+                                    barPercentage: 0.6,
                                 }]
                             },
                             options: {
@@ -290,7 +292,7 @@
                 </div>
             </div>
 
-            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-md p-6">
                 <div class="bg-gradient-to-r from-rose-400 to-red-400 text-white rounded-xl p-4 text-center mb-4">
                     <div class="flex items-center justify-center gap-2">
                         <div class="bg-white/20 p-2 rounded-lg">

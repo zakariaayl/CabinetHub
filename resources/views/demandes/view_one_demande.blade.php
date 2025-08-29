@@ -37,11 +37,28 @@
                         <p class="text-gray-300">Détails de la demande d'achat</p>
                     </div>
                 </div>
+                @if ( $demande->statut == 'en attente')
 
-                <div class="bg-gray-400 px-6 py-3 rounded-full text-black font-bold text-sm shadow-lg">
+                   <div class="bg-yellow-400 px-6 py-3 rounded-full text-black font-bold text-sm shadow-lg">
                     <i class="fas fa-check-circle mr-2"></i>{{ $demande->statut ?? 'En attente' }}
                 </div>
             </div>
+                @endif
+                @if ( $demande->statut == 'refusée')
+
+                   <div class="bg-red-400 px-6 py-3 rounded-full text-black font-bold text-sm shadow-lg">
+                    <i class="fas fa-check-circle mr-2"></i>{{ $demande->statut ?? 'En attente' }}
+                </div>
+            </div>
+                @endif
+                @if ( $demande->statut == 'approuvée')
+
+                   <div class="bg-green-400 px-6 py-3 rounded-full text-black font-bold text-sm shadow-lg">
+                    <i class="fas fa-check-circle mr-2"></i>{{ $demande->statut ?? 'En attente' }}
+                </div>
+            </div>
+                @endif
+
 
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">

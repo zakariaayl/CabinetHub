@@ -27,25 +27,25 @@
    <h1 class="ml-7 text-4xl font-semibold  text-start mx-auto block mt-10 mb-6">Tableau du Bord des Demandes</h1>
 </div>
          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-    <div class="bg-white shadow-md duration-400 rounded-2xl p-6 flex flex-col items-center justify-center border border-gray-200 hover:shadow-lg transition scale-[1.01]">
-    <i class="fa-solid fa-folder text-gray-500 text-3xl"></i>
-    <h3 class="text-lg font-semibold text-gray-800 mb-1">Toutes les demandes</h3>
-    <p class="text-2xl font-bold text-gray-600">{{ $all }}</p>
+    <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 shadow-md  rounded-2xl p-6 flex flex-col items-center justify-center border border-indigo-200 hover:shadow-lg hover:-translate-y-1   transition-all duration-500 scale-[1.01]">
+    <i class="fa-solid fa-folder text-indigo-400 text-3xl"></i>
+    <h3 class="text-lg font-semibold text-indigo-400 mb-1">Toutes les demandes</h3>
+    <p class="text-2xl font-bold text-indigo-400">{{ $all }}</p>
 </div>
-    <div class="bg-yellow-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-lg transition duration-400 scale-[1.01]">
-        <i class="fa-solid  fa-hourglass-half text-yellow-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-yellow-700 mb-1">En attente</h4>
-        <p class="text-xl font-bold text-yellow-600">{{ $attente }}</p>
+    <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-lg hover:-translate-y-1   transition-all duration-500 scale-[1.01]">
+        <i class="fa-solid  fa-hourglass-half text-yellow-400 text-3xl"></i>
+        <h4 class="text-md font-semibold text-yellow-400 mb-1">En attente</h4>
+        <p class="text-xl font-bold text-yellow-400">{{ $attente }}</p>
     </div>
-    <div class="bg-green-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg transition duration-400 scale-[1.01]">
-        <i class="fa-solid fa-check-circle text-green-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-green-700 mb-1">Approuvée</h4>
-        <p class="text-xl font-bold text-green-600">{{ $aprouv }}</p>
+    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-green-200 hover:shadow-lg hover:-translate-y-1   transition-all duration-500 scale-[1.01]">
+        <i class="fa-solid fa-check-circle text-green-400 text-3xl"></i>
+        <h4 class="text-md font-semibold text-green-400 mb-1">Approuvée</h4>
+        <p class="text-xl font-bold text-green-400">{{ $aprouv }}</p>
     </div>
-    <div class="bg-red-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg transition duration-400 scale-[1.01]">
-        <i class="fa-solid fa-times-circle text-red-500 text-3xl"></i>
-        <h4 class="text-md font-semibold text-red-700 mb-1">Refusée</h4>
-        <p class="text-xl font-bold text-red-600">{{ $refus }}</p>
+    <div class="bg-gradient-to-br from-red-50 to-red-100 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center border border-red-200 hover:shadow-lg hover:-translate-y-1   transition-all duration-500 scale-[1.01]">
+        <i class="fa-solid fa-times-circle text-red-400 text-3xl"></i>
+        <h4 class="text-md font-semibold text-red-400 mb-1">Refusée</h4>
+        <p class="text-xl font-bold text-red-400">{{ $refus }}</p>
     </div>
 </div>
 
@@ -83,7 +83,7 @@
                         <i class="fas fa-user text-purple-500 mr-2"></i>
                         <label for="utilisateur_affecte" class="block text-sm font-medium text-gray-600 mb-1">responsabl du demande</label>
                         </div>
-                        <input type="text" name="utilisateur_affecte" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="responsabl_demande">
+                        <input type="text" name="utilisateur_affecte" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" wire:model.live.debounce.500ms="responsabl_demande">
                         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                     <div class="mx-auto w-full">
@@ -91,7 +91,7 @@
                         <i class="fa-solid text-orange-400 fa-tags mr-2"></i>
                         <label for="designation" class="block text-sm font-medium text-gray-600 mb-1">resource du demande</label>
                         </div>
-                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"wire:model.live.debounce.500m="resource_demande">
+                        <input type="text" class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"wire:model.live.debounce.500m="resource_demande">
                         <i class="ti ti-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                     <div>
@@ -99,7 +99,7 @@
                         <i class="fa-solid text-emerald-400 fa-layer-group mr-2"></i>
                         <label for="filtertype" class="block text-sm font-medium text-gray-600 mb-1">Type</label>
                         </div>
-                        <select class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" wire:model.live.debounce.500ms="type">
+                        <select class="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" wire:model.live.debounce.500ms="type">
                             <option value="">Sélectionner</option>
                             <option value="refusée" >refusée</option>
                             <option value="approuvée" >approuvée</option>
@@ -231,7 +231,7 @@
         </a> --}}
     </div>
     <div class="flex flex-col  col-span-12 lg:col-span-4 lg:h-1/3">
-    <div class="bg-white text-center text-amber-300 text-2xl shadow-md w-full  mt-14 rounded-lg grid grid-cols-1 mb-6">
+    <div class="bg-white text-center text-amber-300 text-2xl shadow-md w-full  mt-32 rounded-lg grid grid-cols-1 mb-6">
 
     <div class="h-80" wire:ignore>
          <canvas id="statusChart" class="w-full h-full"></canvas>
@@ -299,10 +299,8 @@
         });
 </script>
     </div>
-
-
 </div>
-<div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+<div class="bg-white rounded-lg shadow-lg p-6 mb-2">
             <h2 class="text-xl font-semibold mb-4 text-gray-700 text-center">Cartes de Statut</h2>
             <div class="space-y-4">
                 <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded-lg">

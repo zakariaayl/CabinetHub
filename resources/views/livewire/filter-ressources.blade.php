@@ -23,29 +23,29 @@
             </script>
             @endif
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-    <div class="bg-gradient-to-br from-purple-100 to-indigo-50 h-32 rounded-2xl p-6 flex flex-col items-center justify-center border border-purple-200 hover:shadow-xl transition-all duration-500 shadow-lg hover:-translate-y-1 ">
-    <i class="fa-solid fa-folder text-indigo-700 text-3xl"></i>
-    <h3 class="text-lg font-medium text-indigo-700 mb-1">Toutes les Ressourcess</h3>
-    <p class="text-2xl font-medium text-indigo-700">{{ $all }}</p>
+    <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 h-32 rounded-2xl p-6 flex flex-col items-center justify-center border border-indigo-200 hover:shadow-lg transition-all duration-500 shadow-md hover:-translate-y-1 ">
+    <i class="fa-solid fa-folder text-indigo-400 text-3xl"></i>
+    <h3 class="text-lg font-medium text-indigo-400 mb-1">Toutes les Ressourcess</h3>
+    <p class="text-2xl font-medium text-indigo-400">{{ $all }}</p>
 </div>
-    <div class="bg-yellow-100 shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-yellow-300 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
-        <i class="fa-solid fa-recycle text-yellow-700 text-3xl"></i>
-        <h4 class="text-md font-medium text-yellow-700 mb-1">Usagé</h4>
-        <p class="text-xl font-medium text-yellow-700">{{ $Usage }}</p>
+    <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-yellow-200 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
+        <i class="fa-solid fa-recycle text-yellow-400 text-3xl"></i>
+        <h4 class="text-md font-medium text-yellow-400 mb-1">Usagé</h4>
+        <p class="text-xl font-medium text-yellow-400">{{ $Usage }}</p>
     </div>
-    <div class="bg-gradient-to-br from-green-400/20 to-emerald-400/20 shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-emerald-300 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
-        <i class="fa-solid fa-bolt text-green-700 text-3xl"></i>
-        <h4 class="text-md font-medium text-green-700 mb-1">Bon</h4>
-        <p class="text-xl font-medium text-green-700">{{ $bon }}</p>
+    <div class="bg-gradient-to-br from-green-50 to-emerald-100 shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-emerald-200 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
+        <i class="fa-solid fa-bolt text-green-400 text-3xl"></i>
+        <h4 class="text-md font-medium text-green-400 mb-1">Bon</h4>
+        <p class="text-xl font-medium text-green-400">{{ $bon }}</p>
     </div>
-    <div class="bg-gradient-to-br from-red-400/25 to-rose-400/25  shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-red-300 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
-         <i class="fa-solid fa-trash text-red-700 text-center text-3xl"></i>
-        <h4 class="text-md font-medium text-red-700 mb-1">Hors Service</h4>
+    <div class="bg-gradient-to-br from-red-50 to-red-100  shadow-md rounded-2xl p-3 flex flex-col items-center justify-center border border-red-200 hover:shadow-xl transition-all hover:-translate-y-1 duration-500">
+         <i class="fa-solid fa-trash text-red-400 text-center text-3xl"></i>
+        <h4 class="text-md font-medium text-red-400 mb-1">Hors Service</h4>
 
-        <p class="text-xl font-medium text-red-700">{{ $hors }}</p>
+        <p class="text-xl font-medium text-red-400">{{ $hors }}</p>
     </div>
 </div>
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 mb-6">
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200 mb-6">
     <div class="flex items-center mb-6">
         <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
             <i class="fas fa-filter text-white"></i>
@@ -127,9 +127,9 @@
 
 
 
-            <div class="overflow-x-scroll rounded-2xl shadow-2xl">
+            <div class="overflow-x-scroll rounded-2xl shadow-md">
                 <table class="table-auto w-full border-collapse">
-                    <thead class="bg-gradient-to-r from-indigo-300 to-blue-300   rounded-t-2xl  shadow-xl">
+                    <thead class="bg-gradient-to-r from-indigo-300 to-blue-300   rounded-t-2xl  shadow-md">
                         <tr>
                             <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">image</th>
                             <th class="px-6 py-5 text-xs font-medium text-gray-900 uppercase text-center">Type</th>
@@ -146,10 +146,10 @@
                     </thead>
                     <tbody class="bg-indido-100/15  ">
                         @foreach($rec as $resource)
-                        <tr class="text-center hover:bg-blue-200/50 hover:shadow-md hover:border hover:border-blue-400">
-                            <td class="p-4 border-b border-gray-300"><img class="w-10 mx-2 h-10 rounded-md shadow-xl hover:shadow-2xl  transition duration-500 " src="{{ asset($resource->imageRc) }}" alt="il n y a pas une image disponible" /></td>
-                            <td class="p-4 border-b border-gray-300">{{ $resource['type'] }}</td>
-                            <td class="p-4 border-b border-gray-300">{{ $resource['designation'] }}</td>
+                        <tr class="text-center hover:bg-blue-200/40  hover:border-x-2 hover:border-blue-500">
+                            <td class="p-3 border-b border-gray-300"><img class="w-10 mx-2 h-10 rounded-md   transition duration-500 " src="{{ asset($resource->imageRc) }}" alt="il n y a pas une image disponible" /></td>
+                            <td class="p-3 border-b border-gray-300">{{ $resource['type'] }}</td>
+                            <td class="p-3 border-b border-gray-300">{{ $resource['designation'] }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['marque'] ?? '---' }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['modele'] ?? '---' }}</td>
                             <td class="p-4 border-b border-gray-300">{{ $resource['etat'] }}</td>
@@ -181,7 +181,9 @@
                     </tbody>
                 </table>
             </div>
-
+            @if($rec->isEmpty() && $filtertype && $etat && $designation && $utilisateur_affecte)
+        <p class="mt-4 text-gray-500">Aucun résultat trouvé pour ce ressource</p>
+    @endif
             <div class="mt-6 flex p-4 justify-center">
                 <div class="text-black text-2xl font-bold mr-3">
                     {{ $rec->links('pagination::tailwind') }}
@@ -194,10 +196,14 @@
         </div>
         <div class="flex flex-col   col-span-12 lg:col-span-4 p-6  ">
 
-            <div class="bg-white border border-gray-100 rounded-xl shadow-xl" wire:ignore>
-            <div class="mb-6 text-center">
-                <h3 class="text-xl font-bold text-gray-800">Statistiques des resources</h3>
-            </div>
+            <div class="bg-white border border-gray-100 rounded-xl shadow-md" wire:ignore>
+            <div class="mb-6 flex items-center justify-center">
+    <div class="flex items-center space-x-2">
+        <h3 class="text-xl font-bold text-gray-800">Statistiques des resources</h3>
+        <i class="fa-solid fa-signal text-yellow-400 text-xl"></i>
+    </div>
+</div>
+
             <div class=" h-80 mb-6">
                 <canvas id="statusChart" class="w-full h-full"></canvas>
           <script>
@@ -277,7 +283,7 @@
                         <span class="text-2xl font-bold text-green-600">{{$bon}}</span>
                     </div>
                     <div class="w-full bg-green-200 rounded-full h-2">
-                        <div class="bg-green-500 h-2 rounded-full" style="width: 45%"></div>
+                        <div class="bg-green-500 h-2 rounded-full" style="width: {{ $all != 0 ? number_format($bon * 100 / $all, 2) : '0' }}%"></div>
                     </div>
                     <div class="text-sm text-green-600 mt-1">{{ $all != 0 ? number_format($bon * 100 / $all, 2) : '0' }}%
 % du total</div>
@@ -288,7 +294,7 @@
                         <span class="text-2xl font-bold text-yellow-600">{{$Usage}}</span>
                     </div>
                     <div class="w-full bg-yellow-200  rounded-full h-2">
-                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 36%"></div>
+                        <div class="bg-yellow-500 h-2 rounded-full" style="width: {{ $all != 0 ? number_format($Usage * 100 / $all, 2) : '0' }}%"></div>
                     </div>
                     <div class="text-sm text-yellow-600 mt-1">{{ $all != 0 ? number_format($Usage * 100 / $all, 2) : '0' }}%
  du total</div>
@@ -299,7 +305,7 @@
                         <span class="text-2xl font-bold text-red-600">{{$hors}}</span>
                     </div>
                     <div class="w-full bg-red-200 rounded-full h-2">
-                        <div class="bg-red-500 h-2 rounded-full" style="width: 18%"></div>
+                        <div class="bg-red-500 h-2 rounded-full" style="width: {{ $all != 0 ? number_format($hors * 100 / $all, 2) : '0' }}%"></div>
                     </div>
                     <div class="text-sm text-red-600 mt-1">{{ $all != 0 ? number_format($hors * 100 / $all, 2) : '0' }}%
 % du total</div>
@@ -385,7 +391,5 @@
     </div>
         </div>
 
-    @if($rec->isEmpty() && $filtertype && $etat && $designation && $utilisateur_affecte)
-        <p class="mt-4 text-gray-500">Aucun résultat trouvé pour "{{ $search }}"</p>
-    @endif
+
 </div>
