@@ -223,7 +223,7 @@
          src="{{ asset($resource->facture) }}"
          alt="il n y a pas une facture disponible" />
 
-    <a href=""
+    <a href="{{ route('facture.extract', $resource->id) }}"
        class="block bg-indigo-500 w-full text-white mt-6 py-3 text-center rounded-xl hover:bg-white hover:text-indigo-500 border border-indigo-400 transition">
        Extractez les infos
     </a>

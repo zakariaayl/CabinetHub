@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DemandeAchatController;
 use App\Http\Controllers\DocumentAchatController;
+use App\Http\Controllers\FactureController;
 use App\Http\Controllers\inventaireController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\RH\resourceviewcontroller;
@@ -35,6 +36,7 @@ Route::get('/inventaire/{id}', function ($id) {
 });
 
 Route::resource('ResourceController', ResourceController::class);
+Route::get('/facture/extract/{id}', [FactureController::class, 'extract'])->name('facture.extract');
 
 Route::resource('Document_achat', DocumentAchatController::class);
 Route::get('/RH/collaborateurs', [CollaborateurController::class, 'dashboard'])
