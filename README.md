@@ -36,7 +36,7 @@
 ╚═══════════════════════════════════════════════════════════════╝
 ```
 </p>
-## 🌌 The Vision
+## Our Vision
 
 Imagine a single platform where every thread of your organization-**people**, **resources**, **maintenance schedules**, **purchases**, and **audits**-weaves together into a living tapestry of operational clarity. 
 
@@ -54,31 +54,11 @@ This isn't about managing your organization. This is about **orchestrating** it.
 
 At the heart of CabinetHub lies a carefully orchestrated seven-layer architecture-each layer a stepping stone from user interaction to data permanence, from request to insight.
 
-![System Overview](https://image2url.com/images/1762695016088-b27c0f4c-9ecf-4774-b426-db8cb06eb2a0.png)
+![System Overview](https://image2url.com/images/1762695939234-481d748c-d2df-4798-b20f-e470525d39cd.png)
 
 ### The Seven Pillars
 
-<div align="center">
-
-```
-┌──────────────────────────────────────────────────────────┐
-│  7 │ External Services      │ Notifications & Integrations │
-├──────────────────────────────────────────────────────────┤
-│  6 │ Database Interaction   │ MySQL - The Memory Core      │
-├──────────────────────────────────────────────────────────┤
-│  5 │ File Storage           │ Documents & Media Repository │
-├──────────────────────────────────────────────────────────┤
-│  4 │ Dashboard & Reports    │ Analytics & Visualization    │
-├──────────────────────────────────────────────────────────┤
-│  3 │ Cabinet Management     │ Core Business Logic          │
-├──────────────────────────────────────────────────────────┤
-│  2 │ User Management        │ Authentication & Roles       │
-├──────────────────────────────────────────────────────────┤
-│  1 │ User Interaction       │ Blade Views & Bootstrap UI   │
-└──────────────────────────────────────────────────────────┘
-```
-
-</div>
+![System Overview](https://image2url.com/images/1762699735172-f501c6b4-fc26-4310-ad6d-c0b2dd22f5ec.png)
 
 **At the center lives the Laravel Core**, orchestrating every cabinet, every collaborator, every audit trail. Requests flow upward through authentication gates, business logic transformers, and data persistence layers. Insights flow downward through analytical engines and dashboard renderers. 
 
@@ -170,8 +150,6 @@ The data model is designed for:
 Every user embarks on a journey through CabinetHub. Here's what that journey looks like:
 
 ![System Overview](https://image2url.com/images/1762697126442-32b996e8-9c79-4dd0-9869-66cda307882c.png)
-## 🛤️ System Overview
-![System Overview](https://image2url.com/images/1762695939234-481d748c-d2df-4798-b20f-e470525d39cd.png)
 ### The Collaborateur's Path
 
 1. **Login** → Authentication gates verify identity and permissions
