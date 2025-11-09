@@ -36,7 +36,8 @@
 ╚═══════════════════════════════════════════════════════════════╝
 ```
 </p>
-## Our Vision
+
+### Our Vision
 
 Imagine a single platform where every thread of your organization-**people**, **resources**, **maintenance schedules**, **purchases**, and **audits**-weaves together into a living tapestry of operational clarity. 
 
