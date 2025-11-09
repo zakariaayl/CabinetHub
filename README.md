@@ -170,10 +170,10 @@ Ready to summon CabinetHub into your local environment? Follow the sacred steps:
 
 ### Prerequisites
 
-- PHP >= 8.1
+- PHP >= 8.2
 - Composer
 - MySQL >= 5.7
-- Node.js & NPM (optional, for asset compilation)
+- Node.js & NPM 
 
 ### The Summoning
 
@@ -218,7 +218,7 @@ php artisan serve
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
 | **Frontend** | Blade Templates + Bootstrap 5 | Responsive, server-rendered UI |
-| **Backend** | Laravel 10.x (PHP 8.1+) | RESTful logic, Eloquent ORM |
+| **Backend** | Laravel 12.x (PHP 8.2+) | RESTful logic, Eloquent ORM |
 | **Database** | MySQL 5.7+ | Relational persistence, transactional integrity |
 | **Authentication** | Laravel Sanctum / Breeze | Secure session management |
 | **Auditing** | Custom EventAudit Models | Immutable action logs |
