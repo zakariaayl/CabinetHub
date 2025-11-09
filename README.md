@@ -2,7 +2,7 @@
 
 ### Where People, Assets, and Insight Connect Seamlessly
 
-<div align="center">
+<p align="center">
 
 ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
@@ -10,8 +10,8 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-</div>
-<div align="center">
+</p>
+<p align="center">
 
 
 
@@ -35,7 +35,7 @@
 ║                                                               ║
 ╚═══════════════════════════════════════════════════════════════╝
 ```
-</div>
+</p>
 ## 🌌 The Vision
 
 Imagine a single platform where every thread of your organization-**people**, **resources**, **maintenance schedules**, **purchases**, and **audits**-weaves together into a living tapestry of operational clarity. 
